@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ../../modules/home-manager/helix.nix ];
+  imports =
+    [ ../../modules/home-manager/helix.nix ../../modules/home-manager/git.nix ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "js";
@@ -21,7 +22,6 @@
   home.packages = with pkgs; [
     discord
     tree
-    git
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
