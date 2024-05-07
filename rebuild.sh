@@ -12,14 +12,11 @@
 # A rebuild script that commits on a successful build
 set -e
 
-# Edit your config
-$EDITOR configuration.nix
-
 # cd to your config dir
 pushd ~/nix
 
 # Early return if no changes were detected (thanks @singiamtel!)
-if git diff --quiet '*.nix'; then
+if git diff --quiet; then
     echo "No changes detected, exiting."
     popd
     exit 0
