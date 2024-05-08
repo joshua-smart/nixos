@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ ... }: {
   programs.alacritty = {
     enable = true;
     settings = {
@@ -9,7 +9,7 @@
         opacity = 0.6;
         title = "Terminal";
       };
-      shell.program = "${pkgs.bash}/bin/bash";
+      shell.program = "usr/bin/env bash";
     };
   };
 }
