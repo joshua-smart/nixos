@@ -9,7 +9,7 @@
         opacity = 0.6;
         title = "Terminal";
       };
-      shell = "${pkgs.bash}/bin/bash";
+      shell.program = "${pkgs.bash}/bin/bash";
     };
   };
 }
