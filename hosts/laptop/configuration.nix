@@ -18,23 +18,16 @@
   home-manager.useGlobalPkgs = true;
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.windowManager.xmonad = {
-  #   enable = true;
-  #   enableContribAndExtras = true;
-  #   enableConfiguredRecompile = true;
-  #   config = builtins.readFile ./xmonad.hs;
-  # };
-
-  # programs.hyprland = {
-  #   enable = true;
-  #   xwayland.enable = true;
-  # };
-
-  # hardware = { opengl.enable = true; };
+  services.xserver.enable = true;
+  services.xserver.windowManager.xmonad = {
+    enable = true;
+    enableContribAndExtras = true;
+    enableConfiguredRecompile = true;
+    config = builtins.readFile ./xmonad.hs;
+  };
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
 
   # Enable CUPS to print documents.
