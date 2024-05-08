@@ -9,7 +9,6 @@
         opacity = 0.6;
         title = "Terminal";
       };
-      shell.program = "usr/bin/env bash";
     };
   };
 }
