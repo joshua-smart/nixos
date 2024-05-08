@@ -18,13 +18,20 @@
   home-manager.useGlobalPkgs = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.windowManager.xmonad = {
-    enable = true;
-    enableContribAndExtras = true;
-    enableConfiguredRecompile = true;
-    config = builtins.readFile ./xmonad.hs;
-  };
+  # services.xserver.enable = true;
+  # services.xserver.windowManager.xmonad = {
+  #   enable = true;
+  #   enableContribAndExtras = true;
+  #   enableConfiguredRecompile = true;
+  #   config = builtins.readFile ./xmonad.hs;
+  # };
+
+  # programs.hyprland = {
+  #   enable = true;
+  #   xwayland.enable = true;
+  # };
+
+  # hardware = { opengl.enable = true; };
 
   # Enable the GNOME Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
