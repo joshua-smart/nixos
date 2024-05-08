@@ -16,11 +16,11 @@ set -e
 pushd ~/nix
 
 # Early return if no changes were detected (thanks @singiamtel!)
-if git diff --quiet; then
-    echo "No changes detected, exiting."
-    popd
-    exit 0
-fi
+# if git diff --quiet; then
+#     echo "No changes detected, exiting."
+#     popd
+#     exit 0
+# fi
 
 # # Autoformat your nix files
 # alejandra . &>/dev/null \
