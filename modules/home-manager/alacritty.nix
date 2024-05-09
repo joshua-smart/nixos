@@ -6,9 +6,11 @@
         size = 12;
         normal = { family = "FiraCode Nerd Font Mono"; };
       };
-      window.padding = {
-        x = 4;
-        y = 4;
+      window = {
+        padding = {
+          x = 4;
+          y = 4;
+        };
         opacity = 0.6;
         title = "Terminal";
       };
