@@ -19,11 +19,16 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.windowManager.xmonad = {
+  # services.xserver.windowManager.xmonad = {
+  #   enable = true;
+  #   enableContribAndExtras = true;
+  #   enableConfiguredRecompile = true;
+  #   config = builtins.readFile ./xmonad.hs;
+  # };
+
+  programs.hyprland = {
     enable = true;
-    enableContribAndExtras = true;
-    enableConfiguredRecompile = true;
-    config = builtins.readFile ./xmonad.hs;
+    xwayland.enable = true;
   };
 
   # Enable the GNOME Desktop Environment.
@@ -55,7 +60,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ helix ];
+  environment.systemPackages = with pkgs; [ helix kitty ];
 
   environment.variables.EDITOR = "hx";
 
