@@ -11,7 +11,7 @@
     "$menu" = "${pkgs.wofi}/bin/wofi --show drun";
 
     # AUTOSTART
-    exec-once = [ "$terminal" ];
+    exec-once = [ "$terminal" "${pkgs.hyprpaper}/bin/hyprpaper" ];
 
     # ENVIRONMENT VARIABLES
     env = [ ];
@@ -103,4 +103,10 @@
       "$mod_SHIFT, P, exit,"
     ];
   };
+
+  home.file.".config/hypr/hyprpaper.conf".text = ''
+    preload = ~/.config/hypr/background
+    wallpaper = eDP-1,~/.config/hypr/background
+  '';
+  home.file.".config/hypr/background".source = ./background;
 }
