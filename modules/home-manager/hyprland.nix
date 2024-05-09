@@ -6,6 +6,7 @@
 
     # PROGRAMS
     "$terminal" = "${pkgs.alacritty}/bin/alacritty";
+    "$browser" = "${pkgs.firefox}/bin/firefox";
     "$fileManager" = "${pkgs.dolphin}/bin/dolphin";
     "$menu" = "${pkgs.wofi}/bin/wofi --show drun";
 
@@ -23,7 +24,7 @@
       border_size = 2;
 
       col.active_border = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-      col.inactive_border = "rgba(595959aa)";
+      # col.inactive_border = "rgba(595959aa)";
 
       resize_on_border = false;
 
@@ -98,6 +99,7 @@
       "$mod, RETURN, exec, $terminal"
       "$mod, Q, killactive,"
       "$mod, D, exec, $menu"
+      "$mod, numbersign, exec, $browser"
     ];
   };
 }
