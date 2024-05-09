@@ -30,7 +30,7 @@
 
       allow_tearing = false;
 
-      layout = "dwindle";
+      layout = "master";
     };
 
     decoration = {
@@ -70,12 +70,11 @@
       ];
     };
 
-    dwindle = {
-      pseudotile = true;
-      preserve_split = true;
+    master = {
+      new_is_master = true;
+      mfact = "exact 0.6";
+      no_gaps_when_only = 1;
     };
-
-    master = { new_is_master = true; };
 
     misc = {
       force_default_wallpaper = 0;
@@ -96,14 +95,18 @@
     # KEYBINDINGS
     "$mod" = "SUPER";
     bind = [
-      "$mod, RETURN, exec, $terminal"
+      "$mod, return, exec, $terminal"
       "$mod, Q, killactive,"
       "$mod, D, exec, $menu"
       "$mod, numbersign, exec, $browser"
       "$mod_SHIFT, P, exit,"
 
-      # in-workspace movement
+      # layout commands
+      "$mod_SHIFT, return, layoutmsg, swapwithmaster master"
       "$mod, tab, cyclenext,"
+      "$mod, space, fullscreen, 0"
+
+      # in-workspace movement
       "$mod, H, movefocus, l"
       "$mod, J, movefocus, d"
       "$mod, K, movefocus, u"
