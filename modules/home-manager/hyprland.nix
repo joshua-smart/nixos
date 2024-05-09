@@ -100,6 +100,7 @@
       "$mod, Q, killactive,"
       "$mod, D, exec, $menu"
       "$mod, numbersign, exec, $browser"
+      "$mod_SHIFT, Q, exit,"
     ];
   };
 }
