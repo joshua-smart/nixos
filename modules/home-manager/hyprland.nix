@@ -2,7 +2,7 @@
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
     # MONITORS
-    monitor = ",prefered,auto,0.8";
+    monitor = ",prefered,auto,1";
 
     # PROGRAMS
     "$terminal" = "${pkgs.alacritty}/bin/alacritty";
@@ -100,7 +100,7 @@
       "$mod, Q, killactive,"
       "$mod, D, exec, $menu"
       "$mod, numbersign, exec, $browser"
-      "$mod_SHIFT, Q, exit,"
+      "$mod_SHIFT, P, exit,"
     ];
   };
 }
