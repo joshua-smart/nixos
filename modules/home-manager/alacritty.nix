@@ -2,7 +2,10 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      font.size = 12;
+      font = {
+        size = 12;
+        family = "FiraCode Nerd Font Mono";
+      };
       window.padding = {
         x = 4;
         y = 4;
