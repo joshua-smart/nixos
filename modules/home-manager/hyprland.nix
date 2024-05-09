@@ -72,7 +72,6 @@
 
     master = {
       new_is_master = true;
-      mfact = "exact 0.6";
       no_gaps_when_only = 1;
     };
 
