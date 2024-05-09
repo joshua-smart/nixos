@@ -22,23 +22,11 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.settings = {
-    "$mod" = "SUPER";
-    "$terminal" = "${pkgs.alacritty}/bin/alacritty";
-    bind = [
-      "$mod, ENTER, exec, $terminal"
-      "$mod, T, exec, ${pkgs.alacritty}/bin/alacritty"
-      "$mod, I, exec, alacritty"
-    ];
-  };
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
     discord
     tree
-    alacritty
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
