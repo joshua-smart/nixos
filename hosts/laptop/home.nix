@@ -7,6 +7,7 @@
     ../../modules/home-manager/alacritty.nix
     ../../modules/home-manager/firefox.nix
     ../../modules/home-manager/bash.nix
+    ../../modules/home-manager/hyprland.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
