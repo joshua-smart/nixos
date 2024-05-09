@@ -101,7 +101,25 @@
       "$mod, D, exec, $menu"
       "$mod, numbersign, exec, $browser"
       "$mod_SHIFT, P, exit,"
-    ];
+
+      # in-workspace movement
+      "$mod, tab, cyclenext,"
+      "$mod, H, movefocus, l"
+      "$mod, J, movefocus, d"
+      "$mod, K, movefocus, u"
+      "$mod, L, movefocus, r"
+
+      # between-workspace movement
+    ] ++ (builtins.concatLists (builtins.genList (x:
+      let ws = builtins.toString (x + 1);
+      in [
+        "$mod, ${ws}, workspace, ${ws}"
+        "$mod_SHIFT, ${ws}, moveToWorkspace, ${ws}"
+      ]) 5));
+
+    # WORKSPACES
+    workspace = builtins.genList
+      (x: let ws = builtins.toString (x + 1); in "${ws},monitor:eDP-1") 5;
   };
 
   home.file.".config/hypr/hyprpaper.conf".text = ''
