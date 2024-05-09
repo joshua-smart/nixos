@@ -2,7 +2,7 @@
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
     # MONITORS
-    monitor = ",prefered,auto,0.5";
+    monitor = ",prefered,auto,0.8";
 
     # PROGRAMS
     "$terminal" = "${pkgs.alacritty}/bin/alacritty";
