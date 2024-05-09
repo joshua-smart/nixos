@@ -105,8 +105,8 @@
   };
 
   home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = ./background
-    wallpaper = eDP-1,./background
+    preload = ~/.config/hypr/background.jpg
+    wallpaper = eDP-1,~/.config/hypr/background.jpg
   '';
-  home.file.".config/hypr/background".source = ./background;
+  home.file.".config/hypr/background.jpg".source = ./background.jpg;
 }
