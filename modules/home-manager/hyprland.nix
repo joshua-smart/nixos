@@ -11,11 +11,8 @@
     "$menu" = "${pkgs.wofi}/bin/wofi --show drun";
 
     # AUTOSTART
-    exec-once = [
-      "$terminal"
-      "${pkgs.hyprpaper}/bin/hyprpaper"
-      "${pkgs.waybar}/bin/waybar"
-    ];
+    exec-once =
+      [ "${pkgs.hyprpaper}/bin/hyprpaper" "${pkgs.waybar}/bin/waybar" ];
 
     # ENVIRONMENT VARIABLES
     env = [ ];
@@ -132,7 +129,7 @@
     preload = ~/.config/hypr/background.jpg
     wallpaper = eDP-1,~/.config/hypr/background.jpg
   '';
-  home.file.".config/hypr/background.jpg".source = ./background.jpg;
+  home.file.".config/hypr/background.jpg".source = ./files/background.jpg;
 
   home.file.".config/waybar/config.jsonc".text = ''
     {
@@ -159,4 +156,6 @@
       }
     }
   '';
+
+  home.file.".config/waybar/style.css".source = ./files/style.css;
 }
