@@ -4,7 +4,7 @@
     settings = {
       font = {
         size = 12;
-        family = "FiraCode Nerd Font Mono";
+        normal = { family = "FiraCode Nerd Font Mono"; };
       };
       window.padding = {
         x = 4;
