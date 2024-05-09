@@ -152,7 +152,11 @@
         "battery",
         "network",
         "tray"
-      ]
+      ],
+
+      "hyprland/workspaces": {
+        "persistent-workspaces": { "*": 5 }
+      }
     }
   '';
 }
