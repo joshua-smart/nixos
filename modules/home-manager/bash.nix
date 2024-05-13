@@ -1,5 +1,6 @@
 { ... }: {
   programs.bash = {
+    enable = true;
     shellAliases = {
       ".." = "cd ..";
       "ls" = "ls -F";
