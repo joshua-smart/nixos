@@ -60,12 +60,12 @@
       # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
       animation = [
-        "windows, 1, 7, default"
-        "windowsOut, 1, 7, default, popin 80%"
+        "windows, 1, 5, default"
+        "windowsOut, 1, 5, default, popin 80%"
         "border, 1, 10, default"
-        "borderangle, 1, 8, default"
-        "fade, 1, 7, default"
-        "workspaces, 1, 6, default"
+        "borderangle, 1, 5, default"
+        "fade, 1, 5, default"
+        "workspaces, 1, 5, default"
       ];
     };
 
