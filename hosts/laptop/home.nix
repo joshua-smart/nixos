@@ -1,13 +1,13 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
-    ../../modules/home-manager/helix.nix
-    ../../modules/home-manager/git.nix
-    ../../modules/home-manager/alacritty.nix
-    ../../modules/home-manager/firefox.nix
-    ../../modules/home-manager/bash.nix
-    ../../modules/home-manager/display/hyprland.nix
+    ../../homeManagerModules/helix.nix
+    ../../homeManagerModules/git.nix
+    ../../homeManagerModules/alacritty.nix
+    ../../homeManagerModules/firefox.nix
+    ../../homeManagerModules/bash.nix
+    ../../homeManagerModules/display/hyprland.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

@@ -2,17 +2,17 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/nix/boot.nix
-    ../../modules/nix/network.nix
-    ../../modules/nix/internationalisation.nix
-    ../../modules/nix/users.nix
-    ../../modules/nix/packages.nix
-    ../../modules/nix/display.nix
+    ../../nixosModules/boot.nix
+    ../../nixosModules/network.nix
+    ../../nixosModules/internationalisation.nix
+    ../../nixosModules/users.nix
+    ../../nixosModules/packages.nix
+    ../../nixosModules/display.nix
   ];
 
   home-manager.users.js = import ./home.nix;
