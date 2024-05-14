@@ -12,28 +12,11 @@
     ../../modules/nix/internationalisation.nix
     ../../modules/nix/users.nix
     ../../modules/nix/packages.nix
+    ../../modules/nix/display.nix
   ];
 
   home-manager.users.js = import ./home.nix;
   home-manager.useGlobalPkgs = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  # services.xserver.windowManager.xmonad = {
-  #   enable = true;
-  #   enableContribAndExtras = true;
-  #   enableConfiguredRecompile = true;
-  #   config = builtins.readFile ./xmonad.hs;
-  # };
-
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
