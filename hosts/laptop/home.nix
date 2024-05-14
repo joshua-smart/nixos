@@ -1,14 +1,7 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ../../homeManagerModules/helix.nix
-    ../../homeManagerModules/git.nix
-    ../../homeManagerModules/alacritty.nix
-    ../../homeManagerModules/firefox.nix
-    ../../homeManagerModules/bash.nix
-    ../../homeManagerModules/display/hyprland.nix
-  ];
+  imports = [ ../../homeManagerModules ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "js";
