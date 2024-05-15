@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   imports = [ ../../homeManagerModules ];
@@ -19,7 +19,7 @@
   fonts.fontconfig.enable = true;
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     discord
     tree
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
@@ -40,7 +40,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-  ];
+  ]) ++ (with pkgs-unstable; [ nh ]);
 
   programs.nh.enable = true;
 
