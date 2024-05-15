@@ -37,7 +37,10 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [ helix kitty ];
 
-  environment.variables.EDITOR = "hx";
+  environment.variables = {
+    FLAKE = "/home/js/nix";
+    EDITOR = "hx";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

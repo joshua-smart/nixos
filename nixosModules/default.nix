@@ -6,7 +6,6 @@
     ./packages.nix
     ./display.nix
     ./network.nix
-    ./programs
   ];
 }
 

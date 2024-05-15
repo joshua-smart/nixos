@@ -41,7 +41,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-  ]);
+  ]) ++ (with pkgs-unstable; [ nh ]);
 
   nixpkgs.config.allowUnfree = true;
 
