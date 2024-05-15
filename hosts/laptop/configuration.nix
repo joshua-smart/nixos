@@ -10,9 +10,6 @@
     ../../nixosModules
   ];
 
-  home-manager.users.js = import ./home.nix;
-  home-manager.useGlobalPkgs = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
