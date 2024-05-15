@@ -7,12 +7,7 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../nixosModules/boot.nix
-    ../../nixosModules/network.nix
-    ../../nixosModules/internationalisation.nix
-    ../../nixosModules/users.nix
-    ../../nixosModules/packages.nix
-    ../../nixosModules/display.nix
+    ../../nixosModules
   ];
 
   home-manager.users.js = import ./home.nix;
