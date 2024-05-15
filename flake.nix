@@ -29,7 +29,6 @@
           inherit pkgs;
           modules = [ ./hosts/laptop/home.nix ];
           extraSpecialArgs = { inherit pkgs-unstable; };
-          useGlobalPackages = true;
         };
       };
     };
