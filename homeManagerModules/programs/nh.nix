@@ -1,5 +1,5 @@
-{ ... }@inputs: {
-  imports = [ "${inputs.unstable.path}/modules/programs/nh.nix" ];
+{ pkgs-unstable, ... }: {
+  imports = [ "${pkgs-unstable.path}/modules/programs/nh.nix" ];
 
   programs.nh.enable = true;
 }
