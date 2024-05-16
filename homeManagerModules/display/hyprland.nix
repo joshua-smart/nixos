@@ -110,6 +110,12 @@
       "$mod, K, movefocus, u"
       "$mod, L, movefocus, r"
 
+      # media keys
+      ", XF86MonBrightnessUp, exec, light -A 5"
+      ", XF86MonBrightnessDown, exec, light -U 5"
+      ''
+        , Print, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -d)" - | ${pkgs.wl-clipboard}/bin/wl-copy''
+
       # between-workspace movement
     ] ++ (builtins.concatLists (builtins.genList (x:
       let ws = builtins.toString (x + 1);
