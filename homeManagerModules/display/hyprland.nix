@@ -32,6 +32,8 @@
       allow_tearing = false;
 
       layout = "master";
+
+      cursor_inactive_timeout = 1;
     };
 
     decoration = {
