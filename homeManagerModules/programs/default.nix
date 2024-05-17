@@ -7,5 +7,6 @@
     ./helix.nix
     ./password-store.nix
     ./gnupg.nix
+    ./gitui.nix
   ];
 }

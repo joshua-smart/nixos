@@ -23,8 +23,8 @@
     discord
     tree
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
-    gitui
     prismlauncher
+    pinentry-curses
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
