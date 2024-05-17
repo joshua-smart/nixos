@@ -24,7 +24,7 @@
     tree
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
     gitui
-    neofetch
+    prismlauncher
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

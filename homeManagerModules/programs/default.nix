@@ -6,5 +6,6 @@
     ./git.nix
     ./helix.nix
     ./password-store.nix
+    ./gnupg.nix
   ];
 }
