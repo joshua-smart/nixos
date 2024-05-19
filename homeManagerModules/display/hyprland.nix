@@ -20,7 +20,7 @@
     # LOOK AND FEEL
     general = {
       gaps_in = 5;
-      gaps_out = 20;
+      gaps_out = 10;
 
       border_size = 2;
 
@@ -49,7 +49,7 @@
 
       blur = {
         enabled = true;
-        size = 3;
+        size = 5;
         passes = 1;
 
         vibrancy = 0.1696;
@@ -90,7 +90,10 @@
       touchpad.natural_scroll = false;
     };
 
-    gestures = { workspace_swipe = false; };
+    gestures = {
+      workspace_swipe = true;
+      workspace_swipe_fingers = 3;
+    };
 
     # KEYBINDINGS
     "$mod" = "SUPER";
