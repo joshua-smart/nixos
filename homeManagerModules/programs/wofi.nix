@@ -4,6 +4,10 @@
 
     settings = { };
 
-    style = "";
+    style = ''
+      * {
+        font-family: FiraCode Nerd Font Propo;
+      }
+    '';
   };
 }

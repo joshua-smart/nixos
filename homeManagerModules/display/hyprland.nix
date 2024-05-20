@@ -107,7 +107,7 @@
       # layout commands
       "$mod_SHIFT, return, layoutmsg, swapwithmaster master"
       "$mod, tab, cyclenext,"
-      "$mod, space, fullscreen, 0"
+      "$mod, space, fullscreen, 1"
 
       # in-workspace movement
       "$mod, H, movefocus, l"

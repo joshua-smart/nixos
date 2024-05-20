@@ -5,6 +5,7 @@
 
     settings = {
       main = {
+        layer = "top";
         height = 44;
         spacing = 10;
 
