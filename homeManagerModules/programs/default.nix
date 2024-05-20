@@ -8,5 +8,6 @@
     ./password-store.nix
     ./gnupg.nix
     ./gitui.nix
+    ./wofi.nix
   ];
 }

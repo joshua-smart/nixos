@@ -4,44 +4,52 @@
     enable = true;
 
     settings = {
-      "height" = 44;
-      "spacing" = 10;
+      main = {
+        height = 44;
+        spacing = 10;
 
-      "modules-left" = [ "hyprland/workspaces" "hyprland/window" ];
-      "modules-center" = [ "clock" ];
-      "modules-right" =
-        [ "cpu" "memory" "backlight" "battery" "pulseaudio" "network" "tray" ];
+        modules-left = [ "hyprland/workspaces" "hyprland/window" ];
+        modules-center = [ "clock" ];
+        modules-right = [
+          "cpu"
+          "memory"
+          "backlight"
+          "battery"
+          "pulseaudio"
+          "network"
+          "tray"
+        ];
 
-      # Left modules
-      "hyprland/workspaces" = { "persistent-workspaces" = { "*" = 5; }; };
-      "hyprland/window" = { "format" = "{title}"; };
+        # Left modules
+        "hyprland/workspaces" = { persistent-workspaces = { "*" = 5; }; };
+        "hyprland/window" = { format = "{title}"; };
 
-      # Center modules
-      "clock" = {
-        "format" = "{ =%H =%M}";
-        "format-alt" = "{ =%d-%m-%Y %H =%M =%S}";
-        "interval" = 1;
+        # Center modules
+        clock = {
+          format = "{:%H:%M}";
+          format-alt = "{:%d-%m-%Y :%H:%M:%S}";
+          interval = 1;
+        };
+
+        # Right modules
+        cpu = { format = " {usage}%"; };
+        memory = { format = " {percentage}%"; };
+        backlight = { format = " {percent}%"; };
+        battery = {
+          format = "{icon} {capacity}%";
+          format-icons = [ "" "" "" "" "" ];
+        };
+        pulseaudio = {
+          format = "{icon} {volume}%";
+          format-bluetooth = "{icon} {volume}% ";
+          format-muted = " muted";
+          format-icons = { default = [ "" "" "" ]; };
+        };
+        network = { format = " {essid} {ipaddr}"; };
       };
-
-      # Right modules
-      "cpu" = { "format" = " {usage}%"; };
-      "memory" = { "format" = " {percentage}%"; };
-      "backlight" = { "format" = " {percent}%"; };
-      "battery" = {
-        "format" = "{icon} {capacity}%";
-        "format-icons" = [ "" "" "" "" "" ];
-      };
-      "pulseaudio" = {
-        "format" = "{icon} {volume}%";
-        "format-bluetooth" = "{icon} {volume}% ";
-        "format-muted" = " muted";
-        "format-icons" = { "default" = [ "" "" "" ]; };
-      };
-      "network" = { "format" = " {essid} {ipaddr}"; };
     };
 
     style = ''
-            
       * {
           /* `otf-font-awesome` is required to be installed for icons */
           font-family: FiraCode Nerd Font Propo;
