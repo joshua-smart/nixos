@@ -118,6 +118,7 @@
       # media keys
       ", XF86MonBrightnessUp, exec, light -A 5"
       ", XF86MonBrightnessDown, exec, light -U 5"
+      ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ''
         , Print, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -d)" - | ${pkgs.wl-clipboard}/bin/wl-copy''
 
@@ -128,6 +129,11 @@
         "$mod, ${ws}, workspace, ${ws}"
         "$mod_SHIFT, ${ws}, moveToWorkspace, ${ws}"
       ]) 5));
+
+    binde = [
+      ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+      ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
+    ];
 
     # WORKSPACES
     workspace = builtins.genList
