@@ -1,5 +1,6 @@
 { pkgs, ... }:
-pkgs.stdenv.mkDerivation {
+let image = ./background.jpg;
+in pkgs.stdenv.mkDerivation {
   name = "sddm-sugar-dark-theme";
   src = pkgs.fetchFromGitHub {
     owner = "MarianArlt";
@@ -10,5 +11,8 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out
     cp -R ./* $out/
+    cd $out/
+    rm Background.jpg
+    cp ${image} $out/Background.jpg
   '';
 }
