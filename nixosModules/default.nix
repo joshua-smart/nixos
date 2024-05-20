@@ -4,7 +4,7 @@
     ./internationalisation.nix
     ./users.nix
     ./packages.nix
-    ./display.nix
+    ./display
     ./network.nix
   ];
 }
