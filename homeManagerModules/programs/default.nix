@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, pkgs-unstable, ... }: {
   imports = [
     ./firefox.nix
     ./alacritty.nix
@@ -10,4 +10,7 @@
     ./gitui.nix
     ./wofi.nix
   ];
+
+  home.packages = (with pkgs; [ discord tree spotify prismlauncher ])
+    ++ (with pkgs-unstable; [ nh obsidian ]);
 }

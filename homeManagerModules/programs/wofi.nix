@@ -2,7 +2,11 @@
   programs.wofi = {
     enable = true;
 
-    settings = { };
+    settings = {
+      show = "drun";
+      width = "100%";
+      location = "top_left";
+    };
 
     style = ''
       * {

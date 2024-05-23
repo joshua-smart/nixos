@@ -12,6 +12,7 @@
         modules-left = [ "hyprland/workspaces" "hyprland/window" ];
         modules-center = [ "clock" ];
         modules-right = [
+          "disk"
           "cpu"
           "memory"
           "backlight"
@@ -23,7 +24,17 @@
 
         # Left modules
         "hyprland/workspaces" = { persistent-workspaces = { "*" = 5; }; };
-        "hyprland/window" = { format = "{title}"; };
+        "hyprland/window" = {
+          format = "{title}";
+          rewrite = {
+            "(.*) - YouTube — Mozilla Firefox" = " $1";
+            "YouTube — Mozilla Firefox" = "";
+            "(\\(.*\\)) YouTube — Mozilla Firefox" = " $1";
+            "(.*) — Mozilla Firefox" = " $1";
+            "Mozilla Firefox" = "";
+            "Terminal" = "";
+          };
+        };
 
         # Center modules
         clock = {
@@ -33,6 +44,7 @@
         };
 
         # Right modules
+        disk = { format = " {percentage_used}%"; };
         cpu = { format = " {usage}%"; };
         memory = { format = " {percentage}%"; };
         backlight = { format = " {percent}%"; };
@@ -46,7 +58,10 @@
           format-muted = " muted";
           format-icons = { default = [ "" "" "" ]; };
         };
-        network = { format = " {essid} {ipaddr}"; };
+        network = {
+          format = " {essid} {ipaddr}";
+          format-disconnected = " disconnected";
+        };
       };
     };
 

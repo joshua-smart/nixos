@@ -14,11 +14,18 @@
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in {
       nixosConfigurations = {
         laptop = lib.nixosSystem {
+          inherit pkgs;
           inherit system;
           modules = [ ./hosts/laptop/configuration.nix ];
           specialArgs = { inherit pkgs-unstable; };
