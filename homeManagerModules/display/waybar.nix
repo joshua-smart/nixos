@@ -6,8 +6,7 @@
     settings = {
       main = {
         layer = "top";
-        height = 44;
-        spacing = 10;
+        spacing = 0;
 
         modules-left = [ "hyprland/workspaces" "hyprland/window" ];
         modules-center = [ "clock" ];
@@ -28,9 +27,9 @@
           format = "{title}";
           rewrite = {
             "(.*) - YouTube — Mozilla Firefox" = " $1";
-            "YouTube — Mozilla Firefox" = "";
-            "(\\(.*\\)) YouTube — Mozilla Firefox" = " $1";
+            "(.*) · GitHub — Mozilla Firefox" = " $1";
             "(.*) — Mozilla Firefox" = " $1";
+            "(.*) - Discord" = " $1";
             "Mozilla Firefox" = "";
             "Terminal" = "";
           };
@@ -62,10 +61,20 @@
           format = " {essid} {ipaddr}";
           format-disconnected = " disconnected";
         };
+        tray = {
+          spacing = 9;
+          icon-size = 18;
+        };
       };
     };
 
     style = ''
+      @define-color bg-0 #222222;
+      @define-color bg-1 #363636;
+      @define-color bg-2 #555555;
+
+      @define-color fg-0 #cccccc;
+
       * {
           /* `otf-font-awesome` is required to be installed for icons */
           font-family: FiraCode Nerd Font Propo;
@@ -73,56 +82,71 @@
       }
 
       window#waybar {
-          background-color: rgba(34, 34, 34, 0.9);
-          color: #cccccc;
-          transition-property: background-color;
-          transition-duration: .5s;
+          background-color: alpha(@bg-0, 0.9);
+          color: @fg-0;
       }
 
       widget {}
 
       label {
-          background-color: #363636;
-          color: #cccccc;
-          padding: 4px 10px;
-          margin: 6px 3px;
+          background-color: @bg-1;
+          color: @fg-0;
+          padding: 0 0.6rem;
       }
 
       /* workspaces */
 
       box#workspaces {
-          background: #222222;
+          background: @bg-0;
+          margin: 0.6rem 0.3rem;
+          margin-left: 0.6rem;
       }
 
       #workspaces button {
           padding: 0 0;
           margin: 0 0;
-          background: #222222;
+          background: @bg-0;
           border-radius: 0;
       }
 
       #workspaces button:hover {
-          background: #222222;
+          background: @bg-0;
           box-shadow: none;
           border: none;
       }
 
       #workspaces button.active label {
-          border-bottom: 3px solid #cccccc;
-          padding: 7px 10px 4px 10px;
+          border-bottom: 3px solid @fg-0;
+          padding-top: 3px;
       }
 
       #workspaces button label {
-          background: #555555;
-          margin: 6px -1px;
+          background: @bg-2;
       }
 
       #workspaces button.empty label {
-          background: #363636;
+          background: @bg-1;
       }
 
-      #pulseaudio label {
-          background: transparent;
+      button {
+          border: unset;
+      }
+
+      #window,
+      #clock,
+      #disk,
+      #cpu,
+      #memory,
+      #backlight,
+      #battery,
+      #pulseaudio,
+      #network,
+      #tray {
+          margin: 0.6rem 0.3rem;
+      }
+
+      #tray {
+          margin-right: 0.6rem;
       }
     '';
   };
