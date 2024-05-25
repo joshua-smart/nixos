@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs.helix = {
     enable = true;
+
     settings = {
       theme = "monokai_pro";
       editor = {
@@ -8,6 +9,7 @@
         soft-wrap.enable = true;
       };
     };
+
     languages = {
       language-server = { nil = { command = "${pkgs.nil}/bin/nil"; }; };
       language = [{
@@ -16,5 +18,7 @@
         formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
       }];
     };
+
+    defaultEditor = true;
   };
 }

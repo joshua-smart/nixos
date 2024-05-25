@@ -10,7 +10,7 @@
     ../../nixosModules
   ];
 
-  hostname = "laptop";
+  hostname = "desktop";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

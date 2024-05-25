@@ -27,16 +27,38 @@
         laptop = lib.nixosSystem {
           inherit pkgs;
           inherit system;
-          modules = [ ./hosts/laptop/configuration.nix ];
+          modules = [
+            ./hosts/laptop/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.users.js = import ./hosts/laptop/home.nix;
+              home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
+            }
+          ];
+          specialArgs = { inherit pkgs-unstable; };
+        };
+        desktop = lib.nixosSystem {
+          inherit pkgs;
+          inherit system;
+          modules = [
+            ./hosts/desktop/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.users.js = import ./hosts/desktop/home.nix;
+              home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
+            }
+          ];
           specialArgs = { inherit pkgs-unstable; };
         };
       };
-      homeConfigurations = {
-        js = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./users/js/home.nix ];
-          extraSpecialArgs = { inherit pkgs-unstable; };
-        };
-      };
+      # homeConfigurations = {
+      #   js = home-manager.lib.homeManagerConfiguration {
+      #     inherit pkgs;
+      #     modules = [ ./users/js/home.nix ];
+      #     extraSpecialArgs = { inherit pkgs-unstable; };
+      #   };
+      # };
     };
 }
