@@ -9,6 +9,7 @@ in {
       type = types.bool;
       default = false;
     };
+    keybinds = { volume-step = mkOption { type = types.int; }; };
   };
 
   config = {
@@ -146,9 +147,10 @@ in {
           "$mod_SHIFT, ${ws}, moveToWorkspace, ${ws}"
         ]) 5));
 
-      binde = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
+      binde = let vol-step = toString cfg.keybinds.volume-step;
+      in [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ ${vol-step}%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ ${vol-step}%-"
       ];
 
       bindm =

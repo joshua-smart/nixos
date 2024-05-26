@@ -8,6 +8,7 @@
       HDMI-A-2 = [ 2 ];
     };
     nvidia = true;
+    keybinds.volume-step = 1;
   };
 
   display.bar = {
