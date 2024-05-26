@@ -1,8 +1,14 @@
 { pkgs, config, lib, ... }:
-with lib; {
+with lib;
+let cfg = config.display.hyprland;
+in {
 
   options.display.hyprland = {
     workspaces = mkOption { type = types.attrsOf (types.listOf types.int); };
+    nvidia = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = {
@@ -23,7 +29,7 @@ with lib; {
         [ "${pkgs.hyprpaper}/bin/hyprpaper" "${pkgs.waybar}/bin/waybar" ];
 
       # ENVIRONMENT VARIABLES
-      env = [ ];
+      env = optionals cfg.nvidia [ "WLR_NO_HARDWARE_CURSORS,1" ];
 
       # LOOK AND FEEL
       general = {
@@ -123,6 +129,7 @@ with lib; {
         "$mod, J, movefocus, d"
         "$mod, K, movefocus, u"
         "$mod, L, movefocus, r"
+        "$mod, F, togglefloating, active"
 
         # media keys
         ", XF86MonBrightnessUp, exec, light -A 5"
@@ -144,6 +151,9 @@ with lib; {
         ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
       ];
 
+      bindm =
+        [ "$mod,mouse:272,movewindow" "$mod_SHIFT,mouse:272,resizewindow 2" ];
+
       # WORKSPACES
       workspace = let
         toLine = (monitor: workspace:
@@ -151,7 +161,7 @@ with lib; {
           in "${ws},monitor:${monitor}");
         lists = builtins.attrValues (builtins.mapAttrs
           (monitor: workspaces: builtins.map (ws: toLine monitor ws) workspaces)
-          config.display.hyprland.workspaces);
+          cfg.workspaces);
       in builtins.concatLists lists;
     };
   };

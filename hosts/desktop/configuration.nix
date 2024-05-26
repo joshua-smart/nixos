@@ -12,6 +12,9 @@
 
   hostname = "desktop";
 
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.modesetting.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
