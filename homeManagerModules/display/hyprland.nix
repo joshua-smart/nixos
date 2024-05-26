@@ -111,6 +111,7 @@ with lib; {
         "$mod, D, exec, $menu"
         "$mod, numbersign, exec, $browser"
         "$mod_SHIFT, P, exit,"
+        "$mod, B, exec, pkill -SIGUSR1 waybar"
 
         # layout commands
         "$mod_SHIFT, return, layoutmsg, swapwithmaster master"
