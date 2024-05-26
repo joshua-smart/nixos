@@ -1,20 +1,13 @@
-{ lib, config, ... }:
-with lib; {
+{ host, ... }: {
+  networking.hostName = host; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  options.hostname = mkOption { type = types.str; };
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  config = {
-    networking.hostName = config.hostname; # Define your hostname.
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # Enable networking
+  networking.networkmanager.enable = true;
 
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Enable networking
-    networking.networkmanager.enable = true;
-
-    networking.firewall.allowedUDPPorts = [ 5353 ];
-  };
-
+  networking.firewall.allowedUDPPorts = [ 5353 ];
 }

@@ -33,7 +33,10 @@
           inherit pkgs;
           inherit system;
           modules = [ ./hosts/${host}/configuration.nix ];
-          specialArgs = { inherit pkgs-unstable; };
+          specialArgs = {
+            inherit pkgs-unstable;
+            inherit host;
+          };
         };
 
       myHomeManagerConfiguration = user: host:
