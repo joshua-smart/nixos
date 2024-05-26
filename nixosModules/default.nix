@@ -15,7 +15,7 @@
   environment.systemPackages = with pkgs; [ helix ];
 
   environment.variables = {
-    FLAKE = "/home/js/nix";
+    FLAKE = "/home/js/nixos";
     EDITOR = "hx";
   };
 
