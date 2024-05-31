@@ -11,6 +11,7 @@
     ./wofi.nix
   ];
 
-  home.packages = (with pkgs; [ discord tree spotify prismlauncher lutris ])
-    ++ (with pkgs-unstable; [ nh obsidian ]);
+  home.packages =
+    (with pkgs; [ nh obsidian discord tree spotify prismlauncher lutris ])
+    ++ (with pkgs-unstable; [ ]);
 }
