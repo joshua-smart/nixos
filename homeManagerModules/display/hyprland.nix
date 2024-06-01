@@ -119,13 +119,14 @@ in {
         slurp = "${pkgs.slurp}/bin/slurp";
         wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
         playerctl = "${pkgs.playerctl}/bin/playerctl";
+        pkill = "${pkgs.procps}/bin/pkill";
       in [
         "$mod, return, exec, $terminal"
         "$mod, Q, killactive,"
         "$mod, D, exec, $menu"
         "$mod, numbersign, exec, $browser"
         "$mod_SHIFT, P, exit,"
-        "$mod, B, exec, pkill -SIGUSR1 waybar"
+        "$mod, B, exec, ${pkill} -SIGUSR1 waybar"
 
         # layout commands
         "$mod_SHIFT, return, layoutmsg, swapwithmaster master"
