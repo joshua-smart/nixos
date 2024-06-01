@@ -14,5 +14,6 @@
   display.bar = {
     monitors = [ "HDMI-A-2" ];
     workspaces = [ 1 2 ];
+    network-type = "wired";
   };
 }

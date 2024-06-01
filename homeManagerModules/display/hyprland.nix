@@ -112,13 +112,21 @@ in {
 
       # KEYBINDINGS
       "$mod" = "SUPER";
-      bind = [
+      bind = let
+        light = "${pkgs.light}/bin/light";
+        wpctl = "${pkgs.wireplumber}/bin/wpctl";
+        grim = "${pkgs.grim}/bin/grim";
+        slurp = "${pkgs.slurp}/bin/slurp";
+        wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+        playerctl = "${pkgs.playerctl}/bin/playerctl";
+        pkill = "${pkgs.procps}/bin/pkill";
+      in [
         "$mod, return, exec, $terminal"
         "$mod, Q, killactive,"
         "$mod, D, exec, $menu"
         "$mod, numbersign, exec, $browser"
         "$mod_SHIFT, P, exit,"
-        "$mod, B, exec, pkill -SIGUSR1 waybar"
+        "$mod, B, exec, ${pkill} -SIGUSR1 waybar"
 
         # layout commands
         "$mod_SHIFT, return, layoutmsg, swapwithmaster master"
@@ -133,11 +141,13 @@ in {
         "$mod, F, togglefloating, active"
 
         # media keys
-        ", XF86MonBrightnessUp, exec, light -A 5"
-        ", XF86MonBrightnessDown, exec, light -U 5"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ''
-          , Print, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -d)" - | ${pkgs.wl-clipboard}/bin/wl-copy''
+        ", XF86MonBrightnessUp, exec, ${light} -A 5"
+        ", XF86MonBrightnessDown, exec, ${light} -U 5"
+        ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioPlay, exec, ${playerctl} play-pause"
+        ", XF86AudioNext, exec, ${playerctl} next"
+        ", XF86AudioPrev, exec, ${playerctl} previous"
+        '', Print, exec, ${grim} -g "$(${slurp} -d)" - | ${wl-copy}''
 
         # between-workspace movement
       ] ++ (builtins.concatLists (builtins.genList (x:
@@ -147,10 +157,12 @@ in {
           "$mod_SHIFT, ${ws}, moveToWorkspace, ${ws}"
         ]) 5));
 
-      binde = let vol-step = toString cfg.keybinds.volume-step;
+      binde = let
+        vol-step = toString cfg.keybinds.volume-step;
+        wpctl = "${pkgs.wireplumber}/bin/wpctl";
       in [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ ${vol-step}%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ ${vol-step}%-"
+        ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ ${vol-step}%+"
+        ", XF86AudioLowerVolume, exec, ${wpctl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ ${vol-step}%-"
       ];
 
       bindm =

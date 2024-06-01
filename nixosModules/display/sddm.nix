@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  services.xserver.displayManager.sddm = {
+  services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
     theme = "${import ./sddm-sugar-dark-theme.nix { inherit pkgs; }}";

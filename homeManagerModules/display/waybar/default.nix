@@ -6,6 +6,7 @@ in {
   options.display.bar = {
     workspaces = mkOption { type = types.listOf types.int; };
     monitors = mkOption { type = types.listOf types.str; };
+    network-type = mkOption { type = types.str; };
   };
 
   config = {
@@ -40,11 +41,11 @@ in {
           "hyprland/window" = {
             format = "{title}";
             rewrite = {
-              "(.*) - YouTube — Mozilla Firefox" = " $1";
+              "(.*) - YouTube — Mozilla Firefox" = " $1";
               "(.*) · GitHub — Mozilla Firefox" = " $1";
               "(.*) — Mozilla Firefox" = " $1";
-              "(.*) - Discord" = " $1";
-              "Mozilla Firefox" = "";
+              "(.*) - Discord" = "󰙯 $1";
+              "Mozilla Firefox" = "󰈹";
               "Terminal" = "";
             };
           };
@@ -63,16 +64,21 @@ in {
           backlight = { format = " {percent}%"; };
           battery = {
             format = "{icon} {capacity}%";
-            format-icons = [ "" "" "" "" "" ];
+            format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
           };
           pulseaudio = {
             format = "{icon} {volume}%";
             format-bluetooth = "{icon} {volume}% ";
-            format-muted = " muted";
+            format-muted = " muted";
             format-icons = { default = [ "" "" "" ]; };
           };
           network = {
-            format = " {essid} {ipaddr}";
+            format = if cfg.network-type == "wired" then
+              " {ipaddr}"
+            else if cfg.network-type == "wireless" then
+              " {essid} {ipaddr}"
+            else
+              abort "unrecognised network type";
             format-disconnected = " disconnected";
           };
           tray = {

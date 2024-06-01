@@ -77,3 +77,7 @@ button {
 #tray {
     margin-right: 0.6rem;
 }
+
+#window.empty {
+    background: transparent;
+}
