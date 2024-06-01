@@ -64,7 +64,7 @@ in {
 
         blur = {
           enabled = true;
-          size = 5;
+          size = 8;
           passes = 1;
 
           vibrancy = 0.1696;
@@ -165,6 +165,9 @@ in {
           (monitor: workspaces: builtins.map (ws: toLine monitor ws) workspaces)
           cfg.workspaces);
       in builtins.concatLists lists;
+
+      # LAYER RULES
+      layerrule = "blur,waybar";
     };
   };
 }

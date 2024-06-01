@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./network-manager-applet.nix ]; }
+{ ... }: { imports = [ ./network-manager-applet.nix ./udiskie.nix ]; }
