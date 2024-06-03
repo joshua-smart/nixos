@@ -9,6 +9,7 @@
     ./gnupg.nix
     ./gitui.nix
     ./wofi.nix
+    ./thunderbird.nix
   ];
 
   home.packages =
