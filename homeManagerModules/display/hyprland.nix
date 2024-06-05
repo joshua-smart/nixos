@@ -26,8 +26,7 @@ in {
       "$menu" = "${pkgs.wofi}/bin/wofi --show drun";
 
       # AUTOSTART
-      exec-once =
-        [ "${pkgs.hyprpaper}/bin/hyprpaper" "${pkgs.waybar}/bin/waybar" ];
+      exec-once = [ "${pkgs.waybar}/bin/waybar" ];
 
       # ENVIRONMENT VARIABLES
       env = optionals cfg.nvidia [ "WLR_NO_HARDWARE_CURSORS,1" ];

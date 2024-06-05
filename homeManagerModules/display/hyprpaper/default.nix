@@ -1,20 +1,26 @@
 { lib, config, ... }:
-with lib; {
+with lib;
+let
+  background-path = "~/.config/hypr/background.jpg";
+  cfg = config.display.wallpaper;
+in {
 
   options.display.wallpaper = {
     monitors = mkOption { type = types.listOf types.str; };
   };
 
   config = {
-    home.file.".config/hypr/hyprpaper.conf".text = let
-      wallpaper-entries = builtins.concatStringsSep "\n"
-        (builtins.map (m: "wallpaper = ${m},~/.config/hypr/background.jpg")
-          config.display.wallpaper.monitors);
-    in ''
-      preload = ~/.config/hypr/background.jpg
-      ${wallpaper-entries}
-    '';
 
-    home.file.".config/hypr/background.jpg".source = ./background.jpg;
+    xdg.configFile."hypr/background.jpg".source = ./background.jpg;
+
+    services.hyprpaper = {
+      enable = true;
+      settings = {
+        splash = false;
+
+        preload = [ background-path ];
+        wallpaper = map (m: "${m},${background-path}") cfg.monitors;
+      };
+    };
   };
 }
