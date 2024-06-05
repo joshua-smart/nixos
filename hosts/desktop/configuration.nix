@@ -16,4 +16,5 @@
     package = (pkgs-unstable.linuxPackagesFor
       config.boot.kernelPackages.kernel).nvidiaPackages.beta;
   };
+  boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
 }

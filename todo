@@ -1,4 +1,2 @@
-- desktop: Fix phantom monitor issue (see `xrandr`)
-- laptop: Fix sddm too fast login issue
+- Fix sddm too fast login issue
 - Replace wofi app menu with faster alternative
-- Fix discrepancy in waybar style between configurations
