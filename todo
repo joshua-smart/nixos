@@ -1,2 +1,2 @@
-- Fix sddm too fast login issue
+- Fix sddm too fast login issue (https://github.com/NixOS/nixpkgs/issues/292980)
 - Replace wofi app menu with faster alternative

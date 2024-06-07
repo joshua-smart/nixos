@@ -23,7 +23,7 @@ in {
       "$terminal" = "${pkgs.alacritty}/bin/alacritty";
       "$browser" = "${pkgs.firefox}/bin/firefox";
       # "$fileManager" = "${pkgs.dolphin}/bin/dolphin";
-      "$menu" = "${pkgs.wofi}/bin/wofi --show drun";
+      "$menu" = "${pkgs.rofi-wayland}/bin/rofi -show drun";
 
       # AUTOSTART
       exec-once =
@@ -94,6 +94,7 @@ in {
       misc = {
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
+        new_window_takes_over_fullscreen = 1;
       };
 
       # INPUT
@@ -132,6 +133,7 @@ in {
         "$mod_SHIFT, return, layoutmsg, swapwithmaster master"
         "$mod, tab, cyclenext,"
         "$mod, space, fullscreen, 1"
+        "$mod_SHIFT, space, fakefullscreen,"
 
         # in-workspace movement
         "$mod, H, movefocus, l"
