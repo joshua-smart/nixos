@@ -54,7 +54,7 @@ in {
           # Center modules
           clock = {
             format = "{:%H:%M}";
-            format-alt = "{:%d-%m-%Y :%H:%M:%S}";
+            format-alt = "{:%d-%m-%Y %H:%M:%S}";
             interval = 1;
           };
 
