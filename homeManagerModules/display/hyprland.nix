@@ -1,6 +1,10 @@
 { pkgs, config, lib, ... }:
 with lib;
-let cfg = config.display.hyprland;
+let
+  cfg = config.display.hyprland;
+  terminal = "${pkgs.alacritty}/bin/alacritty";
+  browser = "${pkgs.firefox}/bin/firefox";
+  menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
 in {
 
   options.display.hyprland = {
@@ -18,12 +22,6 @@ in {
     wayland.windowManager.hyprland.settings = {
       # MONITORS
       monitor = ",prefered,auto,1";
-
-      # PROGRAMS
-      "$terminal" = "${pkgs.alacritty}/bin/alacritty";
-      "$browser" = "${pkgs.firefox}/bin/firefox";
-      # "$fileManager" = "${pkgs.dolphin}/bin/dolphin";
-      "$menu" = "${pkgs.rofi-wayland}/bin/rofi -show drun";
 
       # AUTOSTART
       exec-once = [ "${pkgs.waybar}/bin/waybar" ];
@@ -121,10 +119,11 @@ in {
         playerctl = "${pkgs.playerctl}/bin/playerctl";
         pkill = "${pkgs.procps}/bin/pkill";
       in [
-        "$mod, return, exec, $terminal"
+        "$mod, return, exec, ${terminal}"
         "$mod, Q, killactive,"
-        "$mod, D, exec, $menu"
-        "$mod, numbersign, exec, $browser"
+        "$mod, D, exec, ${menu}"
+        "$mod, numbersign, exec, ${browser}"
+        "$mod, Y, exec, ${browser} youtube.com"
         "$mod_SHIFT, P, exit,"
         "$mod, B, exec, ${pkill} -SIGUSR1 waybar"
 
