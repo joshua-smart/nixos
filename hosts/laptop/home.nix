@@ -11,5 +11,15 @@
     monitors = [ "eDP-1" ];
     workspaces = [ 1 2 3 4 5 ];
     network-type = "wireless";
+    modules = [
+      "disk"
+      "cpu"
+      "memory"
+      "backlight"
+      "battery"
+      "pulseaudio"
+      "network"
+      "tray"
+    ];
   };
 }

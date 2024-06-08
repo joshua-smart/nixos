@@ -7,6 +7,7 @@ in {
     workspaces = mkOption { type = types.listOf types.int; };
     monitors = mkOption { type = types.listOf types.str; };
     network-type = mkOption { type = types.str; };
+    modules = mkOption { type = types.listOf types.str; };
   };
 
   config = {
@@ -25,16 +26,7 @@ in {
           modules-left =
             strings.intersperse sep [ "hyprland/workspaces" "hyprland/window" ];
           modules-center = [ "clock" ];
-          modules-right = strings.intersperse sep [
-            "disk"
-            "cpu"
-            "memory"
-            "backlight"
-            "battery"
-            "pulseaudio"
-            "network"
-            "tray"
-          ];
+          modules-right = strings.intersperse sep cfg.modules;
 
           # Separator
           "custom/separator" = {
