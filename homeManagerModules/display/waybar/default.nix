@@ -14,16 +14,18 @@ in {
     programs.waybar = {
       enable = true;
 
-      settings = {
+      settings = let sep = "custom/separator";
+      in {
         main = {
           layer = "top";
           spacing = 0;
 
           output = cfg.monitors;
 
-          modules-left = [ "hyprland/workspaces" "hyprland/window" ];
+          modules-left =
+            strings.intersperse sep [ "hyprland/workspaces" "hyprland/window" ];
           modules-center = [ "clock" ];
-          modules-right = [
+          modules-right = strings.intersperse sep [
             "disk"
             "cpu"
             "memory"
@@ -33,6 +35,13 @@ in {
             "network"
             "tray"
           ];
+
+          # Separator
+          "custom/separator" = {
+            format = "|";
+            interval = "once";
+            tooltip = false;
+          };
 
           # Left modules
           "hyprland/workspaces" = {

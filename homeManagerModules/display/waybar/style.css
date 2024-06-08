@@ -11,31 +11,30 @@
 }
 
 window#waybar {
-    background-color: alpha(@bg-0, 0.9);
+    background-color: alpha(@bg-0, 0.8);
     color: @fg-0;
+    padding: 1rem 0;
 }
 
 widget {}
 
 label {
-    background-color: @bg-1;
     color: @fg-0;
-    padding: 0 0.6rem;
+    margin: 0.4rem 0;
 }
 
 /* workspaces */
 
 box#workspaces {
     background: @bg-0;
-    margin: 0.6rem 0.3rem;
-    margin-left: 0.6rem;
 }
 
 #workspaces button {
-    padding: 0 0;
-    margin: 0 0;
     background: @bg-0;
     border-radius: 0;
+    min-height: 0;
+    min-width: 0;
+    margin-left: 0.6rem;
 }
 
 #workspaces button:hover {
@@ -45,16 +44,16 @@ box#workspaces {
 }
 
 #workspaces button.active label {
-    border-bottom: 3px solid @fg-0;
-    padding-top: 3px;
+    text-decoration-color: @fg-0;
+    text-decoration-line: underline;
 }
 
 #workspaces button label {
-    background: @bg-2;
+    font-weight: bold;
 }
 
 #workspaces button.empty label {
-    background: @bg-1;
+    font-weight: normal;
 }
 
 button {
@@ -71,7 +70,6 @@ button {
 #pulseaudio,
 #network,
 #tray {
-    margin: 0.6rem 0.3rem;
 }
 
 #tray {
@@ -80,4 +78,8 @@ button {
 
 #window.empty {
     background: transparent;
+}
+
+#custom-separator {
+    margin: 0 0.6rem;
 }
