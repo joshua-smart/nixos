@@ -1,14 +1,13 @@
 { pkgs, ... }: {
   home.packages = [
-    pkgs.symlinkJoin
-    {
+    (pkgs.symlinkJoin {
       name = "discord";
-      paths = [ pkgs.discord ];
-      buildInputs = [ pkgs.makeWrapper ];
+      paths = with pkgs; [ discord ];
+      buildInputs = with pkgs; [ makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/Discord \
           --add-flags "--disable-gpu"
       '';
-    }
+    })
   ];
 }
