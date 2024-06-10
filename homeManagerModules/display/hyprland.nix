@@ -8,6 +8,7 @@ let
 in {
 
   options.display.hyprland = {
+    monitors = mkOption { type = types.listOf types.str; };
     workspaces = mkOption { type = types.attrsOf (types.listOf types.int); };
     nvidia = mkOption {
       type = types.bool;
@@ -21,7 +22,7 @@ in {
     wayland.windowManager.hyprland.enable = true;
     wayland.windowManager.hyprland.settings = {
       # MONITORS
-      monitor = ",prefered,auto,1";
+      monitor = cfg.monitors;
 
       # AUTOSTART
       exec-once = [ "${pkgs.waybar}/bin/waybar" ];
@@ -150,8 +151,8 @@ in {
         '', Print, exec, ${grim} -g "$(${slurp} -d)" - | ${wl-copy}''
 
         # between-workspace movement
-      ] ++ (builtins.concatLists (builtins.genList (x:
-        let ws = builtins.toString (x + 1);
+      ] ++ (concatLists (genList (x:
+        let ws = toString (x + 1);
         in [
           "$mod, ${ws}, workspace, ${ws}"
           "$mod_SHIFT, ${ws}, moveToWorkspace, ${ws}"
@@ -171,15 +172,15 @@ in {
       # WORKSPACES
       workspace = let
         toLine = (monitor: workspace:
-          let ws = builtins.toString workspace;
+          let ws = toString workspace;
           in "${ws},monitor:${monitor}");
-        lists = builtins.attrValues (builtins.mapAttrs
-          (monitor: workspaces: builtins.map (ws: toLine monitor ws) workspaces)
+        lists = attrValues (mapAttrs
+          (monitor: workspaces: map (ws: toLine monitor ws) workspaces)
           cfg.workspaces);
-      in builtins.concatLists lists;
+      in concatLists lists;
 
       # LAYER RULES
-      layerrule = "blur,waybar";
+      layerrule = [ "blur,waybar" "blur,rofi" ];
     };
   };
 }
