@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./firefox.nix
     ./alacritty.nix
@@ -11,7 +11,13 @@
     ./thunderbird.nix
   ];
 
-  home.packages =
-    (with pkgs; [ nh obsidian discord tree spotify prismlauncher lutris ])
-    ++ (with pkgs-unstable; [ ]);
+  home.packages = with pkgs; [
+    nh
+    obsidian
+    discord
+    tree
+    spotify
+    prismlauncher
+    lutris
+  ];
 }

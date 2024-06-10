@@ -18,14 +18,15 @@
 
       lib = nixpkgs.lib;
 
-      pkgs = import nixpkgs {
+      pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
       };
 
-      pkgs-unstable = import nixpkgs-unstable {
+      pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        overlays = [ (final: prev: { unstable = pkgs-unstable; }) ];
       };
 
       myNixosSystem = host:
@@ -33,20 +34,14 @@
           inherit pkgs;
           inherit system;
           modules = [ ./hosts/${host}/configuration.nix ];
-          specialArgs = {
-            inherit pkgs-unstable;
-            inherit host;
-          };
+          specialArgs = { inherit host; };
         };
 
       myHomeManagerConfiguration = user: host:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./hosts/${host}/home.nix ];
-          extraSpecialArgs = {
-            inherit pkgs-unstable;
-            inherit user;
-          };
+          extraSpecialArgs = { inherit user host; };
         };
 
     in {
