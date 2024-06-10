@@ -9,15 +9,8 @@
     ./gnupg.nix
     ./gitui.nix
     ./thunderbird.nix
+    ./discord.nix
   ];
 
-  home.packages = with pkgs; [
-    nh
-    obsidian
-    discord
-    tree
-    spotify
-    prismlauncher
-    lutris
-  ];
+  home.packages = with pkgs; [ nh obsidian tree spotify prismlauncher lutris ];
 }
