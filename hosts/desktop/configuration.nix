@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs-unstable, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -13,8 +13,10 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
-    package = (pkgs-unstable.linuxPackagesFor
-      config.boot.kernelPackages.kernel).nvidiaPackages.beta;
+    package = let
+      kernel = config.boot.kernelPackages.kernel;
+      kernelPackages = pkgs.unstable.linuxPackagesFor kernel;
+    in kernelPackages.nvidiaPackages.beta;
   };
   boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
 }
