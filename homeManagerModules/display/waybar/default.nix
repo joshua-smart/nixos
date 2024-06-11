@@ -14,6 +14,7 @@ in {
 
     programs.waybar = {
       enable = true;
+      systemd.enable = true;
 
       settings = let sep = "custom/separator";
       in {

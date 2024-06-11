@@ -3,6 +3,7 @@
 @define-color bg-2 #555555;
 
 @define-color fg-0 #cccccc;
+@define-color fg-1 #555555;
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
@@ -82,4 +83,5 @@ button {
 
 #custom-separator {
     margin: 0 0.6rem;
+    color: @fg-1;
 }
