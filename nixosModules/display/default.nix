@@ -1,7 +1,10 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [ ./sddm.nix ];
 
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    excludePackages = with pkgs; [ xterm ];
+  };
 
   programs.hyprland = {
     enable = true;
