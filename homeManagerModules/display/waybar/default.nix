@@ -45,7 +45,7 @@ in {
             rewrite = {
               "(.*) - YouTube — Mozilla Firefox" = " $1";
               "(.*) · GitHub — Mozilla Firefox" = " $1";
-              "(.*) — Mozilla Firefox" = " $1";
+              "(.*) — Mozilla Firefox" = "󰈹 $1";
               "(.*) - Discord" = "󰙯 $1";
               "Mozilla Firefox" = "󰈹";
               "Terminal" = "";
@@ -66,6 +66,7 @@ in {
           backlight = { format = " {percent}%"; };
           battery = {
             format = "{icon} {capacity}%";
+            format-charging = "󰂄 {capacity}%";
             format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
           };
           pulseaudio = {
