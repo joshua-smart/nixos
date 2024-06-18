@@ -1,1 +1,9 @@
-{ ... }: { imports = [ ./ssh.nix ./printing.nix ./udisks2.nix ]; }
+{ ... }: {
+  imports = [ ];
+
+  services = {
+    openssh.enable = true;
+    printing.enable = true;
+    udisks2.enable = true;
+  };
+}
