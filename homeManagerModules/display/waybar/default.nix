@@ -6,7 +6,6 @@ in {
   options.display.bar = {
     workspaces = mkOption { type = types.listOf types.int; };
     monitors = mkOption { type = types.listOf types.str; };
-    network-type = mkOption { type = types.str; };
     modules = mkOption { type = types.listOf types.str; };
   };
 
@@ -62,7 +61,7 @@ in {
           # Right modules
           disk = { format = " {percentage_used}%"; };
           cpu = { format = " {usage}%"; };
-          memory = { format = " {percentage}%"; };
+          memory = { format = " {percentage}%"; };
           backlight = { format = " {percent}%"; };
           battery = {
             format = "{icon} {capacity}%";
@@ -76,12 +75,8 @@ in {
             format-icons = { default = [ "" "" "" ]; };
           };
           network = {
-            format = if cfg.network-type == "wired" then
-              " {ipaddr}"
-            else if cfg.network-type == "wireless" then
-              " {essid} {ipaddr}"
-            else
-              abort "unrecognised network type";
+            format-ethernet = " {ipaddr}";
+            format-wifi = " {essid} {ipaddr}";
             format-disconnected = " disconnected";
           };
           tray = {
