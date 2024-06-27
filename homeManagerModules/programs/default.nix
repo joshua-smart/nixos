@@ -10,6 +10,7 @@
     ./gitui.nix
     ./thunderbird.nix
     ./discord.nix
+    ./feh.nix
   ];
 
   home.packages = with pkgs; [ nh obsidian tree spotify prismlauncher lutris ];
