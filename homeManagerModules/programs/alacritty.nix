@@ -1,10 +1,22 @@
-{ ... }: {
+{ pkgs, ... }:
+let
+  theme = "monokai_pro";
+  theme_file = pkgs.fetchFromGitHub {
+    owner = "alacritty";
+    repo = "alacritty-theme";
+    rev = "a4041ae";
+    sha256 = "sha256-A5Xlu6kqB04pbBWMi2eL+pp6dYi4MzgZdNVKztkJhcg=";
+  } + "/themes/${theme}.toml";
+in {
   programs.alacritty = {
     enable = true;
+
     settings = {
+      import = [ "~/.config/alacritty/theme.toml" ];
+
       font = {
         size = 12;
-        normal = { family = "FiraCode Nerd Font Propo"; };
+        normal = { family = "FiraCode Nerd Font Mono"; };
       };
       window = {
         padding = {
@@ -14,37 +26,8 @@
         opacity = 0.6;
         title = "Terminal";
       };
-      colors = {
-        # Default colors
-        primary = {
-          background = "#2D2A2E";
-          foreground = "#fff1f3";
-        };
-
-        # Normal colors
-        normal = {
-          black = "#2c2525";
-          red = "#fd6883";
-          green = "#adda78";
-          yellow = "#f9cc6c";
-          blue = "#f38d70";
-          magenta = "#a8a9eb";
-          cyan = "#85dacc";
-          white = "#fff1f3";
-        };
-
-        # Bright colors
-        bright = {
-          black = "#72696a";
-          red = "#fd6883";
-          green = "#adda78";
-          yellow = "#f9cc6c";
-          blue = "#f38d70";
-          magenta = "#a8a9eb";
-          cyan = "#85dacc";
-          white = "#fff1f3";
-        };
-      };
     };
   };
+
+  xdg.configFile."alacritty/theme.toml".source = theme_file;
 }
