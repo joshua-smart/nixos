@@ -47,7 +47,7 @@ in {
               "(.*) — Mozilla Firefox" = "󰈹 $1";
               "(.*) - Discord" = "󰙯 $1";
               "Mozilla Firefox" = "󰈹";
-              "Terminal" = "";
+              "(.*) - Terminal" = " $1";
             };
           };
 

@@ -2,13 +2,13 @@
 let
   session = {
     foreground = "green";
-    template = "{{ .UserName }}@{{ .HostName }} ";
+    template = "{{ .UserName }}@{{ .HostName }}";
     type = "session";
   };
   path = {
     foreground = "cyan";
     properties = { style = "folder"; };
-    template = " {{ .Path }} ";
+    template = "{{ .Path }} ";
     type = "path";
   };
   git = {
@@ -27,20 +27,26 @@ let
     foreground = "magenta";
     template = "$";
   };
+  colon = {
+    type = "text";
+    foreground = "white";
+    template = ":";
+  };
 in {
   programs.oh-my-posh = {
     enable = true;
     enableBashIntegration = true;
 
     settings = {
+
+      console_title_template = "{{ .PWD }} - Terminal";
       blocks = [
         {
           alignment = "left";
-          segments = [ session path sym ];
+          segments = [ session colon path sym ];
           type = "prompt";
         }
         {
-          # redundant
           alignment = "left";
           segments = [ git ];
           type = "rprompt";
