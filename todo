@@ -1,2 +1,5 @@
 - Fix sddm too fast login issue (https://github.com/NixOS/nixpkgs/issues/292980)
-- Replace wofi app menu with faster alternative
+- Discord screenshare (man "xdg-desktop-portal-wlr(5)")
+- Style mako
+- Flip fn toggle behaviour on laptop (asusctl WIP)
+- Gtk icon theme
