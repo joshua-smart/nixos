@@ -12,6 +12,7 @@
     ./discord.nix
     ./feh.nix
     ./oh-my-posh.nix
+    ./vscode.nix
   ];
 
   home.packages = with pkgs; [ nh obsidian tree spotify prismlauncher lutris ];
