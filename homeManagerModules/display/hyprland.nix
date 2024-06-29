@@ -48,9 +48,9 @@ in {
           allow_tearing = false;
 
           layout = "master";
-
-          cursor_inactive_timeout = 1;
         };
+
+        cursor = { inactive_timeout = 1; };
 
         decoration = {
           rounding = 10;
@@ -88,7 +88,7 @@ in {
         };
 
         master = {
-          new_is_master = true;
+          new_status = "master";
           no_gaps_when_only = 1;
         };
 
