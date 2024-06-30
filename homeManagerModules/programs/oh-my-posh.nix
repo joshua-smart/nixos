@@ -32,6 +32,16 @@ let
     foreground = "white";
     template = ":";
   };
+  nix = {
+    type = "text";
+    foreground = "cyan";
+    template = "{{ if .Env.IN_NIX_SHELL }} nix-shell {{ end }}";
+  };
+  direnv = {
+    type = "text";
+    foreground = "red";
+    template = "{{ if .Env.DIRENV_ACTIVE }}󰅪 direnv {{ end }}";
+  };
 in {
   programs.oh-my-posh = {
     enable = true;
@@ -48,7 +58,7 @@ in {
         }
         {
           alignment = "left";
-          segments = [ git ];
+          segments = [ direnv nix git ];
           type = "rprompt";
         }
       ];
