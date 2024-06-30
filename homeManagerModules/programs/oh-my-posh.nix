@@ -19,7 +19,7 @@ let
       fetch_status = false;
       fetch_upstream_icon = true;
     };
-    template = " ({{ .HEAD }})";
+    template = "󰊢 ({{ .HEAD }})";
     type = "git";
   };
   sym = {
@@ -40,7 +40,7 @@ let
   direnv = {
     type = "text";
     foreground = "red";
-    template = "{{ if .Env.DIRENV_ACTIVE }}󰅪 direnv {{ end }}";
+    template = "{{ if .Env.DIRENV_ACTIVE }}󱁿 direnv {{ end }}";
   };
 in {
   programs.oh-my-posh = {
