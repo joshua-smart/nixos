@@ -13,6 +13,7 @@
     ./feh.nix
     ./oh-my-posh.nix
     ./vscode.nix
+    ./tmux.nix
   ];
 
   home.packages = with pkgs; [ nh obsidian tree spotify prismlauncher lutris ];
