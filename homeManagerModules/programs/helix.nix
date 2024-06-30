@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ ... }: {
   programs.helix = {
     enable = true;
 
@@ -11,11 +11,9 @@
     };
 
     languages = {
-      language-server = { nil = { command = "${pkgs.nil}/bin/nil"; }; };
       language = [{
         name = "nix";
         auto-format = true;
-        formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
       }];
     };
 

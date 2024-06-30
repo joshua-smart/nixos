@@ -26,6 +26,8 @@ in {
         opacity = 0.6;
         title = "Terminal";
       };
+
+      env = { TERM = "xterm-256color"; };
     };
   };
 
