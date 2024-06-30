@@ -1,2 +1,9 @@
-{ pkgs ? import <nixpkgs> { } }:
-pkgs.mkShell { nativeBuildInputs = with pkgs; [ nil nixfmt-rfc-style ]; }
+{
+  pkgs ? import <nixpkgs> { },
+}:
+pkgs.mkShell {
+  nativeBuildInputs = with pkgs; [
+    nil
+    nixfmt-rfc-style
+  ];
+}

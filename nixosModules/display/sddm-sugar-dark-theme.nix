@@ -1,6 +1,8 @@
 { pkgs, ... }:
-let image = ./background.jpg;
-in pkgs.stdenv.mkDerivation {
+let
+  image = ./background.jpg;
+in
+pkgs.stdenv.mkDerivation {
   name = "sddm-sugar-dark-theme";
   src = pkgs.fetchFromGitHub {
     owner = "MarianArlt";

@@ -1,5 +1,10 @@
-{ ... }: {
-  programs.firefox = { enable = true; };
+{ ... }:
+{
+  programs.firefox = {
+    enable = true;
+  };
 
-  home.sessionVariables = { MOZ_USE_XINPUT2 = "1"; };
+  home.sessionVariables = {
+    MOZ_USE_XINPUT2 = "1";
+  };
 }

@@ -1,1 +1,4 @@
-{ ... }: { programs.gitui.enable = true; }
+{ ... }:
+{
+  programs.gitui.enable = true;
+}

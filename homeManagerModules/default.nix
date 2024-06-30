@@ -1,6 +1,13 @@
-{ user, ... }: {
-  imports =
-    [ ./accounts ./display ./programs ./services ./scripts ./fonts.nix ];
+{ user, ... }:
+{
+  imports = [
+    ./accounts
+    ./display
+    ./programs
+    ./services
+    ./scripts
+    ./fonts.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = user;

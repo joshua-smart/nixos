@@ -1,1 +1,4 @@
-{ ... }: { imports = [ ./email.nix ]; }
+{ ... }:
+{
+  imports = [ ./email.nix ];
+}

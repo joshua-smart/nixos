@@ -1,13 +1,16 @@
 { pkgs, ... }:
 let
-  theme = "monokai_pro";
-  theme_file = pkgs.fetchFromGitHub {
-    owner = "alacritty";
-    repo = "alacritty-theme";
-    rev = "a4041ae";
-    sha256 = "sha256-A5Xlu6kqB04pbBWMi2eL+pp6dYi4MzgZdNVKztkJhcg=";
-  } + "/themes/${theme}.toml";
-in {
+  theme = "doom_one";
+  theme_file =
+    pkgs.fetchFromGitHub {
+      owner = "alacritty";
+      repo = "alacritty-theme";
+      rev = "a4041ae";
+      sha256 = "sha256-A5Xlu6kqB04pbBWMi2eL+pp6dYi4MzgZdNVKztkJhcg=";
+    }
+    + "/themes/${theme}.toml";
+in
+{
   programs.alacritty = {
     enable = true;
 
@@ -16,7 +19,9 @@ in {
 
       font = {
         size = 12;
-        normal = { family = "FiraCode Nerd Font Propo"; };
+        normal = {
+          family = "FiraCode Nerd Font Propo";
+        };
       };
       window = {
         padding = {
@@ -27,7 +32,9 @@ in {
         title = "Terminal";
       };
 
-      env = { TERM = "xterm-256color"; };
+      env = {
+        TERM = "xterm-256color";
+      };
     };
   };
 

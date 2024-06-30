@@ -1,6 +1,13 @@
-{ pkgs, ... }: {
-  imports =
-    [ ./waybar ./rofi ./hyprland.nix ./hyprpaper ./cursor.nix ./gtk.nix ];
+{ pkgs, ... }:
+{
+  imports = [
+    ./waybar
+    ./rofi
+    ./hyprland.nix
+    ./hyprpaper
+    ./cursor.nix
+    ./gtk.nix
+  ];
 
   xdg.portal = {
     enable = true;

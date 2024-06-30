@@ -1,6 +1,8 @@
 { pkgs, ... }:
-let pass = "${pkgs.password-store}/bin/pass";
-in {
+let
+  pass = "${pkgs.password-store}/bin/pass";
+in
+{
   accounts.email.accounts.personal = {
     primary = true;
     address = "josh@thesmarts.co.uk";

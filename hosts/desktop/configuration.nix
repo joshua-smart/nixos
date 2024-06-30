@@ -5,7 +5,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../nixosModules
   ];
@@ -13,10 +14,12 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
-    package = let
-      kernel = config.boot.kernelPackages.kernel;
-      kernelPackages = pkgs.unstable.linuxPackagesFor kernel;
-    in kernelPackages.nvidiaPackages.beta;
+    package =
+      let
+        kernel = config.boot.kernelPackages.kernel;
+        kernelPackages = pkgs.unstable.linuxPackagesFor kernel;
+      in
+      kernelPackages.nvidiaPackages.beta;
   };
   boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
 }

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./firefox.nix
     ./alacritty.nix
@@ -17,5 +18,12 @@
     ./direnv.nix
   ];
 
-  home.packages = with pkgs; [ nh obsidian tree spotify prismlauncher lutris ];
+  home.packages = with pkgs; [
+    nh
+    obsidian
+    tree
+    spotify
+    prismlauncher
+    lutris
+  ];
 }

@@ -6,8 +6,10 @@ let
     type = "session";
   };
   path = {
-    foreground = "cyan";
-    properties = { style = "folder"; };
+    foreground = "blue";
+    properties = {
+      style = "folder";
+    };
     template = "{{ .Path }} ";
     type = "path";
   };
@@ -42,7 +44,8 @@ let
     foreground = "red";
     template = "{{ if .Env.DIRENV_ACTIVE }}󱁿 direnv {{ end }}";
   };
-in {
+in
+{
   programs.oh-my-posh = {
     enable = true;
     enableBashIntegration = true;
@@ -53,12 +56,21 @@ in {
       blocks = [
         {
           alignment = "left";
-          segments = [ session colon path sym ];
+          segments = [
+            session
+            colon
+            path
+            sym
+          ];
           type = "prompt";
         }
         {
           alignment = "left";
-          segments = [ direnv nix git ];
+          segments = [
+            direnv
+            nix
+            git
+          ];
           type = "rprompt";
         }
       ];
