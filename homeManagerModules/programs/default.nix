@@ -3,7 +3,6 @@
   imports = [
     ./firefox.nix
     ./alacritty.nix
-    ./bash.nix
     ./git.nix
     ./helix.nix
     ./password-store.nix
@@ -16,6 +15,7 @@
     ./vscode.nix
     ./tmux.nix
     ./direnv.nix
+    ./zsh.nix
   ];
 
   home.packages = with pkgs; [

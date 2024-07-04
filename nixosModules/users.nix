@@ -1,6 +1,7 @@
-{ ... }:
+{ pkgs, ... }:
 {
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.defaultUserShell = pkgs.zsh;
+
   users.users.js = {
     isNormalUser = true;
     description = "Joshua Smart";
@@ -9,9 +10,6 @@
       "wheel"
       "video"
     ];
+    useDefaultShell = true;
   };
-
-  # Enable automatic login for the user.
-  # services.xserver.displayManager.autoLogin.enable = true;
-  # services.xserver.displayManager.autoLogin.user = "js";
 }
