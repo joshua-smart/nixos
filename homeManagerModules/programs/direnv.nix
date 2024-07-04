@@ -2,7 +2,7 @@
 {
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true;
+    enableZshIntegration = true;
 
     nix-direnv.enable = true;
 
@@ -12,7 +12,7 @@
   };
 
   # Replace with programs.direnv.silent = true; when option is stabilised
-  home.sessionVariables = {
-    DIRENV_LOG_FORMAT = "";
-  };
+  programs.zsh.initExtra = ''
+    export DIRENV_LOG_FORMAT=
+  '';
 }
