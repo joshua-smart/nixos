@@ -25,5 +25,6 @@
     spotify
     prismlauncher
     lutris
+    docker
   ];
 }
