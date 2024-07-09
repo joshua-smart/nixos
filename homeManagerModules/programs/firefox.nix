@@ -16,7 +16,7 @@
             }];
             icon =
               "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = [ "@pkgs" ];
+            definedAliases = [ "@nixpkgs" "@np" ];
           };
           "NixOS Wiki" = {
             urls = [{
@@ -26,9 +26,21 @@
                 value = "{searchTerms}";
               }];
             }];
-            iconUpdateURL = "https://wiki.nixos.org/favicon.png";
-            updateInterval = 24 * 60 * 60 * 1000;
-            definedAliases = [ "@nixos" ];
+            icon =
+              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@nixos-wiki" "@nw" ];
+          };
+          "Home Manager Options" = {
+            urls = [{
+              template = "https://home-manager-options.extranix.com/";
+              params = [{
+                name = "query";
+                value = "{searchTerms}";
+              }];
+            }];
+            icon =
+              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@home-manager-options" "@hm" ];
           };
         };
       };
