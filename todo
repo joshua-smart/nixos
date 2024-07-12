@@ -3,3 +3,6 @@
 - Waybar calendar tooltip
 - Property theme rofi
 - greetd login manager
+- Discord screenshare (man "xdg-desktop-portal-wlr(5)")
+- Flip fn toggle behaviour on laptop (asusctl WIP)
+- Notification daemon

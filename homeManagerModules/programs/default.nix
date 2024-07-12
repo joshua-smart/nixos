@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./firefox.nix
     ./alacritty.nix
-    ./bash.nix
     ./git.nix
     ./helix.nix
     ./password-store.nix
@@ -10,7 +10,21 @@
     ./gitui.nix
     ./thunderbird.nix
     ./discord.nix
+    ./feh.nix
+    ./oh-my-posh.nix
+    ./vscode.nix
+    ./tmux.nix
+    ./direnv.nix
+    ./zsh.nix
   ];
 
-  home.packages = with pkgs; [ nh obsidian tree spotify prismlauncher lutris ];
+  home.packages = with pkgs; [
+    nh
+    obsidian
+    tree
+    spotify
+    prismlauncher
+    lutris
+    docker
+  ];
 }

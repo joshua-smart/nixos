@@ -3,7 +3,8 @@ with lib;
 let
   background-path = "~/.config/hypr/background.jpg";
   cfg = config.display.wallpaper;
-in {
+in
+{
 
   options.display.wallpaper = {
     monitors = mkOption { type = types.listOf types.str; };

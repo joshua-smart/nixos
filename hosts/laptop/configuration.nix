@@ -5,8 +5,23 @@
 { ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../nixosModules
   ];
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  services.blueman.enable = true;
+
+  # Power management
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
+  services.thermald.enable = true;
+  services.tlp.enable = true;
 }
