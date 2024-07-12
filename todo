@@ -1,2 +1,5 @@
 - Fix sddm too fast login issue (https://github.com/NixOS/nixpkgs/issues/292980)
-- Replace wofi app menu with faster alternative
+- Waybar date toggle hotkey (MOD-T)
+- Waybar calendar tooltip
+- Property theme rofi
+- greetd login manager
