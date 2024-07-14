@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   gtk = {
     enable = true;
     theme = {
@@ -7,8 +6,8 @@
       package = pkgs.gruvbox-dark-gtk;
     };
     iconTheme = {
-      name = "oomox-gruvbox-dark";
-      package = pkgs.gruvbox-dark-icons-gtk;
+      name = "Monday";
+      package = import ./monday-icon-theme.nix pkgs;
     };
   };
 }
