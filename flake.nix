@@ -12,7 +12,13 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, ... }:
+  outputs =
+    {
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      ...
+    }:
     let
       system = "x86_64-linux";
 
@@ -29,24 +35,32 @@
         overlays = [ (final: prev: { unstable = pkgs-unstable; }) ];
       };
 
-      myNixosSystem = host:
+      myNixosSystem =
+        host:
         lib.nixosSystem {
           inherit pkgs;
           inherit system;
           modules = [ ./hosts/${host}/configuration.nix ];
-          specialArgs = { inherit host; };
+          specialArgs = {
+            inherit host;
+          };
         };
 
-      myHomeManagerConfiguration = user: host:
+      myHomeManagerConfiguration =
+        user: host:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./hosts/${host}/home.nix ];
-          extraSpecialArgs = { inherit user host; };
+          extraSpecialArgs = {
+            inherit user host;
+          };
         };
-    in {
+    in
+    {
       nixosConfigurations = {
         laptop = myNixosSystem "laptop";
         desktop = myNixosSystem "desktop";
+        isoimage = myNixosSystem "isoimage";
       };
       homeConfigurations = {
         "js@laptop" = myHomeManagerConfiguration "js" "laptop";

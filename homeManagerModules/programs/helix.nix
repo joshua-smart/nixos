@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.helix = {
     enable = true;
 
@@ -12,21 +11,14 @@
     };
 
     languages = {
-      language = [
-        {
-          name = "nix";
-          auto-format = true;
-          formatter = {
-            command = "nixfmt";
-          };
-        }
-      ];
+      language = [{
+        name = "nix";
+        auto-format = true;
+        formatter = { command = "nixfmt"; };
+      }];
     };
 
     defaultEditor = true;
-    extraPackages = with pkgs; [
-      nixfmt
-      nil
-    ];
+    extraPackages = with pkgs; [ nixfmt-rfc-style nil ];
   };
 }

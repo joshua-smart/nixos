@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -13,5 +12,10 @@
     };
 
     dotDir = ".config/zsh";
+
+    initExtra = ''
+      bindkey ";5C" forward-word
+      bindkey ";5D" backward-word
+    '';
   };
 }
