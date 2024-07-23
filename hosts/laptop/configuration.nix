@@ -25,28 +25,21 @@
   services.thermald.enable = true;
   services.tlp.enable = true;
 
-  # Invert fn keys
-  services.kanata = {
-    enable = true;
+  key-remapping = ''
+    (defsrc
+      caps
+      f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+      mute vold volu brdn brup
+    )
 
-    keyboards.main = {
-      config = ''
-        (defsrc
-          caps
-          f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
-          mute vold volu brdn brup
-        )
+    (defalias
+      escctrl (tap-hold 100 100 esc lctrl)
+    )
 
-        (defalias
-          escctrl (tap-hold 100 100 esc lctrl)
-        )
-
-        (deflayer base
-          @escctrl
-          mute vold volu brdn brup _ _ _ _ _ _ _
-          f1 f2 f3 f4 f5
-        )
-      '';
-    };
-  };
+    (deflayer base
+      @escctrl
+      mute vold volu brdn brup _ _ _ _ _ _ _
+      f1 f2 f3 f4 f5
+    )
+  '';
 }

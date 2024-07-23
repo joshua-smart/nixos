@@ -22,4 +22,18 @@
       kernelPackages.nvidiaPackages.beta;
   };
   boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
+
+  key-remapping = ''
+    (defsrc
+      caps
+    )
+
+    (defalias
+      escctrl (tap-hold 100 100 esc lctrl)
+    )
+
+    (deflayer base
+      @escctrl
+    )
+  '';
 }

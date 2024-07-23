@@ -1,6 +1,6 @@
 { ... }:
 {
-  imports = [ ];
+  imports = [ ./kanata.nix ];
 
   services = {
     openssh.enable = true;
