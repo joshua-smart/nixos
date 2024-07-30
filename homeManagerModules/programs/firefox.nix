@@ -1,4 +1,10 @@
-{ pkgs, config, lib, ... }: with lib;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib;
 {
   config = mkIf config.programs.firefox.enable {
     programs.firefox = {

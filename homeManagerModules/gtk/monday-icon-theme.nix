@@ -1,4 +1,10 @@
-{ stdenvNoCC, fetchFromGitHub, lib, gtk3, ... }:
+{
+  stdenvNoCC,
+  fetchFromGitHub,
+  lib,
+  gtk3,
+  ...
+}:
 stdenvNoCC.mkDerivation rec {
   pname = "monday-icon-theme";
   version = "0.3.1";

@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ./udiskie.nix ./hyprpaper ];
+  imports = [
+    ./udiskie.nix
+    ./hyprpaper
+  ];
 }

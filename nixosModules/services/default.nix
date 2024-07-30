@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ./sddm ./xserver.nix ];
+  imports = [
+    ./sddm
+    ./xserver.nix
+  ];
 }

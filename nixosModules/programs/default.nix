@@ -1,4 +1,8 @@
 { ... }:
 {
-  imports = [ ./steam.nix ./hyprland.nix ./zsh.nix ];
+  imports = [
+    ./steam.nix
+    ./hyprland.nix
+    ./zsh.nix
+  ];
 }

@@ -1,4 +1,6 @@
-{ config, lib, ... }: with lib; {
+{ config, lib, ... }:
+with lib;
+{
   options.profiles.sound.enable = mkEnableOption "sound profile";
 
   config = mkIf config.profiles.sound.enable {
@@ -17,6 +19,6 @@
       # use the example session manager (no others are packaged yet so this is enabled by default,
       # no need to redefine it in your config for now)
       #media-session.enable = true;
-    };  
+    };
   };
 }

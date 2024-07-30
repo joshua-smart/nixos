@@ -1,4 +1,11 @@
-{ pkgs, config, lib, ... }: with lib; {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib;
+{
 
   options.scripts.enable = mkEnableOption "scripts";
 

@@ -1,4 +1,6 @@
-{ config, lib, ... }: with lib; {
+{ config, lib, ... }:
+with lib;
+{
   options.profiles.desktop-apps.enable = mkEnableOption "desktop apps profile";
 
   config = mkIf config.profiles.desktop-apps.enable {

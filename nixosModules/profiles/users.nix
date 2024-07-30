@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: with lib;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib;
 {
   options.profiles.users.enable = mkEnableOption "users profile";
 

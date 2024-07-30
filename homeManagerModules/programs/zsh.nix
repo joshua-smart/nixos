@@ -1,4 +1,6 @@
-{ config, lib, ... }: with lib; {
+{ config, lib, ... }:
+with lib;
+{
 
   config = mkIf config.programs.zsh.enable {
 
@@ -20,6 +22,5 @@
         bindkey ";5D" backward-word
       '';
     };
-
   };
 }

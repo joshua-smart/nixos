@@ -1,4 +1,5 @@
-{ config, lib, ... }: with lib;
+{ config, lib, ... }:
+with lib;
 {
   config = mkIf config.services.udiskie.enable {
     services.udiskie = {

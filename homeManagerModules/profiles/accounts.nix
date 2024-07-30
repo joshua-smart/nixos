@@ -1,4 +1,6 @@
-{ config, lib, ... }: with lib; {
+{ config, lib, ... }:
+with lib;
+{
 
   options.profiles.accounts.enable = mkEnableOption "accounts profile";
 

@@ -1,4 +1,5 @@
-{ config, lib, ... }: with lib;
+{ config, lib, ... }:
+with lib;
 {
   config = mkIf config.programs.direnv.enable {
     programs.direnv = {

@@ -1,4 +1,5 @@
-{ config, lib, ... }: with lib;
+{ config, lib, ... }:
+with lib;
 {
   options.profiles.games.enable = mkEnableOption "games profile";
 

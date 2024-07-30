@@ -1,13 +1,15 @@
-{ config, lib, ... }: with lib; {
+{ config, lib, ... }:
+with lib;
+{
   options.profiles.localisation.enable = mkEnableOption "localisation profile";
 
   config = mkIf config.profiles.localisation.enable {
     # Set your time zone.
     time.timeZone = "Europe/London";
-  
+
     # Select internationalisation properties.
     i18n.defaultLocale = "en_GB.UTF-8";
-  
+
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "en_GB.UTF-8";
       LC_IDENTIFICATION = "en_GB.UTF-8";
@@ -19,13 +21,13 @@
       LC_TELEPHONE = "en_GB.UTF-8";
       LC_TIME = "en_GB.UTF-8";
     };
-  
+
     # Configure keymap in X11
     services.xserver.xkb = {
       layout = "gb";
       variant = "";
     };
-  
+
     # Configure console keymap
     console.keyMap = "uk";
   };
