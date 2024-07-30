@@ -11,6 +11,8 @@
     ../../nixosModules
   ];
 
+  nix.flake = "/home/js/Projects/nixos";
+
   profiles = {
     boot.enable = true;
     display.enable = true;

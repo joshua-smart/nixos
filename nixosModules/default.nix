@@ -1,4 +1,10 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib;
 {
   imports = [
     ./programs
@@ -6,23 +12,24 @@
     ./profiles
   ];
 
-  environment.systemPackages = with pkgs; [ helix ];
-
-  environment.variables = {
-    FLAKE = "/home/js/Projects/nixos";
-    EDITOR = "hx";
+  options.nix.flake = mkOption {
+    type = types.str;
+    default = "/etc/nixos";
+    description = "Location of this system flake on the host machine";
   };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  config = {
+    environment.systemPackages = with pkgs; [ helix ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+    environment.variables = {
+      FLAKE = config.nix.flake;
+      EDITOR = "hx";
+    };
+
+    system.stateVersion = "23.11";
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 }

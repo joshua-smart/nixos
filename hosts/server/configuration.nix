@@ -11,6 +11,8 @@
     ../../nixosModules
   ];
 
+  nix.flake = "/home/js/nixos";
+
   profiles = {
     boot.enable = true;
     localisation.enable = true;
