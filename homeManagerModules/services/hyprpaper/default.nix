@@ -6,12 +6,11 @@ let
 in
 {
 
-  options.display.wallpaper = {
+  options.services.hyprpaper = {
     monitors = mkOption { type = types.listOf types.str; };
   };
 
-  config = {
-
+  config = mkIf config.services.hyprpaper.enable {
     xdg.configFile."hypr/background.jpg".source = ./background.jpg;
 
     services.hyprpaper = {

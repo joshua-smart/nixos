@@ -1,11 +1,13 @@
-{ ... }:
+{ config, lib, ... }:
+with lib;
 {
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    gamescopeSession.enable = true;
-  };
+  config = mkIf config.programs.steam.enable {
+    programs.steam = {
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      gamescopeSession.enable = true;
+    };
 
-  programs.gamemode.enable = true;
+    programs.gamemode.enable = true;
+  };
 }

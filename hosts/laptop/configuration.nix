@@ -11,6 +11,27 @@
     ../../nixosModules
   ];
 
+  profiles = {
+    boot.enable = true;
+    display.enable = true;
+    localisation.enable = true;
+    network.enable = true;
+    sound.enable = true;
+    users.enable = true;
+  };
+
+  programs = {
+    zsh.enable = true;
+  };
+
+  services = {
+    openssh.enable = true;
+    printing.enable = true;
+    udisks2.enable = true;
+  };
+
+  virtualisation.docker.enable = true;
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -24,22 +45,4 @@
   };
   services.thermald.enable = true;
   services.tlp.enable = true;
-
-  key-remapping = ''
-    (defsrc
-      caps
-      f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
-      mute vold volu brdn brup
-    )
-
-    (defalias
-      escctrl (tap-hold 100 100 esc lctrl)
-    )
-
-    (deflayer base
-      @escctrl
-      mute vold volu brdn brup _ _ _ _ _ _ _
-      f1 f2 f3 f4 f5
-    )
-  '';
 }

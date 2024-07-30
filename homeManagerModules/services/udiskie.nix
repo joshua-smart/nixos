@@ -1,7 +1,8 @@
-{ ... }:
+{ config, lib, ... }: with lib;
 {
-  services.udiskie = {
-    enable = true;
-    tray = "auto";
+  config = mkIf config.services.udiskie.enable {
+    services.udiskie = {
+      tray = "auto";
+    };
   };
 }

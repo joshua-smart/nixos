@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, ... }: with lib;
 let
   session = {
     foreground = "green";
@@ -46,36 +46,39 @@ let
   };
 in
 {
-  programs.oh-my-posh = {
-    enable = true;
-    enableZshIntegration = true;
 
-    settings = {
+  config = mkIf config.programs.oh-my-posh.enable {
 
-      console_title_template = "{{ .PWD }} - Terminal";
-      blocks = [
-        {
-          alignment = "left";
-          segments = [
-            session
-            colon
-            path
-            sym
-          ];
-          type = "prompt";
-        }
-        {
-          alignment = "left";
-          segments = [
-            direnv
-            nix
-            git
-          ];
-          type = "rprompt";
-        }
-      ];
-      final_space = true;
-      version = 2;
+    programs.oh-my-posh = {
+      enableZshIntegration = true;
+
+      settings = {
+
+        console_title_template = "{{ .PWD }} - Terminal";
+        blocks = [
+          {
+            alignment = "left";
+            segments = [
+              session
+              colon
+              path
+              sym
+            ];
+            type = "prompt";
+          }
+          {
+            alignment = "left";
+            segments = [
+              direnv
+              nix
+              git
+            ];
+            type = "rprompt";
+          }
+        ];
+        final_space = true;
+        version = 2;
+      };
     };
   };
 }

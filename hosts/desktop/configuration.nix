@@ -11,6 +11,25 @@
     ../../nixosModules
   ];
 
+  profiles = {
+    boot.enable = true;
+    display.enable = true;
+    localisation.enable = true;
+    network.enable = true;
+    sound.enable = true;
+    users.enable = true;
+  };
+
+  programs = {
+    zsh.enable = true;
+  };
+
+  services = {
+    openssh.enable = true;
+    printing.enable = true;
+    udisks2.enable = true;
+  };
+
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;

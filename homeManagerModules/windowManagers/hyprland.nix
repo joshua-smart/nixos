@@ -6,29 +6,36 @@
 }:
 with lib;
 let
-  cfg = config.display.hyprland;
+  cfg = config.wayland.windowManager.hyprland;
   terminal = "${pkgs.alacritty}/bin/alacritty";
   browser = "${pkgs.firefox}/bin/firefox";
   menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
 in
 {
-
-  options.display.hyprland = {
+  options.wayland.windowManager.hyprland = {
     monitors = mkOption { type = types.listOf types.str; };
     workspaces = mkOption { type = types.attrsOf (types.listOf types.int); };
     nvidia = mkOption {
       type = types.bool;
       default = false;
+      description = ''
+        Add nvidia hardware support
+      '';
     };
     keybinds = {
-      volume-step = mkOption { type = types.int; };
+      volume-step = mkOption {
+        type = types.int;
+        default = 1;
+        description = ''
+          Percentage to increase volume by
+        '';
+      };
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
 
     wayland.windowManager.hyprland = {
-      enable = true;
       systemd.enable = true;
 
       settings = {

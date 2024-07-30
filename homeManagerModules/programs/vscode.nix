@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }: with lib;
 {
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [ ];
+
+  config = mkIf config.programs.vscode.enable {
+
+    programs.vscode = {
+      package = pkgs.vscodium;
+      extensions = with pkgs.vscode-extensions; [ ];
+    };
   };
 }

@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }: with lib;
 {
-  programs.password-store = {
-    enable = true;
+
+  config = mkIf config.programs.password-store.enable {
+    home.packages = with pkgs; [ wl-clipboard ];
   };
-  home.packages = with pkgs; [ wl-clipboard ];
 }

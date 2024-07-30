@@ -1,26 +1,17 @@
 { pkgs, ... }:
 {
   imports = [
-    ./boot.nix
-    ./internationalisation.nix
-    ./users.nix
-    ./display
-    ./network.nix
-    ./sound.nix
     ./programs
     ./services
+    ./profiles
   ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [ helix ];
 
   environment.variables = {
     FLAKE = "/home/js/Projects/nixos";
     EDITOR = "hx";
   };
-
-  virtualisation.docker.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

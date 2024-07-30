@@ -1,9 +1,11 @@
-{ ... }:
+{ config, lib, ... }:
+with lib;
 {
-  programs.thunderbird = {
-    enable = true;
-    profiles.personal = {
-      isDefault = true;
+  config = mkIf config.programs.thunderbird.enable {
+    programs.thunderbird = {
+      profiles.personal = {
+        isDefault = true;
+      };
     };
   };
 }

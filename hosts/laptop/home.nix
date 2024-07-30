@@ -1,12 +1,31 @@
 { pkgs, ... }:
 {
   imports = [ ../../homeManagerModules ];
-  display.wallpaper.monitors = [
+
+  profiles = {
+    display.enable = true;
+    shell.enable = true;
+    desktop-apps.enable = true;
+    games.enable = true;
+    accounts.enable = true;
+  };
+
+  scripts.enable = true;
+
+  programs = {
+    password-store.enable = true;
+  };
+
+  services = {
+    udiskie.enable = true;
+  };
+
+  services.hyprpaper.monitors = [
     "eDP-1"
     "HDMI-A-1"
   ];
 
-  display.hyprland = {
+  wayland.windowManager.hyprland = {
     monitors = [
       "eDP-1,prefered,auto,1"
       "HDMI-A-1,1920x1080@60.00Hz,auto-left,1"
@@ -18,7 +37,7 @@
     keybinds.volume-step = 5;
   };
 
-  display.bar = {
+  programs.waybar = {
     monitors = [ "eDP-1" ];
     workspaces = [
       1

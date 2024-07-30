@@ -1,6 +1,11 @@
-{ pkgs, ... }: {
-  home.packages = [
-    (import ./unlink-keep.nix { inherit pkgs; })
-    (import ./gtree.nix { inherit pkgs; })
-  ];
+{ pkgs, config, lib, ... }: with lib; {
+
+  options.scripts.enable = mkEnableOption "scripts";
+
+  config = mkIf config.scripts.enable {
+    home.packages = [
+      (pkgs.callPackage ./unlink-keep.nix { })
+      (pkgs.callPackage ./gtree.nix { })
+    ];
+  };
 }

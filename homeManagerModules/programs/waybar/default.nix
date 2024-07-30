@@ -1,20 +1,19 @@
 { lib, config, ... }:
 with lib;
 let
-  cfg = config.display.bar;
+  cfg = config.programs.waybar;
 in
 {
 
-  options.display.bar = {
+  options.programs.waybar = {
     workspaces = mkOption { type = types.listOf types.int; };
     monitors = mkOption { type = types.listOf types.str; };
     modules = mkOption { type = types.listOf types.str; };
   };
 
-  config = {
+  config = mkIf cfg.enable {
 
     programs.waybar = {
-      enable = true;
       systemd.enable = true;
 
       settings =

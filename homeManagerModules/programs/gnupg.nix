@@ -1,8 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }: with lib;
 {
-  programs.gpg.enable = true;
-  services.gpg-agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-curses;
+
+  config = mkIf config.programs.gpg.enable {
+    services.gpg-agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-curses;
+    };
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 with lib;
 let
   theme_name = "doom_one";
@@ -16,28 +16,30 @@ let
   theme = recursiveUpdate theme_base { colors.primary.foreground = "#eeeeee"; };
 in
 {
-  programs.alacritty = {
-    enable = true;
+  config = mkIf programs.alacritty.enable {
 
-    settings = {
-      font = {
-        size = 12;
-        normal = {
-          family = "FiraCode Nerd Font Propo";
-        };
-      };
-      window = {
-        padding = {
-          x = 4;
-          y = 4;
-        };
-        opacity = 0.6;
-        title = "Terminal";
-      };
+    programs.alacritty = {
 
-      env = {
-        TERM = "xterm-256color";
-      };
-    } // theme;
+      settings = {
+        font = {
+          size = 12;
+          normal = {
+            family = "FiraCode Nerd Font Propo";
+          };
+        };
+        window = {
+          padding = {
+            x = 4;
+            y = 4;
+          };
+          opacity = 0.6;
+          title = "Terminal";
+        };
+
+        env = {
+          TERM = "xterm-256color";
+        };
+      } // theme;
+    };
   };
 }

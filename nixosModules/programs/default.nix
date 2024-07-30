@@ -1,6 +1,4 @@
 { ... }:
 {
-  imports = [ ./steam.nix ];
-
-  programs.zsh.enable = true;
+  imports = [ ./steam.nix ./hyprland.nix ./zsh.nix ];
 }
