@@ -60,11 +60,13 @@
       nixosConfigurations = {
         laptop = myNixosSystem "laptop";
         desktop = myNixosSystem "desktop";
+        server = myNixosSystem "server";
         isoimage = myNixosSystem "isoimage";
       };
       homeConfigurations = {
         "js@laptop" = myHomeManagerConfiguration "js" "laptop";
         "js@desktop" = myHomeManagerConfiguration "js" "desktop";
+        "js@server" = myHomeManagerConfiguration "js" "server";
       };
     };
 }
