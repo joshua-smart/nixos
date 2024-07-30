@@ -20,6 +20,7 @@ with lib;
 
     services.network-manager-applet.enable = true;
     services.swaync.enable = true;
+    services.hyprpaper.enable = true;
 
     xdg.portal = {
       enable = true;

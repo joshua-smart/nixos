@@ -2,7 +2,7 @@
 with lib;
 let
   background-path = "~/.config/hypr/background.jpg";
-  cfg = config.display.wallpaper;
+  cfg = config.services.hyprpaper;
 in
 {
 

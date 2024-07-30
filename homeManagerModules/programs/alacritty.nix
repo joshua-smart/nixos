@@ -21,7 +21,7 @@ let
   theme = recursiveUpdate theme_base { colors.primary.foreground = "#eeeeee"; };
 in
 {
-  config = mkIf programs.alacritty.enable {
+  config = mkIf config.programs.alacritty.enable {
 
     programs.alacritty = {
 
