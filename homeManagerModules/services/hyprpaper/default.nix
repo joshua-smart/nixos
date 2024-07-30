@@ -14,7 +14,6 @@ in
     xdg.configFile."hypr/background.jpg".source = ./background.jpg;
 
     services.hyprpaper = {
-      enable = true;
       settings = {
         splash = false;
 

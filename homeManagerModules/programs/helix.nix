@@ -1,5 +1,11 @@
-{ pkgs, config, lib, ... }: with lib; {
-
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib;
+{
 
   config = mkIf config.programs.helix.enable {
     programs.helix = {
@@ -13,15 +19,22 @@
       };
 
       languages = {
-        language = [{
-          name = "nix";
-          auto-format = true;
-          formatter = { command = "nixfmt"; };
-        }];
+        language = [
+          {
+            name = "nix";
+            auto-format = true;
+            formatter = {
+              command = "nixfmt";
+            };
+          }
+        ];
       };
 
       defaultEditor = true;
-      extraPackages = with pkgs; [ nixfmt-rfc-style nil ];
+      extraPackages = with pkgs; [
+        nixfmt-rfc-style
+        nil
+      ];
     };
   };
 }
