@@ -7,7 +7,7 @@
 with lib;
 {
 
-  config = mkIf gtk.enable {
+  config = mkIf config.gtk.enable {
     gtk = {
       theme = {
         name = "gruvbox-dark";
@@ -15,7 +15,7 @@ with lib;
       };
       iconTheme = {
         name = "Monday";
-        package = import ./monday-icon-theme.nix pkgs;
+        package = pkgs.callPackage ./monday-icon-theme.nix { };
       };
     };
   };

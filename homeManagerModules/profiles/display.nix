@@ -27,6 +27,8 @@ with lib;
       extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
     };
 
+    gtk.enable = true;
+
     home.pointerCursor = {
       package = pkgs.gnome.adwaita-icon-theme;
       name = "Adwaita";
