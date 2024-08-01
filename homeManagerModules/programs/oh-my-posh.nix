@@ -3,6 +3,11 @@ with lib;
 let
   session = {
     foreground = "green";
+    foreground_templates = [
+      "{{ if eq \"laptop\" .HostName }}green{{end}}"
+      "{{ if eq \"server\" .HostName }}red{{end}}"
+      "{{ if eq \"desktop\" .HostName }}lightBlue{{end}}"
+    ];
     template = "{{ .UserName }}@{{ .HostName }}";
     type = "session";
   };
