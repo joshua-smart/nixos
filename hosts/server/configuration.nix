@@ -17,8 +17,9 @@
     boot.enable = true;
     localisation.enable = true;
     users.enable = true;
-    # network.enable = true;
   };
+
+  networking.hostName = "server";
 
   programs = {
     zsh.enable = true;
@@ -41,6 +42,20 @@
           VERSION = "1.21";
         };
         volumes = [ "/home/js/containers/v5-minecraft:/data" ];
+      };
+
+      v5-minecraft-backup = {
+        image = "itzg/mc-backup";
+        environment = {
+          BACKUP_INTERVAL = "1d";
+          INITIAL_DELAY = "0";
+        };
+        volumes = [
+          "/home/js/containers/v5-minecraft:/data:ro"
+          "/home/js/containers/v5-minecraft-backups:/backups"
+        ];
+        dependsOn = [ "v5-minecraft" ];
+        extraOptions = [ "--network=container:v5-minecraft" ];
       };
 
       gandi-dynamic-dns = {
