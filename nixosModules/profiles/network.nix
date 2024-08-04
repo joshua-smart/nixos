@@ -36,7 +36,6 @@ in
       {
         # Spotify network devices
         allowedUDPPorts = optionals cfg.spotify-network-devices [ 5353 ];
-        allowedTCPPorts = [ 3000 ];
       }
       // mkIf cfg.wireguard-patch {
 

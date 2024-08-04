@@ -27,6 +27,7 @@
 
   services = {
     openssh.enable = true;
+    wireguard.enable = true;
   };
 
   virtualisation.oci-containers = {

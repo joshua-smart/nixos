@@ -10,6 +10,12 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "";
+    };
   };
 
   outputs =
@@ -17,6 +23,7 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
+      agenix,
       ...
     }:
     let
@@ -40,7 +47,10 @@
         lib.nixosSystem {
           inherit pkgs;
           inherit system;
-          modules = [ ./hosts/${host}/configuration.nix ];
+          modules = [
+            ./hosts/${host}/configuration.nix
+            agenix.nixosModules.default
+          ];
           specialArgs = {
             inherit host;
           };
@@ -50,7 +60,10 @@
         user: host:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./hosts/${host}/home.nix ];
+          modules = [
+            ./hosts/${host}/home.nix
+            agenix.homeManagerModules.default
+          ];
           extraSpecialArgs = {
             inherit user host;
           };

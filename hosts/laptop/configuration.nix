@@ -11,6 +11,8 @@
     ../../nixosModules
   ];
 
+  networking.firewall.allowedTCPPorts = [ 3000 ];
+
   nix.flake = "/home/js/Projects/nixos";
 
   profiles = {
