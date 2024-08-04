@@ -9,4 +9,9 @@ in
     server
     js-laptop
   ];
+
+  "gandi-api-key.env.age".publicKeys = [
+    server
+    js-laptop
+  ];
 }

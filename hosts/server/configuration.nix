@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -29,6 +29,8 @@
     openssh.enable = true;
     wireguard.enable = true;
   };
+
+  age.secrets."gandi-api-key.env".file = ../../secrets/gandi-api-key.env.age;
 
   virtualisation.oci-containers = {
     backend = "docker";
@@ -62,11 +64,11 @@
       gandi-dynamic-dns = {
         image = "adamvig/gandi-dynamic-dns";
         environment = {
-          GANDI_API_KEY = "Ze6YbThzV1jMPr6PuwM4a7Uf";
           DOMAIN = "jsmart.dev";
           RECORD_NAME = "@";
           UPDATE_INTERVAL = "15m";
         };
+        environmentFiles = [ config.age.secrets."gandi-api-key.env".path ];
       };
 
       nginx-proxy-manager = {
