@@ -7,7 +7,8 @@ with lib;
 
     programs.light.enable = true;
     programs.hyprland.enable = true;
-    services.displayManager.sddm.enable = true;
+    # services.displayManager.sddm.enable = true;
     services.xserver.enable = true;
+    services.greetd.enable = true;
   };
 }

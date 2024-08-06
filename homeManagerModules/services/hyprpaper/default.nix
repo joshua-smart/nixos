@@ -1,7 +1,6 @@
 { lib, config, ... }:
 with lib;
 let
-  background-path = "~/.config/hypr/background.jpg";
   cfg = config.services.hyprpaper;
 in
 {
@@ -11,15 +10,19 @@ in
   };
 
   config = mkIf config.services.hyprpaper.enable {
-    xdg.configFile."hypr/background.jpg".source = ./background.jpg;
+    xdg.configFile."hypr/hyprpaper_background.jpg".source = ./background.jpg;
 
-    services.hyprpaper = {
-      settings = {
-        splash = false;
+    services.hyprpaper =
+      let
+        background-path = "${config.xdg.configHome}/hypr/hyprpaper_background.jpg";
+      in
+      {
+        settings = {
+          splash = false;
 
-        preload = [ background-path ];
-        wallpaper = map (m: "${m},${background-path}") cfg.monitors;
+          preload = [ background-path ];
+          wallpaper = map (m: "${m},${background-path}") cfg.monitors;
+        };
       };
-    };
   };
 }

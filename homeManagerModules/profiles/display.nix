@@ -15,12 +15,16 @@ with lib;
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
 
-    programs.rofi.enable = true;
-    programs.waybar.enable = true;
+    programs = {
+      rofi.enable = true;
+      waybar.enable = true;
+    };
 
-    services.network-manager-applet.enable = true;
-    services.swaync.enable = true;
-    services.hyprpaper.enable = true;
+    services = {
+      network-manager-applet.enable = true;
+      swaync.enable = true;
+      hyprpaper.enable = true;
+    };
 
     xdg.portal = {
       enable = true;
