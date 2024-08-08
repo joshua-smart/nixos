@@ -12,6 +12,7 @@ with lib;
     users.defaultUserShell = pkgs.zsh;
 
     users.users.js = {
+      uid = 1000;
       isNormalUser = true;
       description = "Joshua Smart";
       extraGroups = [
