@@ -30,6 +30,17 @@
     wireguard.enable = true;
   };
 
+  security.sudo.extraRules = [
+    {
+      groups = [ "wheel" ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
   age.secrets."gandi-api-key.env".file = ../../secrets/gandi-api-key.env.age;
 
   virtualisation.oci-containers = {
