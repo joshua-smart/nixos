@@ -16,21 +16,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
-
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
     {
-      self,
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
       agenix,
-      deploy-rs,
       ...
     }:
     let
@@ -47,7 +40,6 @@
               config.allowUnfree = true;
             };
           })
-          deploy-rs.overlay
         ];
       };
 
@@ -81,22 +73,11 @@
       nixosConfigurations = {
         laptop = myNixosSystem "laptop";
         desktop = myNixosSystem "desktop";
-        server = myNixosSystem "server";
         isoimage = myNixosSystem "isoimage";
       };
       homeConfigurations = {
         "js@laptop" = myHomeManagerConfiguration "js" "laptop";
         "js@desktop" = myHomeManagerConfiguration "js" "desktop";
       };
-
-      deploy.nodes.server = {
-        hostname = "jsmart.dev";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.server;
-        };
-      };
-
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
