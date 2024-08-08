@@ -1,4 +1,4 @@
-{ modulesPath, lib, ... }:
+{ modulesPath, ... }:
 {
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
@@ -7,5 +7,17 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  networking.networkmanager.enable = lib.mkForce false;
+  profiles = {
+    boot.enable = true;
+    localisation.enable = true;
+    users.enable = true;
+  };
+
+  programs = {
+    zsh.enable = true;
+  };
+
+  services = {
+    openssh.enable = true;
+  };
 }
