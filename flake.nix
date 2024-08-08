@@ -16,37 +16,45 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
+      self,
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
       agenix,
+      deploy-rs,
       ...
     }:
     let
       system = "x86_64-linux";
-
       lib = nixpkgs.lib;
-
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-      };
 
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ (final: prev: { unstable = pkgs-unstable; }) ];
+        overlays = [
+          (final: prev: {
+            unstable = import nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+          })
+          deploy-rs.overlay
+        ];
       };
 
       myNixosSystem =
         host:
         lib.nixosSystem {
-          inherit pkgs;
-          inherit system;
+          inherit pkgs system;
           modules = [
             ./hosts/${host}/configuration.nix
             agenix.nixosModules.default
@@ -81,5 +89,15 @@
         "js@desktop" = myHomeManagerConfiguration "js" "desktop";
         "js@server" = myHomeManagerConfiguration "js" "server";
       };
+
+      deploy.nodes.server = {
+        hostname = "server";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.server;
+        };
+      };
+
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
