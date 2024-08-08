@@ -14,4 +14,9 @@ in
     server
     js-laptop
   ];
+
+  "nas-credentials.age".publicKeys = [
+    laptop
+    js-laptop
+  ];
 }
