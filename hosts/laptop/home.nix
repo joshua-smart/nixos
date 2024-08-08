@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [ ../../homeManagerModules ];
 
@@ -20,6 +20,10 @@
   services = {
     udiskie.enable = true;
   };
+
+  home.packages = with pkgs; [
+    deploy-rs.deploy-rs
+  ];
 
   services.hyprpaper.monitors = [
     "eDP-1"
