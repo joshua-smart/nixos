@@ -87,11 +87,10 @@
       homeConfigurations = {
         "js@laptop" = myHomeManagerConfiguration "js" "laptop";
         "js@desktop" = myHomeManagerConfiguration "js" "desktop";
-        "js@server" = myHomeManagerConfiguration "js" "server";
       };
 
       deploy.nodes.server = {
-        hostname = "server";
+        hostname = "jsmart.dev";
         profiles.system = {
           user = "root";
           path = deploy-rs.lib.${system}.activate.nixos self.nixosConfigurations.server;

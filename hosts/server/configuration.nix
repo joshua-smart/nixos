@@ -12,6 +12,7 @@
   ];
 
   nix.flake = "/home/js/nixos";
+  nix.settings.trusted-users = [ "@wheel" ];
 
   profiles = {
     boot.enable = true;
@@ -21,13 +22,8 @@
 
   networking.hostName = "server";
 
-  programs = {
-    zsh.enable = true;
-  };
-
   services = {
     openssh.enable = true;
-    wireguard.enable = true;
   };
 
   security.sudo.extraRules = [
