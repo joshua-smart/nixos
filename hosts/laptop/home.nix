@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [ ../../homeManagerModules ];
 
@@ -14,16 +14,13 @@
 
   programs = {
     password-store.enable = true;
-    direnv.enable = true;
   };
 
   services = {
     udiskie.enable = true;
+    # Bluetooth media control
+    mpris-proxy.enable = true;
   };
-
-  home.packages = with pkgs; [
-    deploy-rs.deploy-rs
-  ];
 
   services.hyprpaper.monitors = [
     "eDP-1"
@@ -59,7 +56,4 @@
       "tray"
     ];
   };
-
-  # Bluetooth media control
-  services.mpris-proxy.enable = true;
 }

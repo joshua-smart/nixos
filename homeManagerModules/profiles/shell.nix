@@ -17,11 +17,13 @@ with lib;
       gitui.enable = true;
       tmux.enable = true;
       helix.enable = true;
+      direnv.enable = true;
     };
 
     home.packages = with pkgs; [
       nh
       tree
+      deploy-rs
     ];
   };
 }
