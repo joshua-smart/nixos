@@ -32,6 +32,24 @@ with lib;
                   "@np"
                 ];
               };
+              "Nix Options" = {
+                urls = [
+                  {
+                    template = "https://search.nixos.org/options";
+                    params = [
+                      {
+                        name = "query";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                definedAliases = [
+                  "@nixopts"
+                  "@no"
+                ];
+              };
               "NixOS Wiki" = {
                 urls = [
                   {
@@ -46,7 +64,7 @@ with lib;
                 ];
                 icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                 definedAliases = [
-                  "@nixos-wiki"
+                  "@nixwiki"
                   "@nw"
                 ];
               };
@@ -64,7 +82,7 @@ with lib;
                 ];
                 icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                 definedAliases = [
-                  "@home-manager-options"
+                  "@home-manager-opts"
                   "@hm"
                 ];
               };
