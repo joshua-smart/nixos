@@ -34,6 +34,9 @@
     udisks2.enable = true;
   };
 
+  # Fix for internal sound devices
+  boot.kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
+
   virtualisation.docker.enable = true;
 
   hardware.bluetooth = {
