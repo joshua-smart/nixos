@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -34,8 +34,8 @@
     udisks2.enable = true;
   };
 
-  # Fix for internal sound devices
-  boot.kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
+  # Fix for broken sound devices, issue with firmware in current 24.05 default kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   virtualisation.docker.enable = true;
 
