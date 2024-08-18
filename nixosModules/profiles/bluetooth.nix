@@ -1,0 +1,13 @@
+{ config, lib, ... }:
+with lib;
+{
+  options.profiles.bluetooth.enable = mkEnableOption "bluetooth profile";
+
+  config = mkIf config.profiles.bluetooth.enable {
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    services.blueman.enable = true;
+  };
+}

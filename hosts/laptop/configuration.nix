@@ -22,6 +22,8 @@
     network.enable = true;
     sound.enable = true;
     users.enable = true;
+    bluetooth.enable = true;
+    power-management.enable = true;
   };
 
   programs = {
@@ -38,20 +40,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   virtualisation.docker.enable = true;
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-  services.blueman.enable = true;
-
-  # Power management
-  powerManagement = {
-    enable = true;
-    powertop.enable = true;
-  };
-  services.thermald.enable = true;
-  services.tlp.enable = true;
 
   age.secrets."nas-credentials".file = ../../secrets/nas-credentials.age;
 

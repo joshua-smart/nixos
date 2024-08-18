@@ -7,5 +7,7 @@
     ./network.nix
     ./localisation.nix
     ./users.nix
+    ./bluetooth.nix
+    ./power-management.nix
   ];
 }
