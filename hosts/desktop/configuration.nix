@@ -24,6 +24,7 @@
 
   programs = {
     zsh.enable = true;
+    steam.enable = true;
   };
 
   services = {

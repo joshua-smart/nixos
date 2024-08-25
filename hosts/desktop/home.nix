@@ -14,19 +14,18 @@
 
   programs = {
     password-store.enable = true;
-    direnv.enable = true;
   };
 
   services = {
     udiskie.enable = true;
   };
 
-  display.wallpaper.monitors = [
+  services.hyprpaper.monitors = [
     "HDMI-A-1"
     "HDMI-A-2"
   ];
 
-  display.hyprland = {
+  wayland.windowManager.hyprland = {
     monitors = [
       "HDMI-A-1,prefered,auto,1"
       "HDMI-A-2,prefered,auto-right,1"
@@ -39,7 +38,7 @@
     keybinds.volume-step = 1;
   };
 
-  display.bar = {
+  programs.waybar = {
     monitors = [ "HDMI-A-2" ];
     workspaces = [
       1
