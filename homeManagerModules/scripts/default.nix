@@ -4,7 +4,9 @@
   lib,
   ...
 }:
-with lib;
+let
+  inherit (lib) mkEnableOption mkIf;
+in
 {
 
   options.scripts.enable = mkEnableOption "scripts";

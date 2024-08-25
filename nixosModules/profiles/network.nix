@@ -4,8 +4,14 @@
   host,
   ...
 }:
-with lib;
 let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    optionals
+    types
+    mkIf
+    ;
   cfg = config.profiles.network;
 in
 {

@@ -4,7 +4,9 @@
   lib,
   ...
 }:
-with lib;
+let
+  inherit (lib) mkEnableOption mkIf;
+in
 {
 
   options.programs.discord.enable = mkEnableOption "discord";

@@ -4,8 +4,8 @@
   config,
   ...
 }:
-with lib;
 let
+  inherit (lib) recursiveUpdate mkIf;
   theme_name = "doom_one";
   theme_base = fromTOML (
     builtins.readFile (

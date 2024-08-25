@@ -1,6 +1,6 @@
 { config, lib, ... }:
-with lib;
 let
+  inherit (lib) mkIf;
   session = {
     foreground = "green";
     foreground_templates = [

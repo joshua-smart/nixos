@@ -4,7 +4,9 @@
   lib,
   ...
 }:
-with lib;
+let
+  inherit (lib) mkIf;
+in
 {
   config = mkIf config.programs.rofi.enable {
     programs.rofi = {

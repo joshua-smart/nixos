@@ -4,7 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
+let
+  inherit (lib) mkIf;
+in
 {
   config = mkIf config.services.greetd.enable (
     let

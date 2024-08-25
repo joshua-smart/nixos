@@ -1,5 +1,13 @@
-{ config, lib, ... }:
-with lib;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) mkEnableOption mkIf;
+  pass = "${pkgs.pass}/bin/pass";
+in
 {
 
   options.profiles.accounts.enable = mkEnableOption "accounts profile";

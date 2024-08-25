@@ -4,7 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
+let
+  inherit (lib) mkEnableOption mkIf;
+in
 {
   options.profiles.display.enable = mkEnableOption "display profile";
 

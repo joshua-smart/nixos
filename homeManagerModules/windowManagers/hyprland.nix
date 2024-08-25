@@ -4,8 +4,13 @@
   lib,
   ...
 }:
-with lib;
 let
+  inherit (lib)
+    mkOption
+    types
+    mkIf
+    optionals
+    ;
   cfg = config.wayland.windowManager.hyprland;
   terminal = "${pkgs.alacritty}/bin/alacritty";
   browser = "${pkgs.firefox}/bin/firefox";
@@ -174,8 +179,8 @@ in
 
             # between-workspace movement
           ]
-          ++ (concatLists (
-            genList (
+          ++ (builtins.concatLists (
+            builtins.genList (
               x:
               let
                 ws = toString (x + 1);
@@ -212,11 +217,11 @@ in
               in
               "${ws},monitor:${monitor}"
             );
-            lists = attrValues (
-              mapAttrs (monitor: workspaces: map (ws: toLine monitor ws) workspaces) cfg.workspaces
+            lists = builtins.attrValues (
+              builtins.mapAttrs (monitor: workspaces: map (ws: toLine monitor ws) workspaces) cfg.workspaces
             );
           in
-          concatLists lists;
+          builtins.concatLists lists;
 
         # LAYER RULES
         layerrule = [
