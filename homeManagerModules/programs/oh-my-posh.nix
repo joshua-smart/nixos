@@ -5,7 +5,6 @@ let
     foreground = "green";
     foreground_templates = [
       "{{ if eq \"laptop\" .HostName }}green{{end}}"
-      "{{ if eq \"server\" .HostName }}red{{end}}"
       "{{ if eq \"desktop\" .HostName }}lightBlue{{end}}"
     ];
     template = "{{ .UserName }}@{{ .HostName }}";
@@ -61,6 +60,7 @@ in
       settings = {
 
         console_title_template = "{{ .PWD }} - Terminal";
+        disable_notice = true;
         blocks = [
           {
             alignment = "left";

@@ -1,6 +1,11 @@
 { lib, config, ... }:
 let
-  inherit (lib) mkOption mkIf types;
+  inherit (lib)
+    mkOption
+    mkIf
+    types
+    strings
+    ;
   cfg = config.programs.waybar;
 in
 {
