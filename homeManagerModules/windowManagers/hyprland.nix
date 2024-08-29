@@ -14,7 +14,6 @@ let
   cfg = config.wayland.windowManager.hyprland;
   terminal = "${pkgs.alacritty}/bin/alacritty";
   browser = "${pkgs.firefox}/bin/firefox";
-  menu = "${pkgs.rofi-wayland}/bin/rofi -show drun";
 in
 {
   options.wayland.windowManager.hyprland = {
@@ -145,11 +144,13 @@ in
             wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
             playerctl = "${pkgs.playerctl}/bin/playerctl";
             pkill = "${pkgs.procps}/bin/pkill";
+            rofi = "${pkgs.rofi-wayland}/bin/rofi";
           in
           [
             "$mod, return, exec, ${terminal}"
             "$mod, Q, killactive,"
-            "$mod, D, exec, ${menu}"
+            "$mod, D, exec, ${rofi} -show drun"
+            "$mod, S, exec, ${rofi} -show ssh"
             "$mod, numbersign, exec, ${browser}"
             "$mod, Y, exec, ${browser} youtube.com"
             "$mod_SHIFT, P, exit,"

@@ -20,6 +20,7 @@ in
       tmux.enable = true;
       helix.enable = true;
       direnv.enable = true;
+      ssh.enable = true;
     };
 
     home.packages = with pkgs; [
