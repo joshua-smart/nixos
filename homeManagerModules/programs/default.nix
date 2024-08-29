@@ -16,6 +16,6 @@
     ./zsh.nix
     ./waybar
     ./rofi
-    ./ssh
+    ./ssh.nix
   ];
 }
