@@ -11,6 +11,7 @@ let
     optionals
     types
     mkIf
+    optionalAttrs
     ;
   cfg = config.profiles.network;
 in
@@ -35,15 +36,10 @@ in
 
   config = mkIf cfg.enable {
     networking.hostName = host;
-
     networking.networkmanager.enable = true;
 
     networking.firewall =
-      {
-        # Spotify network devices
-        allowedUDPPorts = optionals cfg.spotify-network-devices [ 5353 ];
-      }
-      // mkIf cfg.wireguard-patch {
+      optionalAttrs cfg.wireguard-patch {
 
         ## Wireguard patch
         # if packets are still dropped, they will show up in dmesg
@@ -57,6 +53,10 @@ in
           ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
           ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
         '';
+      }
+      // optionalAttrs cfg.spotify-network-devices {
+        # Spotify network devices
+        allowedUDPPorts = optionals cfg.spotify-network-devices [ 5353 ];
       };
   };
 }
