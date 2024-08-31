@@ -10,6 +10,8 @@ let
     types
     mkIf
     optionals
+    lists
+    attrsets
     ;
   cfg = config.wayland.windowManager.hyprland;
   terminal = "${pkgs.alacritty}/bin/alacritty";
@@ -43,35 +45,25 @@ in
       systemd.enable = true;
 
       settings = {
-        # MONITORS
         monitor = cfg.monitors;
 
-        # AUTOSTART
         exec-once = [ ];
-
-        # ENVIRONMENT VARIABLES
         env = optionals cfg.nvidia [ "WLR_NO_HARDWARE_CURSORS,1" ];
 
-        # LOOK AND FEEL
         general = {
           gaps_in = 5;
           gaps_out = 10;
-
           border_size = 2;
 
           "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
           "col.inactive_border" = "rgba(595959aa)";
 
           resize_on_border = false;
-
           allow_tearing = false;
-
           layout = "master";
         };
 
-        cursor = {
-          inactive_timeout = 1;
-        };
+        cursor.inactive_timeout = 1;
 
         decoration = {
           rounding = 10;
@@ -95,9 +87,6 @@ in
 
         animations = {
           enabled = true;
-
-          # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-
           animation = [
             "windows, 1, 5, default"
             "windowsOut, 1, 5, default, popin 80%"
@@ -177,21 +166,19 @@ in
             ", XF86AudioNext, exec, ${playerctl} next"
             ", XF86AudioPrev, exec, ${playerctl} previous"
             '', Print, exec, ${grim} -g "$(${slurp} -d)" - | ${wl-copy}''
+            ''SHIFT, Print, exec, ${grim} -g "$(${slurp} -d)" ${config.xdg.userDirs.pictures}/Screenshot_$(date -Iseconds).png''
 
             # between-workspace movement
           ]
-          ++ (builtins.concatLists (
-            builtins.genList (
-              x:
-              let
-                ws = toString (x + 1);
-              in
-              [
-                "$mod, ${ws}, workspace, ${ws}"
-                "$mod_SHIFT, ${ws}, moveToWorkspace, ${ws}"
-              ]
-            ) 5
-          ));
+          ++ (
+            let
+              usedWorkspaces = map toString (lists.unique (lists.flatten (attrsets.attrValues cfg.workspaces)));
+            in
+            lists.concatMap (ws: [
+              "$mod, ${ws}, workspace, ${ws}"
+              "$mod_SHIFT, ${ws}, moveToWorkspace, ${ws}"
+            ]) usedWorkspaces
+          );
 
         binde =
           let
