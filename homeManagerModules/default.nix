@@ -1,4 +1,4 @@
-{ user, ... }:
+{ user, config, ... }:
 {
   imports = [
     ./programs
@@ -10,6 +10,7 @@
   ];
   home.username = user;
   home.homeDirectory = "/home/${user}";
+  xdg.userDirs.pictures = "${config.home.homeDirectory}/Images";
 
   home.stateVersion = "23.11";
 
