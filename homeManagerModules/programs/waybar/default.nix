@@ -18,6 +18,8 @@ in
 
   config = mkIf cfg.enable {
 
+    services.playerctld.enable = builtins.elem "mpris" cfg.modules;
+
     programs.waybar = {
       systemd.enable = true;
 
@@ -79,6 +81,19 @@ in
             };
 
             # Right modules
+            mpris = {
+              format = "{status_icon} {dynamic}";
+              status-icons = {
+                paused = "";
+                playing = "";
+              };
+              dynamic-order = [
+                "title"
+                "artist"
+              ];
+              interval = 1;
+              ignored-players = [ "firefox" ];
+            };
             disk = {
               format = " {percentage_used}%";
             };
