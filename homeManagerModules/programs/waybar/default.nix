@@ -69,6 +69,13 @@ in
               format = "{:%H:%M}";
               format-alt = "{:%d-%m-%Y %H:%M:%S}";
               interval = 1;
+              tooltip-format = "{calendar}";
+              calendar = {
+                mode = "month";
+                format = {
+                  today = "<b><u>{}</u></b>";
+                };
+              };
             };
 
             # Right modules
