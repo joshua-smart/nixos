@@ -41,13 +41,14 @@ in
           wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
           playerctl = "${pkgs.playerctl}/bin/playerctl";
           pkill = "${pkgs.procps}/bin/pkill";
-          rofi = "${pkgs.rofi-wayland}/bin/rofi";
+          app-launcher = config.programs.tofi.scripts.drun;
+          ssh-launcher = "${config.programs.tofi.scripts.ssh} ${terminal}";
         in
         [
           "$mod, return, exec, ${terminal}"
           "$mod, Q, killactive,"
-          "$mod, D, exec, ${rofi} -show drun"
-          "$mod, S, exec, ${rofi} -show ssh"
+          "$mod, D, exec, ${app-launcher}"
+          "$mod, S, exec, ${ssh-launcher}"
           "$mod, numbersign, exec, ${browser}"
           "$mod, Y, exec, ${browser} youtube.com"
           "$mod_SHIFT, P, exit,"

@@ -18,7 +18,7 @@ in
     home.packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
 
     programs = {
-      rofi.enable = true;
+      tofi.enable = true;
       waybar.enable = true;
     };
 

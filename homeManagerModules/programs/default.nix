@@ -15,7 +15,7 @@
     ./direnv.nix
     ./zsh.nix
     ./waybar
-    ./rofi
+    ./tofi.nix
     ./ssh.nix
   ];
 }

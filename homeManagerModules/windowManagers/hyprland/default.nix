@@ -125,7 +125,7 @@ in
         # LAYER RULES
         layerrule = [
           "blur,waybar"
-          "blur,rofi"
+          "blur,launcher"
         ];
       };
     };
