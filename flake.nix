@@ -16,6 +16,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
+
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
   outputs =
@@ -24,6 +26,7 @@
       nixpkgs-unstable,
       home-manager,
       agenix,
+      chaotic,
       ...
     }:
     let
@@ -65,7 +68,7 @@
             agenix.homeManagerModules.default
           ];
           extraSpecialArgs = {
-            inherit user host;
+            inherit user host chaotic;
           };
         };
     in

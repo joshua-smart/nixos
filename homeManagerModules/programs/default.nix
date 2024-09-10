@@ -17,5 +17,6 @@
     ./waybar
     ./tofi.nix
     ./ssh.nix
+    ./godot.nix
   ];
 }

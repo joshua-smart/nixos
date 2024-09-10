@@ -14,6 +14,7 @@
 
   programs = {
     password-store.enable = true;
+    godot.enable = true;
   };
 
   services = {
