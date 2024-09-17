@@ -1,9 +1,6 @@
-- Fix sddm too fast login issue (https://github.com/NixOS/nixpkgs/issues/292980)
 - Waybar date toggle hotkey (MOD-T)
-- Waybar calendar tooltip
-- Property theme rofi
-- greetd login manager
+- Property theme tofi
 - Discord screenshare (man "xdg-desktop-portal-wlr(5)")
-- Flip fn toggle behaviour on laptop (asusctl WIP)
+- Flip fn toggle behaviour on laptop (key remapping?)
 - Notification daemon
-- Media display waybar
+- Case insensitive zsh autocompletion
