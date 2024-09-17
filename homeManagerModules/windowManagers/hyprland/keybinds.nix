@@ -70,6 +70,8 @@ in
           # media keys
           ", XF86MonBrightnessUp, exec, ${light} -A 5"
           ", XF86MonBrightnessDown, exec, ${light} -U 5"
+          "$mod, XF86MonBrightnessDown, exec, ${light} -S 0.01"
+          "$mod, XF86MonBrightnessUp, exec, ${light} -S 100"
           ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ", XF86AudioPlay, exec, ${playerctl} play-pause"
           ", XF86AudioNext, exec, ${playerctl} next"
