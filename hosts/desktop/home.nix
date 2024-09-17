@@ -44,14 +44,7 @@
       1
       2
     ];
-    modules = [
-      "disk"
-      "cpu"
-      "memory"
-      "pulseaudio"
-      "network"
-      "tray"
-    ];
+    modules = "disk,cpu,memory,pulseaudio,network,tray";
   };
 
   home.packages = with pkgs; [ ryujinx ];

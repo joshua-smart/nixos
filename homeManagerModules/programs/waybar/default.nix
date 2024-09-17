@@ -7,18 +7,24 @@ let
     strings
     ;
   cfg = config.programs.waybar;
+  modulesList = strings.splitString "," cfg.modules;
 in
 {
 
   options.programs.waybar = {
     workspaces = mkOption { type = types.listOf types.int; };
     monitors = mkOption { type = types.listOf types.str; };
-    modules = mkOption { type = types.listOf types.str; };
+    modules = mkOption {
+      type = types.str;
+      description = ''
+        comma-separated list of modules to include
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
 
-    services.playerctld.enable = builtins.elem "mpris" cfg.modules;
+    services.playerctld.enable = builtins.elem "mpris" modulesList;
 
     programs.waybar = {
       systemd.enable = true;
@@ -39,7 +45,7 @@ in
               "hyprland/window"
             ];
             modules-center = [ "clock" ];
-            modules-right = strings.intersperse sep cfg.modules;
+            modules-right = strings.intersperse sep modulesList;
 
             # Separator
             "custom/separator" = {

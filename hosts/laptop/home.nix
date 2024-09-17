@@ -46,15 +46,6 @@
       1
       2
     ];
-    modules = [
-      "disk"
-      "cpu"
-      "memory"
-      "backlight"
-      "battery"
-      "pulseaudio"
-      "network"
-      "tray"
-    ];
+    modules = "disk,cpu,memory,backlight,battery,pulseaudio,network,tray";
   };
 }
