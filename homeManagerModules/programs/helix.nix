@@ -11,6 +11,7 @@ in
 
   config = mkIf config.programs.helix.enable {
     programs.helix = {
+      package = pkgs.unstable.helix;
 
       settings = {
         theme = "monokai_pro";
