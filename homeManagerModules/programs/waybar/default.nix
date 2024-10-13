@@ -55,11 +55,7 @@ in
             };
 
             # Left modules
-            "hyprland/workspaces" = {
-              persistent-workspaces = {
-                "*" = cfg.workspaces;
-              };
-            };
+            "hyprland/workspaces" = { };
             "hyprland/window" = {
               format = "{title}";
               rewrite = {

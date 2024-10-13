@@ -12,8 +12,6 @@ in
   imports = [ ./keybinds.nix ];
 
   options.wayland.windowManager.hyprland = {
-    monitors = mkOption { type = types.listOf types.str; };
-    workspaces = mkOption { type = types.attrsOf (types.listOf types.int); };
     nvidia = mkOption {
       type = types.bool;
       default = false;
@@ -29,7 +27,6 @@ in
       systemd.enable = true;
 
       settings = {
-        monitor = cfg.monitors;
 
         exec-once = [ ];
         env = optionals cfg.nvidia [ "WLR_NO_HARDWARE_CURSORS,1" ];
@@ -105,22 +102,6 @@ in
           workspace_swipe = true;
           workspace_swipe_fingers = 3;
         };
-
-        # WORKSPACES
-        workspace =
-          let
-            toLine = (
-              monitor: workspace:
-              let
-                ws = toString workspace;
-              in
-              "${ws},monitor:${monitor}"
-            );
-            lists = builtins.attrValues (
-              builtins.mapAttrs (monitor: workspaces: map (ws: toLine monitor ws) workspaces) cfg.workspaces
-            );
-          in
-          builtins.concatLists lists;
 
         # LAYER RULES
         layerrule = [

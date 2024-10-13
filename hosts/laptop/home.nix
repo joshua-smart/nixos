@@ -22,23 +22,9 @@
     # Bluetooth media control
     mpris-proxy.enable = true;
   };
-
-  services.hyprpaper.monitors = [
-    "eDP-1"
-    "HDMI-A-1"
   ];
 
-  wayland.windowManager.hyprland = {
-    monitors = [
-      "eDP-1,prefered,auto,1"
-      "HDMI-A-1,1920x1080@60.00Hz,auto-left,1"
-    ];
-    workspaces = {
-      eDP-1 = [ 2 ];
-      HDMI-A-1 = [ 1 ];
-    };
-    keybinds.volume-step = 5;
-  };
+  wayland.windowManager.hyprland.keybinds.volume-step = 5;
 
   programs.waybar = {
     monitors = [ "eDP-1" ];

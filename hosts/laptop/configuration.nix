@@ -36,6 +36,35 @@
     udisks2.enable = true;
   };
 
+  programs.hyprland.sessions = {
+    default = {
+      monitors = [ "eDP-1,prefered,auto,1" ];
+      workspaces = {
+        eDP-1 = builtins.genList (x: x + 1) 5;
+      };
+    };
+    external-HDMI-1 = {
+      monitors = [
+        "eDP-1,prefered,auto,1"
+        "HDMI-1,prefered,auto-left,1"
+      ];
+      workspaces = {
+        eDP-1 = [ 2 ];
+        HDMI-1 = [ 1 ];
+      };
+    };
+    external-DP-2 = {
+      monitors = [
+        "eDP-1,prefered,auto,1"
+        "DP-2,3840x1600@60.00Hz,auto-left,1"
+      ];
+      workspaces = {
+        eDP-1 = [ 2 ];
+        DP-2 = [ 1 ];
+      };
+    };
+  };
+
   # Fix for broken sound devices, issue with firmware in current 24.05 default kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

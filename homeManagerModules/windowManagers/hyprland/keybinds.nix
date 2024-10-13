@@ -10,7 +10,6 @@ let
     mkOption
     types
     lists
-    attrsets
     ;
   cfg = config.wayland.windowManager.hyprland;
 in
@@ -81,17 +80,10 @@ in
 
           # between-workspace movement
         ]
-        ++ (
-          let
-            inherit (lists) unique flatten;
-            inherit (attrsets) attrValues;
-            usedWorkspaces = map toString (unique (flatten (attrValues cfg.workspaces)));
-          in
-          lists.concatMap (ws: [
-            "$mod, ${ws}, workspace, ${ws}"
-            "$mod_SHIFT, ${ws}, moveToWorkspace, ${ws}"
-          ]) usedWorkspaces
-        );
+        ++ (lists.concatMap (ws: [
+          "$mod, ${ws}, workspace, ${ws}"
+          "$mod_SHIFT, ${ws}, moveToWorkspace, ${ws}"
+        ]) (builtins.genList (x: toString x) 10));
 
       binde =
         let

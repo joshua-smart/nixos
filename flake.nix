@@ -55,7 +55,7 @@
             agenix.nixosModules.default
           ];
           specialArgs = {
-            inherit host;
+            inherit host home-manager;
           };
         };
 
