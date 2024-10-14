@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [ ../../homeManagerModules ];
 
@@ -10,6 +10,12 @@
     accounts.enable = true;
   };
 
+  services = {
+    udiskie.enable = true;
+    # Bluetooth media control
+    mpris-proxy.enable = true;
+  };
+
   scripts.enable = true;
 
   programs = {
@@ -17,14 +23,43 @@
     godot.enable = true;
   };
 
-  services = {
-    udiskie.enable = true;
-    # Bluetooth media control
-    mpris-proxy.enable = true;
-  };
+  home.packages = with pkgs; [
+    aseprite
+    unityhub
+    jetbrains.rider
   ];
 
-  wayland.windowManager.hyprland.keybinds.volume-step = 5;
+  wayland.windowManager.hyprland = {
+    keybinds.volume-step = 5;
+    sessions = {
+      default = {
+        monitors = [ "eDP-1,prefered,auto,1" ];
+        workspaces = {
+          eDP-1 = builtins.genList (x: x + 1) 5;
+        };
+      };
+      external-HDMI-1 = {
+        monitors = [
+          "eDP-1,prefered,auto,1"
+          "HDMI-A-1,prefered,auto-left,1"
+        ];
+        workspaces = {
+          eDP-1 = [ 2 ];
+          HDMI-A-1 = [ 1 ];
+        };
+      };
+      external-DP-2 = {
+        monitors = [
+          "eDP-1,prefered,auto,1"
+          "DP-2,3840x1600@60.00Hz,auto-left,1"
+        ];
+        workspaces = {
+          eDP-1 = [ 2 ];
+          DP-2 = [ 1 ];
+        };
+      };
+    };
+  };
 
   programs.waybar = {
     monitors = [ "eDP-1" ];

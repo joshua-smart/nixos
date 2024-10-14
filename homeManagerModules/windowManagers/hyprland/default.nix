@@ -1,17 +1,67 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib)
     mkOption
     types
     mkIf
     optionals
+    strings
+    attrsets
     ;
+
   cfg = config.wayland.windowManager.hyprland;
+
+  sessionOptions = {
+    options = {
+      monitors = mkOption { type = types.listOf types.str; };
+      workspaces = mkOption { type = types.attrsOf (types.listOf types.int); };
+    };
+  };
+
+  updateDisplay = pkgs.writeShellScriptBin "hyprland-update-display" (
+    ''
+      match_session () {
+        hyprctl monitors all -j | ${pkgs.jq}/bin/jq -e '([ .[] | .name ] | sort) == ([ '"$1"' ] | sort)' > /dev/null
+      }
+    ''
+    + strings.concatLines (
+      attrsets.mapAttrsToList (
+        name: session:
+        let
+          formatList = l: builtins.concatStringsSep "," (map (ws: "\"${ws}\"") l);
+          monitorNames = map (m: builtins.head (builtins.split "," m)) session.monitors;
+
+          setMonitorCommands = map (m: ''keyword monitor ${m}'') session.monitors;
+
+          setWorkspaceCommands = builtins.concatLists (
+            attrsets.mapAttrsToList (
+              monitor: workspaces:
+              map (ws: ''dispatch moveworkspacetomonitor ${toString ws} ${monitor}'') workspaces
+            ) session.workspaces
+          );
+
+        in
+        # bash
+        ''
+          if match_session '${formatList monitorNames}'; then
+            hyprctl --batch "${builtins.concatStringsSep " ; " setMonitorCommands}"
+            hyprctl --batch "${builtins.concatStringsSep " ; " setWorkspaceCommands}"
+          fi
+        ''
+      ) cfg.sessions
+    )
+  );
 in
 {
   imports = [ ./keybinds.nix ];
 
   options.wayland.windowManager.hyprland = {
+    sessions = mkOption { type = types.attrsOf (types.submodule sessionOptions); };
     nvidia = mkOption {
       type = types.bool;
       default = false;
@@ -23,10 +73,15 @@ in
 
   config = mkIf cfg.enable {
 
+    home.packages = [ updateDisplay ];
+
     wayland.windowManager.hyprland = {
       systemd.enable = true;
 
       settings = {
+
+        # default display settings
+        monitor = cfg.sessions.default.monitors;
 
         exec-once = [ ];
         env = optionals cfg.nvidia [ "WLR_NO_HARDWARE_CURSORS,1" ];

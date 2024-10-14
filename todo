@@ -4,3 +4,6 @@
 - Flip fn toggle behaviour on laptop (key remapping?)
 - Notification daemon
 - Case insensitive zsh autocompletion
+- Upgrade tmux godot scripts (https://www.youtube.com/watch?v=vtB1J_zCv8I)
+- feh as default xdg image viewer (missing desktop entry)
+- fix waybar hyprland workspaces
