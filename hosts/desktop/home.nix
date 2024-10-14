@@ -20,19 +20,16 @@
     udiskie.enable = true;
   };
 
-  services.hyprpaper.monitors = [
-    "HDMI-A-1"
-    "HDMI-A-2"
-  ];
-
   wayland.windowManager.hyprland = {
-    monitors = [
-      "HDMI-A-1,prefered,auto,1"
-      "HDMI-A-2,prefered,auto-right,1"
-    ];
-    workspaces = {
-      HDMI-A-1 = [ 1 ];
-      HDMI-A-2 = [ 2 ];
+    sessions.default = {
+      monitors = [
+        "HDMI-A-1,prefered,auto,1"
+        "HDMI-A-2,prefered,auto-right,1"
+      ];
+      workspaces = {
+        HDMI-A-1 = [ 1 ];
+        HDMI-A-2 = [ 2 ];
+      };
     };
     nvidia = true;
     keybinds.volume-step = 1;

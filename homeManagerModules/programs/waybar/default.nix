@@ -55,7 +55,14 @@ in
             };
 
             # Left modules
-            "hyprland/workspaces" = { };
+            "hyprland/workspaces" = {
+              persistent-workspaces = {
+                "*" = [
+                  1
+                  2
+                ];
+              };
+            };
             "hyprland/window" = {
               format = "{title}";
               rewrite = {
