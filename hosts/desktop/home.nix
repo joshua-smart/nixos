@@ -47,5 +47,11 @@
     modules = "disk,cpu,memory,pulseaudio,network,tray";
   };
 
-  home.packages = with pkgs; [ ryujinx ];
+  home.packages = with pkgs; [
+    ryujinx
+    unityhub
+    aseprite
+    jetbrains.rider
+    dotnetCorePackages.sdk_8_0
+  ];
 }
