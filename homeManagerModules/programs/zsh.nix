@@ -17,10 +17,11 @@ in
 
       shellAliases = {
         ".." = "cd ..";
-        "ls" = "ls -F --color=auto";
-        "la" = "ls -aF";
-        "ll" = "ls -alFh";
+        "ls" = "${pkgs.eza}/bin/eza";
+        "la" = "ls -a";
+        "ll" = "ls -l";
         "open" = "${pkgs.xdg-utils}/bin/xdg-open";
+        "tree" = "ls -T";
       };
 
       dotDir = ".config/zsh";
