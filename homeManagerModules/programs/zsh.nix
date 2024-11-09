@@ -31,6 +31,9 @@ in
         bindkey "^[[1;5D" backward-word
         bindkey "^H" backward-kill-word
         bindkey "^[[3;5~" forward-kill-word
+
+        autoload -Uz compinit && compinit
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
       '';
     };
   };
