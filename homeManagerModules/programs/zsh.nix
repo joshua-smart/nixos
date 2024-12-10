@@ -17,10 +17,11 @@ in
 
       shellAliases = {
         ".." = "cd ..";
-        "ls" = "ls -F --color=auto";
-        "la" = "ls -aF";
-        "ll" = "ls -alFh";
+        "ls" = "${pkgs.eza}/bin/eza";
+        "la" = "ls -a";
+        "ll" = "ls -l";
         "open" = "${pkgs.xdg-utils}/bin/xdg-open";
+        "tree" = "ls -T";
       };
 
       dotDir = ".config/zsh";
@@ -30,6 +31,9 @@ in
         bindkey "^[[1;5D" backward-word
         bindkey "^H" backward-kill-word
         bindkey "^[[3;5~" forward-kill-word
+
+        autoload -Uz compinit && compinit
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
       '';
     };
   };
