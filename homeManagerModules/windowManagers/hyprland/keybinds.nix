@@ -57,7 +57,6 @@ in
           "$mod_SHIFT, return, layoutmsg, swapwithmaster master"
           "$mod, tab, cyclenext,"
           "$mod, space, fullscreen, 1"
-          "$mod_SHIFT, space, fakefullscreen,"
 
           # in-workspace movement
           "$mod, H, movefocus, l"

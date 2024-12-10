@@ -3,5 +3,10 @@ let
   inherit (lib) mkIf;
 in
 {
-  config = mkIf config.programs.hyprland.enable { programs.hyprland.xwayland.enable = true; };
+  config = mkIf config.programs.hyprland.enable {
+    programs.hyprland = {
+      xwayland.enable = true;
+      withUWSM = true;
+    };
+  };
 }

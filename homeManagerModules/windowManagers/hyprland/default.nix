@@ -23,19 +23,17 @@ let
     };
   };
 
-  updateDisplay = pkgs.writeShellScriptBin "hyprland-update-display" (
-    ''
-      match_session () {
-        hyprctl monitors all -j | ${pkgs.jq}/bin/jq -e '([ .[] | .name ] | sort) == ([ '"$1"' ] | sort)' > /dev/null
-      }
-    ''
-    + strings.concatLines (
-      attrsets.mapAttrsToList (
+  hyprlandUpdateDisplayd =
+    let
+      socat = "${pkgs.socat}/bin/socat";
+      hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+      jq = "${pkgs.jq}/bin/jq";
+
+      generateSessionScript =
         name: session:
         let
-          formatList = l: builtins.concatStringsSep "," (map (ws: "\"${ws}\"") l);
-          monitorNames = map (m: builtins.head (builtins.split "," m)) session.monitors;
-
+          monitorNames = map (m: builtins.elemAt (builtins.split "," m) 0) session.monitors;
+          monitorsString = builtins.concatStringsSep "," (map (m: "\"${m}\"") monitorNames);
           setMonitorCommands = map (m: ''keyword monitor ${m}'') session.monitors;
 
           setWorkspaceCommands = builtins.concatLists (
@@ -44,18 +42,31 @@ let
               map (ws: ''dispatch moveworkspacetomonitor ${toString ws} ${monitor}'') workspaces
             ) session.workspaces
           );
-
         in
         # bash
         ''
-          if match_session '${formatList monitorNames}'; then
-            hyprctl --batch "${builtins.concatStringsSep " ; " setMonitorCommands}"
-            hyprctl --batch "${builtins.concatStringsSep " ; " setWorkspaceCommands}"
+          # session: ${name}
+          target_monitors=($(echo '[${monitorsString}]' | ${jq} -r 'sort.[]'))
+          if [ $monitors == $target_monitors ]; then
+            ${hyprctl} --batch "${
+              builtins.concatStringsSep " ; " (setMonitorCommands ++ setWorkspaceCommands)
+            }"
           fi
-        ''
-      ) cfg.sessions
-    )
-  );
+        '';
+    in
+    pkgs.writeShellScriptBin "hyprland-update-displayd" ''
+      function handle() {
+        if [[ ''${1:0:12} == "monitoradded" ]] || [[ ''${1:0:14} == "monitorremoved" ]]; then
+
+          monitors=($(${hyprctl} monitors all -j | ${jq} '[ .[].name ] | sort.[]'))
+
+          ${strings.concatLines (attrsets.mapAttrsToList generateSessionScript cfg.sessions)}
+        fi
+      }
+
+      ${socat} - UNIX-CONNECT:/tmp/hypr/$(echo $HYPRLAND_INSTANCE_SIGNATURE)/.socket2.sock | while read line; do handle $line; done
+    '';
+
 in
 {
   imports = [ ./keybinds.nix ];
@@ -73,8 +84,6 @@ in
 
   config = mkIf cfg.enable {
 
-    home.packages = [ updateDisplay ];
-
     wayland.windowManager.hyprland = {
       systemd.enable = true;
 
@@ -83,7 +92,7 @@ in
         # default display settings
         monitor = cfg.sessions.default.monitors;
 
-        exec-once = [ ];
+        exec-once = [ "${hyprlandUpdateDisplayd}/bin/hyprland-update-displayd" ];
         env = optionals cfg.nvidia [ "WLR_NO_HARDWARE_CURSORS,1" ];
 
         general = {
@@ -107,10 +116,12 @@ in
           active_opacity = 1.0;
           inactive_opacity = 1.0;
 
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "rgba(1a1a1aee)";
+          };
 
           blur = {
             enabled = true;
@@ -135,7 +146,6 @@ in
 
         master = {
           new_status = "master";
-          no_gaps_when_only = 1;
         };
 
         misc = {
@@ -162,6 +172,17 @@ in
         layerrule = [
           "blur,waybar"
           "blur,launcher"
+        ];
+
+        workspace = [
+          "w[tv1], gapsout:0, gapsin:0"
+          "f[1], gapsout:0, gapsin:0"
+        ];
+        windowrulev2 = [
+          "bordersize 0, floating:0, onworkspace:w[tv1]"
+          "rounding 0, floating:0, onworkspace:w[tv1]"
+          "bordersize 0, floating:0, onworkspace:f[1]"
+          "rounding 0, floating:0, onworkspace:f[1]"
         ];
       };
     };

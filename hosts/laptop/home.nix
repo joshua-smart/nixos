@@ -14,6 +14,7 @@
     udiskie.enable = true;
     # Bluetooth media control
     mpris-proxy.enable = true;
+    syncthing.enable = true;
   };
 
   scripts.enable = true;
@@ -24,9 +25,11 @@
   };
 
   home.packages = with pkgs; [
-    aseprite
     unityhub
     jetbrains.rider
+    inkscape
+    gimp
+    maptool
   ];
 
   wayland.windowManager.hyprland = {
