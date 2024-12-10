@@ -13,12 +13,10 @@ let
     | uniq \
     | ${pkgs.tofi}/bin/tofi \
       --prompt-text "ssh " \
-      --history-file ${config.xdg.stateHome}/tofi-ssh-history \
-    | xargs --no-run-if-empty $1 -e ${pkgs.openssh}/bin/ssh
+      --history-file ${config.xdg.stateHome}/tofi-ssh-history
   '';
   drun = pkgs.writeShellScriptBin "tofi-drun" ''
     ${pkgs.tofi}/bin/tofi-drun \
-      --drun-launch=true \
       --prompt-text "run "
   '';
 in

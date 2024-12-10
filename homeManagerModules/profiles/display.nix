@@ -28,15 +28,11 @@ in
       hyprpaper.enable = true;
     };
 
-    xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
-    };
 
     gtk.enable = true;
 
     home.pointerCursor = {
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
       name = "Adwaita";
       size = 38;
       gtk.enable = true;

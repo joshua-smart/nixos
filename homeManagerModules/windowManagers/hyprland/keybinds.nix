@@ -42,14 +42,15 @@ in
           pkill = "${pkgs.procps}/bin/pkill";
           app-launcher = config.programs.tofi.scripts.drun;
           ssh-launcher = "${config.programs.tofi.scripts.ssh} ${terminal}";
+          launch-prefix = "${pkgs.uwsm}/bin/uwsm app --";
+          ssh = "${pkgs.openssh}/bin/ssh";
         in
         [
-          "$mod, return, exec, ${terminal}"
+          "$mod, return, exec, ${launch-prefix} ${terminal}"
           "$mod, Q, killactive,"
-          "$mod, D, exec, ${app-launcher}"
-          "$mod, S, exec, ${ssh-launcher}"
-          "$mod, numbersign, exec, ${browser}"
-          "$mod, Y, exec, ${browser} youtube.com"
+          "$mod, D, exec, ${launch-prefix} $(${app-launcher})"
+          "$mod, S, exec, ${launch-prefix} ${terminal} -e ${ssh} $(${ssh-launcher})"
+          "$mod, numbersign, exec, ${launch-prefix} ${browser}"
           "$mod_SHIFT, P, exit,"
           "$mod, B, exec, ${pkill} -SIGUSR1 waybar"
 
