@@ -2,14 +2,17 @@
   pkgs,
   config,
   lib,
+  inputs,
+  user,
+  host,
   ...
 }:
 let
   inherit (lib) mkIf;
 in
 {
-
   config = mkIf config.programs.helix.enable {
+
     programs.helix = {
       package = pkgs.unstable.helix;
 
@@ -17,7 +20,6 @@ in
         theme = "monokai_pro";
         editor = {
           completion-trigger-len = 1;
-          completion-replace = true;
           bufferline = "always";
           soft-wrap.enable = true;
         };
@@ -34,6 +36,23 @@ in
       };
 
       languages = {
+        language-server = {
+          nixd = {
+            command = "nixd";
+            config.nixd =
+              let
+                flake = "(builtins.getFlake \"${inputs.self}\")";
+              in
+              {
+                nixpkgs.expr = "import ${flake}.input.nixpkgs {}";
+                options = {
+                  nixos.expr = "${flake}.nixosConfigurations.\"${host}\".options";
+                  home_manager.expr = "${flake}.homeConfigurations.\"${user}@${host}\".options";
+                };
+              };
+          };
+        };
+
         language = [
           {
             name = "nix";
@@ -41,6 +60,7 @@ in
             formatter = {
               command = "nixfmt";
             };
+            language-servers = [ "nixd" ];
           }
         ];
       };
@@ -48,7 +68,7 @@ in
       defaultEditor = true;
       extraPackages = with pkgs; [
         nixfmt-rfc-style
-        nil
+        nixd
       ];
     };
   };

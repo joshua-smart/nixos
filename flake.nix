@@ -28,7 +28,7 @@
       agenix,
       chaotic,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -55,7 +55,7 @@
             agenix.nixosModules.default
           ];
           specialArgs = {
-            inherit host;
+            inherit host inputs;
           };
         };
 
@@ -68,7 +68,12 @@
             agenix.homeManagerModules.default
           ];
           extraSpecialArgs = {
-            inherit user host chaotic;
+            inherit
+              user
+              host
+              chaotic
+              inputs
+              ;
           };
         };
     in
