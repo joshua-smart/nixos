@@ -35,13 +35,9 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
+    open = false;
     modesetting.enable = true;
-    package =
-      let
-        kernel = config.boot.kernelPackages.kernel;
-        kernelPackages = pkgs.unstable.linuxPackagesFor kernel;
-      in
-      kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
 }

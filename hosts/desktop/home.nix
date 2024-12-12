@@ -18,6 +18,7 @@
 
   services = {
     udiskie.enable = true;
+    syncthing.enable = true;
   };
 
   wayland.windowManager.hyprland = {
@@ -47,8 +48,11 @@
   home.packages = with pkgs; [
     ryujinx
     unityhub
-    aseprite
     jetbrains.rider
     dotnetCorePackages.sdk_8_0
+    gimp
+    inkscape
+    antimicrox
+    maptool
   ];
 }

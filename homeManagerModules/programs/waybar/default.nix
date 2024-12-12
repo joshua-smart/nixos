@@ -27,8 +27,6 @@ in
     services.playerctld.enable = builtins.elem "mpris" modulesList;
 
     programs.waybar = {
-      systemd.enable = true;
-
       settings =
         let
           sep = "custom/separator";

@@ -92,7 +92,10 @@ in
         # default display settings
         monitor = cfg.sessions.default.monitors;
 
-        exec-once = [ "${hyprlandUpdateDisplayd}/bin/hyprland-update-displayd" ];
+        exec-once = [
+          "${hyprlandUpdateDisplayd}/bin/hyprland-update-displayd"
+          "${pkgs.waybar}/bin/waybar"
+        ];
         env = optionals cfg.nvidia [ "WLR_NO_HARDWARE_CURSORS,1" ];
 
         general = {
