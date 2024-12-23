@@ -12,6 +12,7 @@ in
 
   config = mkIf config.profiles.desktop-apps.enable {
     programs = {
+      kitty.enable = true;
       alacritty.enable = true;
       discord.enable = true;
       firefox.enable = true;
