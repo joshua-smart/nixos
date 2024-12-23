@@ -18,5 +18,6 @@
     ./tofi.nix
     ./ssh.nix
     ./godot.nix
+    ./zoxide.nix
   ];
 }

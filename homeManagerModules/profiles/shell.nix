@@ -21,6 +21,7 @@ in
       helix.enable = true;
       direnv.enable = true;
       ssh.enable = true;
+      zoxide.enable = true;
     };
 
     home.packages = with pkgs; [
