@@ -94,7 +94,6 @@ in
 
         exec-once = [
           "${hyprlandUpdateDisplayd}/bin/hyprland-update-displayd"
-          "${pkgs.waybar}/bin/waybar"
         ];
         env = optionals cfg.nvidia [ "WLR_NO_HARDWARE_CURSORS,1" ];
 

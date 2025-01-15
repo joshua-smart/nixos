@@ -27,6 +27,10 @@ in
     services.playerctld.enable = builtins.elem "mpris" modulesList;
 
     programs.waybar = {
+      systemd = {
+        enable = true;
+        target = "hyprland-session.target";
+      };
       settings =
         let
           sep = "custom/separator";
