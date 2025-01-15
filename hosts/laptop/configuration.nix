@@ -19,7 +19,6 @@
     };
     sound.enable = true;
     users.enable = true;
-    bluetooth.enable = true;
     power-management.enable = true;
   };
 
