@@ -17,7 +17,10 @@ in
 
       extraConfig = ''
         set -ag terminal-overrides ",$TERM:Tc"
+        set -g status-left-length 20
       '';
+
+      tmuxinator.enable = true;
     };
   };
 }

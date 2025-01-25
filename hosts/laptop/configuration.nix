@@ -5,7 +5,10 @@
     ../../nixosModules
   ];
 
-  networking.firewall.allowedTCPPorts = [ 3000 ];
+  networking.firewall.allowedTCPPorts = [
+    3000
+    8080
+  ];
 
   nix.flake = "/home/js/Projects/nixos";
 
@@ -31,6 +34,11 @@
     openssh.enable = true;
     printing.enable = true;
     udisks2.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
   };
 
   # Fix for broken sound devices, issue with firmware in current 24.05 default kernel

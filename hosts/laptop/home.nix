@@ -25,11 +25,10 @@
   };
 
   home.packages = with pkgs; [
-    unityhub
-    jetbrains.rider
     inkscape
     gimp
     maptool
+    gramps
   ];
 
   wayland.windowManager.hyprland = {
@@ -44,7 +43,7 @@
       external-HDMI-1 = {
         monitors = [
           "eDP-1,prefered,auto,1"
-          "HDMI-A-1,prefered,auto-left,1"
+          "HDMI-A-1,1920x1080,auto-left,1"
         ];
         workspaces = {
           eDP-1 = [ 2 ];
