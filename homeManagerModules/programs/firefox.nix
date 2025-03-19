@@ -90,6 +90,24 @@ in
               };
             };
           };
+          userChrome = # css
+            ''
+              @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* only needed once */
+
+              #context-navigation,
+              #context-sep-navigation {
+                display:none !important;
+              }
+
+              #back-button,
+              #forward-button {
+                display: none !important;
+              }
+            '';
+          extraConfig = # js
+            ''
+              user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+            '';
         };
       };
     };
