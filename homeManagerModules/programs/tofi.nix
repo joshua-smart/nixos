@@ -45,6 +45,8 @@ in
       };
 
       settings = {
+        fuzzy-match = true;
+
         # positioning
         anchor = "top";
         width = "100%";
@@ -81,5 +83,12 @@ in
         padding-right = 4;
       };
     };
+
+    home.activation.flush-tofi-cache =
+      lib.hm.dag.entryAfter [ "writeBoundary" ] # bash
+        ''
+          cache=${config.home.homeDirectory}/.cache/tofi-drun
+          [ -e $cache ] && rm $cache
+        '';
   };
 }
