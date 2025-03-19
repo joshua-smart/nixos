@@ -3,7 +3,6 @@
   imports = [
     ./programs
     ./services
-    ./scripts
     ./profiles
     ./gtk
     ./windowManagers

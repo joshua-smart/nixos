@@ -10,8 +10,6 @@
     accounts.enable = true;
   };
 
-  scripts.enable = true;
-
   programs = {
     password-store.enable = true;
   };

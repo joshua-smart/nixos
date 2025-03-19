@@ -17,8 +17,6 @@
     syncthing.enable = true;
   };
 
-  scripts.enable = true;
-
   programs = {
     password-store.enable = true;
     godot.enable = true;
