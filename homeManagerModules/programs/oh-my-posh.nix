@@ -49,6 +49,15 @@ let
     foreground = "red";
     template = "{{ if .Env.DIRENV_ACTIVE }}󱁿  {{ end }}";
   };
+  time = {
+    type = "executiontime";
+    foreground = "darkGray";
+    template = "󱎫 {{ .FormattedMs }} ";
+    properties = {
+      style = "austin";
+      threshold = 500;
+    };
+  };
 in
 {
 
@@ -75,6 +84,7 @@ in
           {
             alignment = "left";
             segments = [
+              time
               direnv
               nix
               git
