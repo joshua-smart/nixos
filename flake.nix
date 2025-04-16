@@ -16,8 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
-
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
   outputs =
@@ -26,7 +24,6 @@
       nixpkgs-unstable,
       home-manager,
       agenix,
-      chaotic,
       ...
     }@inputs:
     let
@@ -41,6 +38,12 @@
             unstable = import nixpkgs-unstable {
               inherit system;
               config.allowUnfree = true;
+            };
+          })
+          (final: prev: {
+            myPackages = lib.filesystem.packagesFromDirectoryRecursive {
+              callPackage = final.callPackage;
+              directory = ./pkgs;
             };
           })
         ];
@@ -71,7 +74,6 @@
             inherit
               user
               host
-              chaotic
               inputs
               ;
           };
@@ -86,6 +88,10 @@
       homeConfigurations = {
         "js@laptop" = myHomeManagerConfiguration "js" "laptop";
         "js@desktop" = myHomeManagerConfiguration "js" "desktop";
+      };
+
+      devShells.${system}.default = pkgs.mkShell {
+        packages = [ agenix.packages.${system}.default ];
       };
     };
 }

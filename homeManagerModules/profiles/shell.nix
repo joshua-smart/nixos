@@ -6,10 +6,6 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
-
-  nr = pkgs.writeShellScriptBin "nr" ''
-    nix run nixpkgs#$1 -- "''${@:2}"
-  '';
 in
 {
   options.profiles.shell.enable = mkEnableOption "shell profile";
@@ -25,16 +21,14 @@ in
       helix.enable = true;
       direnv.enable = true;
       ssh.enable = true;
-      zoxide.enable = true;
     };
 
-    home.packages =
-      [ nr ]
-      ++ (with pkgs; [
-        nh
-        tree
-        zip
-        unzip
-      ]);
+    home.packages = with pkgs; [
+      nh
+      tree
+      zip
+      unzip
+      myPackages.nr
+    ];
   };
 }

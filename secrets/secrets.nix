@@ -8,4 +8,14 @@ in
     laptop
     js-laptop
   ];
+
+  "js-hashed-password.age".publicKeys = [
+    laptop
+    js-laptop
+  ];
+
+  "laptop-root-hashed-password.age".publicKeys = [
+    laptop
+    js-laptop
+  ];
 }

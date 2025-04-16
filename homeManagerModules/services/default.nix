@@ -1,7 +1,0 @@
-{ ... }:
-{
-  imports = [
-    ./udiskie.nix
-    ./hyprpaper
-  ];
-}

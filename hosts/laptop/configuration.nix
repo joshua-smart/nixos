@@ -12,6 +12,7 @@
 
   nix.flake = "/home/js/Projects/nixos";
 
+  age.secrets."root-hashed-password".file = ../../secrets/laptop-root-hashed-password.age;
   profiles = {
     boot.enable = true;
     display.enable = true;
@@ -21,7 +22,10 @@
       wireguard-patch = false;
     };
     sound.enable = true;
-    users.enable = true;
+    users = {
+      enable = true;
+      rootHashedPasswordFile = config.age.secrets."root-hashed-password".path;
+    };
     power-management.enable = true;
   };
 
@@ -40,9 +44,6 @@
       openFirewall = true;
     };
   };
-
-  # Fix for broken sound devices, issue with firmware in current 24.05 default kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   virtualisation.docker.enable = true;
 

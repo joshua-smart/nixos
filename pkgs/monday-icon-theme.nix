@@ -22,8 +22,8 @@ stdenvNoCC.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
-    mkdir -p $out/share/icons/Monday
-    cp -a Monday/* $out/share/icons/Monday/
+    mkdir -p $out/share/icons/
+    cp -ra Monday $out/share/icons/
     runHook postInstall
   '';
 
@@ -34,6 +34,6 @@ stdenvNoCC.mkDerivation rec {
     homepage = "https://github.com/luisrguerra/monday-icon-theme";
     platforms = platforms.linux;
     license = licenses.gpl3Only;
-    maintainers = with maintainers; [ ];
+    maintainers = [ ];
   };
 }

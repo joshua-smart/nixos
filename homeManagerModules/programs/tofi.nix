@@ -84,7 +84,7 @@ in
       };
     };
 
-    home.activation.flush-tofi-cache =
+    home.activation.flushTofiCache =
       lib.hm.dag.entryAfter [ "writeBoundary" ] # bash
         ''
           cache=${config.home.homeDirectory}/.cache/tofi-drun

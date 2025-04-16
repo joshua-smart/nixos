@@ -17,7 +17,7 @@ in
       };
       iconTheme = {
         name = "Monday";
-        package = pkgs.callPackage ./monday-icon-theme.nix { };
+        package = pkgs.myPackages.monday-icon-theme;
       };
     };
   };
