@@ -2,7 +2,6 @@
 let
   inherit (lib)
     mkOption
-    mkIf
     types
     strings
     ;
@@ -22,11 +21,12 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = {
 
     services.playerctld.enable = builtins.elem "mpris" modulesList;
 
     programs.waybar = {
+      enable = true;
       systemd = {
         enable = true;
         target = "hyprland-session.target";
@@ -159,7 +159,7 @@ in
           };
         };
 
-      style = ./style.css;
+      style = ./waybar-style.css;
     };
   };
 }

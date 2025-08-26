@@ -36,8 +36,9 @@ in
     };
   };
 
-  config = mkIf config.programs.tofi.enable {
+  config = {
     programs.tofi = {
+      enable = true;
 
       scripts = {
         ssh = "${ssh}/bin/tofi-ssh";

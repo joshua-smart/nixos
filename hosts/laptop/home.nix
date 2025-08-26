@@ -2,14 +2,6 @@
 {
   imports = [ ../../homeManagerModules ];
 
-  profiles = {
-    display.enable = true;
-    shell.enable = true;
-    desktop-apps.enable = true;
-    games.enable = true;
-    accounts.enable = true;
-  };
-
   services = {
     udiskie.enable = true;
     # Bluetooth media control

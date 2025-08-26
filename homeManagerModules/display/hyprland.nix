@@ -69,7 +69,7 @@ let
 
 in
 {
-  imports = [ ./keybinds.nix ];
+  imports = [ ./hyprland-keybinds.nix ];
 
   options.wayland.windowManager.hyprland = {
     sessions = mkOption { type = types.attrsOf (types.submodule sessionOptions); };

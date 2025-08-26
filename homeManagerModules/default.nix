@@ -10,21 +10,27 @@ let
   modulesInDirectory = dir: fileset.toList (fileset.fileFilter (file: file.hasExt "nix") dir);
 in
 {
-  imports =
-    [
-      ./gtk.nix
-      ./windowManagers
-    ]
-    ++ builtins.concatMap modulesInDirectory [
-      ./services
-      ./programs
-      ./profiles
-    ];
+  imports = [
+    ./shell.nix
+    ./gtk.nix
+    ./desktop-apps.nix
+    ./display
+  ];
+
+  # Nixos related options
+  home.stateVersion = "23.11";
+
+  # Home manager setup
+  programs.home-manager.enable = true;
   home.username = user;
   home.homeDirectory = "/home/${user}";
   xdg.userDirs.pictures = "${config.home.homeDirectory}/Images";
 
-  home.stateVersion = "23.11";
-
-  programs.home-manager.enable = true;
+  # Services
+  services.syncthing.enable = true;
+  programs.git.ignores = [ ".stfolder/" ];
+  services.udiskie = {
+    enable = true;
+    tray = "auto";
+  };
 }
