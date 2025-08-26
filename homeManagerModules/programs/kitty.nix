@@ -12,7 +12,7 @@ in
     programs.kitty = {
       themeFile = "Doom_One";
       font = {
-        package = pkgs.fira-code-nerdfont;
+        package = pkgs.nerd-fonts.fira-code;
         name = "family=\"FiraCode Nerd Font\" style=\"Light\"";
         size = 12;
       };

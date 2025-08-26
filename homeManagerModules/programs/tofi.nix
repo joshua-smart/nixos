@@ -56,11 +56,7 @@ in
         text-cursor = true;
         text-cursor-style = "block";
 
-        font =
-          let
-            nerdfonts = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
-          in
-          "${nerdfonts}/share/fonts/truetype/NerdFonts/FiraCodeNerdFontPropo-Regular.ttf";
+        font = "${pkgs.nerd-fonts.fira-code}/share/fonts/truetype/NerdFonts/FiraCode/FiraCodeNerdFontPropo-Regular.ttf";
 
         horizontal = true;
         font-size = 11;

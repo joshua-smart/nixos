@@ -150,6 +150,7 @@ in
               format-ethernet = " {ipaddr}";
               format-wifi = " {essid} {ipaddr}";
               format-disconnected = " disconnected";
+              max-length = 32;
             };
             tray = {
               spacing = 9;

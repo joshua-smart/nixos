@@ -52,24 +52,6 @@ in
                   "@no"
                 ];
               };
-              "NixOS Wiki" = {
-                urls = [
-                  {
-                    template = "https://wiki.nixos.org/w/index.php";
-                    params = [
-                      {
-                        name = "search";
-                        value = "{searchTerms}";
-                      }
-                    ];
-                  }
-                ];
-                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                definedAliases = [
-                  "@nixwiki"
-                  "@nw"
-                ];
-              };
               "Home Manager Options" = {
                 urls = [
                   {
@@ -86,6 +68,24 @@ in
                 definedAliases = [
                   "@home-manager-opts"
                   "@hm"
+                ];
+              };
+              "5e.tools" = {
+                urls = [
+                  {
+                    template = "https://5e.tools/search.html";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+                icon = "https://5e.tools/favicon.svg";
+                definedAliases = [
+                  "@5e.tools"
+                  "@5e"
                 ];
               };
             };

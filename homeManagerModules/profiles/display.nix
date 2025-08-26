@@ -15,7 +15,7 @@ in
 
     # Fonts
     fonts.fontconfig.enable = true;
-    home.packages = with pkgs; [ (nerdfonts.override { fonts = [ "FiraCode" ]; }) ];
+    home.packages = with pkgs; [ nerd-fonts.fira-code ];
 
     programs = {
       tofi.enable = true;
@@ -28,6 +28,11 @@ in
       hyprpaper.enable = true;
     };
 
+    qt = {
+      enable = true;
+      platformTheme.name = "gtk";
+      style.name = "adwaita-dark";
+    };
 
     gtk.enable = true;
 

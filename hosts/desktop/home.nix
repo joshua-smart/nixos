@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [ ../../homeManagerModules ];
 
@@ -17,6 +17,11 @@
   services = {
     udiskie.enable = true;
     syncthing.enable = true;
+    easyeffects = {
+      enable = true;
+      preset = "denoise";
+    };
+    trayscale.enable = true;
   };
 
   wayland.windowManager.hyprland = {
@@ -45,12 +50,11 @@
 
   home.packages = with pkgs; [
     ryujinx
-    unityhub
-    jetbrains.rider
-    dotnetCorePackages.sdk_8_0
     gimp
     inkscape
     antimicrox
     maptool
+    qbittorrent
+    jetbrains.idea-community
   ];
 }

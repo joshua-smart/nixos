@@ -13,7 +13,6 @@ in
   config = mkIf config.profiles.games.enable {
     home.packages = with pkgs; [
       prismlauncher
-      lutris
     ];
   };
 }

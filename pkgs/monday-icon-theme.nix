@@ -19,15 +19,18 @@ stdenvNoCC.mkDerivation rec {
   nativeBuildInputs = [ gtk3 ];
 
   dontDropIconThemeCache = true;
+  dontBuild = true;
+  dontPatchELF = true;
 
   installPhase = ''
     runHook preInstall
     mkdir -p $out/share/icons/
-    cp -ra Monday $out/share/icons/
+    cp -r Monday $out/share/icons/
     runHook postInstall
   '';
 
-  postFixup = "gtk-update-icon-cache $out/share/icons/Monday";
+  postFixup = # bash
+    ''gtk-update-icon-cache $out/share/icons/Monday'';
 
   meta = with lib; {
     description = "Monday icon theme";

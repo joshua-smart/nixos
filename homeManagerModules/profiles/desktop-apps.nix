@@ -22,9 +22,9 @@ in
 
     home.packages = with pkgs; [
       obsidian
-      spotify
       slack
       zulip
+      spotify
     ];
   };
 }

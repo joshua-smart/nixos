@@ -13,6 +13,7 @@
   nix.flake = "/home/js/Projects/nixos";
 
   age.secrets."root-hashed-password".file = ../../secrets/laptop-root-hashed-password.age;
+
   profiles = {
     boot.enable = true;
     display.enable = true;
@@ -27,6 +28,7 @@
       rootHashedPasswordFile = config.age.secrets."root-hashed-password".path;
     };
     power-management.enable = true;
+    bluetooth.enable = true;
   };
 
   programs = {
@@ -43,28 +45,14 @@
       nssmdns4 = true;
       openFirewall = true;
     };
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "client";
+    };
   };
-
-  virtualisation.docker.enable = true;
 
   age.secrets."nas-credentials".file = ../../secrets/nas-credentials.age;
 
-  # fileSystems."/home/js/Network/Public" = {
-  #   device = "//192.168.1.173/Public";
-  #   fsType = "cifs";
-  #   options =
-  #     let
-  #       automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
-  #     in
-  #     [
-  #       automount_opts
-  #       "credentials=${config.age.secrets."nas-credentials".path}"
-  #       "uid=${toString config.users.users.js.uid}"
-  #       "gid=${toString config.users.groups.users.gid}"
-  #       "sec=ntlmssp"
-  #       "dir_mode=0555"
-  #       "file_mode=0444"
-  #       "ro"
-  #     ];
-  # };
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 }

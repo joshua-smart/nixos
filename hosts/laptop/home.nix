@@ -15,27 +15,36 @@
     # Bluetooth media control
     mpris-proxy.enable = true;
     syncthing.enable = true;
+    blueman-applet.enable = true;
+    trayscale.enable = true;
   };
 
   programs = {
     password-store.enable = true;
-    godot.enable = true;
+    # godot.enable = true;
   };
 
   home.packages = with pkgs; [
+    jetbrains.idea-community
+    qbittorrent
     inkscape
     gimp
     maptool
     gramps
+    jdk23
   ];
 
   wayland.windowManager.hyprland = {
     keybinds.volume-step = 5;
     sessions = {
       default = {
-        monitors = [ "eDP-1,prefered,auto,1" ];
+        monitors = [
+          "eDP-1,prefered,auto,1"
+          "HDMI-A-1,prefered,auto-left,1"
+        ];
         workspaces = {
-          eDP-1 = builtins.genList (x: x + 1) 5;
+          eDP-1 = [ 2 ]; # builtins.genList (x: x + 1) 5;
+          HDMI-A-1 = [ 1 ];
         };
       };
       external-HDMI-1 = {

@@ -11,6 +11,13 @@
     ../../nixosModules
   ];
 
+  virtualisation.docker.enable = true;
+
+  networking.firewall.allowedTCPPorts = [
+    3000
+    8080
+  ];
+
   nix.flake = "/home/js/Projects/nixos";
 
   profiles = {
@@ -31,6 +38,10 @@
     openssh.enable = true;
     printing.enable = true;
     udisks2.enable = true;
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "client";
+    };
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -40,4 +51,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 }

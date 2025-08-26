@@ -16,8 +16,8 @@ in
         package = pkgs.gruvbox-dark-gtk;
       };
       iconTheme = {
-        name = "Monday";
-        package = pkgs.myPackages.monday-icon-theme;
+        name = "WhiteSur";
+        package = pkgs.whitesur-icon-theme;
       };
     };
   };

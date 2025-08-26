@@ -38,6 +38,9 @@ in
     networking.hostName = host;
     networking.networkmanager.enable = true;
 
+    # Do not wait for network on boot
+    systemd.services.NetworkManager-wait-online.enable = false;
+
     networking.firewall =
       optionalAttrs cfg.wireguard-patch {
 

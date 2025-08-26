@@ -24,7 +24,7 @@ in
     environment.systemPackages = with pkgs; [ helix ];
 
     environment.variables = {
-      FLAKE = config.nix.flake;
+      NH_FLAKE = config.nix.flake;
       EDITOR = "hx";
     };
 

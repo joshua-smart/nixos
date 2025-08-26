@@ -19,11 +19,11 @@ in
   config = mkIf config.profiles.users.enable {
     age.secrets."js-hashed-password".file = ../../secrets/js-hashed-password.age;
 
-    users.mutableUsers = false;
+    users.mutableUsers = true;
 
     users.users.js = {
       uid = 1000;
-      hashedPasswordFile = config.age.secrets."js-hashed-password".path;
+      # hashedPasswordFile = config.age.secrets."js-hashed-password".path;
       isNormalUser = true;
       description = "Joshua Smart";
       extraGroups = [
@@ -36,8 +36,8 @@ in
       useDefaultShell = true;
     };
 
-    users.users."root".hashedPasswordFile = mkIf (
-      config.profiles.users.rootHashedPasswordFile != null
-    ) config.profiles.users.rootHashedPasswordFile;
+    # users.users."root".hashedPasswordFile = mkIf (
+      # config.profiles.users.rootHashedPasswordFile != null
+    # ) config.profiles.users.rootHashedPasswordFile;
   };
 }
