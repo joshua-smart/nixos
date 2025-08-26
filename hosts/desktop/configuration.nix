@@ -8,7 +8,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../nixosModules
+    ../../configuration-common.nix
   ];
 
   virtualisation.docker.enable = true;
@@ -20,22 +20,11 @@
 
   nix.flake = "/home/js/Projects/nixos";
 
-  profiles = {
-    boot.enable = true;
-    display.enable = true;
-    localisation.enable = true;
-    network.enable = true;
-    sound.enable = true;
-    users.enable = true;
-  };
-
   programs = {
-    zsh.enable = true;
     steam.enable = true;
   };
 
   services = {
-    openssh.enable = true;
     printing.enable = true;
     udisks2.enable = true;
     tailscale = {

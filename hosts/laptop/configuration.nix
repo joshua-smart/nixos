@@ -2,7 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../nixosModules
+    ../../configuration-common.nix
   ];
 
   networking.firewall.allowedTCPPorts = [
@@ -12,32 +12,11 @@
 
   nix.flake = "/home/js/Projects/nixos";
 
-  age.secrets."root-hashed-password".file = ../../secrets/laptop-root-hashed-password.age;
-
-  profiles = {
-    boot.enable = true;
-    display.enable = true;
-    localisation.enable = true;
-    network = {
-      enable = true;
-      wireguard-patch = false;
-    };
-    sound.enable = true;
-    users = {
-      enable = true;
-      rootHashedPasswordFile = config.age.secrets."root-hashed-password".path;
-    };
-    power-management.enable = true;
-    bluetooth.enable = true;
-  };
-
   programs = {
-    zsh.enable = true;
     steam.enable = true;
   };
 
   services = {
-    openssh.enable = true;
     printing.enable = true;
     udisks2.enable = true;
     avahi = {
@@ -50,6 +29,16 @@
       useRoutingFeatures = "client";
     };
   };
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  services.blueman.enable = true;
+
+  powerManagement.enable = true;
+  services.thermald.enable = true;
+  services.tlp.enable = true;
 
   age.secrets."nas-credentials".file = ../../secrets/nas-credentials.age;
 
