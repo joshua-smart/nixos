@@ -39,8 +39,6 @@
               inherit system;
               config.allowUnfree = true;
             };
-          })
-          (final: prev: {
             myPackages = lib.filesystem.packagesFromDirectoryRecursive {
               callPackage = final.callPackage;
               directory = ./pkgs;
@@ -83,7 +81,6 @@
       nixosConfigurations = {
         laptop = myNixosSystem "laptop";
         desktop = myNixosSystem "desktop";
-        isoimage = myNixosSystem "isoimage";
       };
       homeConfigurations = {
         "js@laptop" = myHomeManagerConfiguration "js" "laptop";

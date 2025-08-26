@@ -44,7 +44,17 @@ in
     style.name = "adwaita-dark";
   };
 
-  gtk.enable = true;
+  gtk = {
+    enable = true;
+    theme = {
+      name = "gruvbox-dark";
+      package = pkgs.gruvbox-dark-gtk;
+    };
+    iconTheme = {
+      name = "WhiteSur";
+      package = pkgs.whitesur-icon-theme;
+    };
+  };
 
   home.pointerCursor = {
     package = pkgs.adwaita-icon-theme;

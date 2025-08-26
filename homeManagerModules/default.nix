@@ -1,18 +1,11 @@
 {
   user,
   config,
-  lib,
   ...
 }:
-let
-  inherit (lib) fileset;
-
-  modulesInDirectory = dir: fileset.toList (fileset.fileFilter (file: file.hasExt "nix") dir);
-in
 {
   imports = [
     ./shell.nix
-    ./gtk.nix
     ./desktop-apps.nix
     ./display
   ];
