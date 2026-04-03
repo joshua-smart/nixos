@@ -2,12 +2,12 @@
   description = "joshua-smart nixos config";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.05";
+    nixpkgs.url = "nixpkgs/nixos-25.11";
 
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -15,6 +15,11 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -24,6 +29,7 @@
       nixpkgs-unstable,
       home-manager,
       agenix,
+      nix-index-database,
       ...
     }@inputs:
     let
@@ -67,6 +73,7 @@
           modules = [
             ./hosts/${host}/home.nix
             agenix.homeManagerModules.default
+            nix-index-database.homeModules.default
           ];
           extraSpecialArgs = {
             inherit

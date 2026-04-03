@@ -35,7 +35,8 @@
           title = "Terminal";
         };
         env.TERM = "xterm-256color";
-      } // recursiveUpdate (theme "doom_one") { colors.primary.foreground = "#eeeeee"; };
+      }
+      // recursiveUpdate (theme "doom_one") { colors.primary.foreground = "#eeeeee"; };
     };
 
   programs.firefox = {
@@ -136,6 +137,24 @@
     };
   };
 
+  xdg = {
+    portal.enable = true;
+    mime.enable = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = [
+          "firefox.desktop"
+        ];
+        "video/mp4" = [
+          "vlc.desktop"
+        ];
+      };
+      defaultApplicationPackages = with pkgs; [ vlc ];
+    };
+  };
+  xdg.configFile."mimeapps.list".force = true;
+
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -145,8 +164,6 @@
     thunderbird
     discord
     obsidian
-    slack
-    zulip
     spotify
   ];
 }

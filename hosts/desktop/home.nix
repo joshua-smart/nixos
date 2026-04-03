@@ -32,7 +32,7 @@
   };
 
   programs.waybar = {
-    monitors = [ "HDMI-A-2" ];
+    monitors = [ "HDMI-A-1" ];
     workspaces = [
       1
       2
@@ -41,12 +41,24 @@
   };
 
   home.packages = with pkgs; [
-    ryujinx
+    ryubing
     gimp
     inkscape
     antimicrox
-    maptool
+    # maptool
     qbittorrent
     prismlauncher
+    (pkgs.symlinkJoin {
+      name = "freecad";
+      paths = [ pkgs.freecad ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/FreeCAD \
+          --set QT_QPA_PLATFORM xcb
+      '';
+    })
+    povray
+    myPackages.magicq
+    kdePackages.kdenlive
   ];
 }

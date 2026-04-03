@@ -12,11 +12,23 @@
   ];
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   networking.firewall.allowedTCPPorts = [
     3000
     8080
   ];
+
+  environment.systemPackages = with pkgs; [
+    wireguard-tools
+    protonvpn-gui
+    wireshark
+    openssl.dev
+    openssl
+  ];
+
+  programs.wireshark.enable = true;
+  users.users.js.extraGroups = [ "wireshark" ];
 
   nix.flake = "/home/js/Projects/nixos";
 
@@ -31,6 +43,11 @@
       enable = true;
       useRoutingFeatures = "client";
     };
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -43,4 +60,19 @@
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
+
+  # Audio crackling fix
+  services.pipewire.extraConfig.pipewire."0-cracking-fix" = {
+    "default.clock.min-quantum" = 1024;
+  };
+
+  # Keymap
+  services.kanata = {
+    enable = true;
+    keyboards."default".config = ''
+      (defsrc caps f1 mute)
+      (deflayer default esc mute f1)
+    '';
+  };
+
 }

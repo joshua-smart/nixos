@@ -53,6 +53,7 @@ in
           "$mod, numbersign, exec, ${launch-prefix} ${browser}"
           "$mod_SHIFT, P, exit,"
           "$mod, B, exec, ${pkill} -SIGUSR1 waybar"
+          "$mod, Y, exec, ${launch-prefix} ${browser} youtube.com"
 
           # layout commands
           "$mod_SHIFT, return, layoutmsg, swapwithmaster master"

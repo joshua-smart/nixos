@@ -1,6 +1,7 @@
 {
   user,
   config,
+  pkgs,
   ...
 }:
 {
@@ -21,6 +22,10 @@
 
   # Services
   services.syncthing.enable = true;
+  services.syncthing.tray = {
+    enable = true;
+    package = pkgs.syncthingtray-minimal;
+  };
   programs.git.ignores = [ ".stfolder/" ];
   services.udiskie = {
     enable = true;

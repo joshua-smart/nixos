@@ -21,6 +21,7 @@ in
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
+      "ca-derivations"
     ];
 
     # Boot configuration
@@ -74,7 +75,7 @@ in
     services.greetd = {
       enable = true;
       settings.default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -d --remember --remember-user-session --time";
+        command = "${pkgs.tuigreet}/bin/tuigreet -d --remember --remember-user-session --time";
         user = "greeter";
       };
     };
@@ -107,6 +108,7 @@ in
       extraGroups = [
         "networkmanager"
         "wheel"
+        "video" # backlight control
       ];
       useDefaultShell = true;
     };

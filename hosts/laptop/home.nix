@@ -17,49 +17,26 @@
   };
 
   home.packages = with pkgs; [
-    jetbrains.idea-community
-    qbittorrent
     inkscape
     gimp
-    maptool
-    gramps
-    jdk23
+    # gramps
+    prismlauncher
+    myPackages.magicq
+    freecad
   ];
 
   wayland.windowManager.hyprland = {
-    keybinds.volume-step = 5;
-    sessions = {
-      default = {
-        monitors = [
-          "eDP-1,prefered,auto,1"
-          "HDMI-A-1,prefered,auto-left,1"
-        ];
-        workspaces = {
-          eDP-1 = [ 2 ]; # builtins.genList (x: x + 1) 5;
-          HDMI-A-1 = [ 1 ];
-        };
-      };
-      external-HDMI-1 = {
-        monitors = [
-          "eDP-1,prefered,auto,1"
-          "HDMI-A-1,1920x1080,auto-left,1"
-        ];
-        workspaces = {
-          eDP-1 = [ 2 ];
-          HDMI-A-1 = [ 1 ];
-        };
-      };
-      external-DP-2 = {
-        monitors = [
-          "eDP-1,prefered,auto,1"
-          "DP-2,3840x1600@60.00Hz,auto-left,1"
-        ];
-        workspaces = {
-          eDP-1 = [ 2 ];
-          DP-2 = [ 1 ];
-        };
-      };
+    settings = {
+      # monitor = [
+      #   "eDP-1,prefered,0x0,1"
+      #   ",prefered,auto-left,1"
+      # ];
+      # workspace = [
+      #   "1,monitor:DP-2"
+      #   "2,monitor:eDP-1"
+      # ];
     };
+    keybinds.volume-step = 5;
   };
 
   programs.waybar = {

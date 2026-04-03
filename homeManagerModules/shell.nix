@@ -21,7 +21,7 @@
       "tree" = "ls -T";
     };
 
-    dotDir = ".config/zsh";
+    dotDir = config.xdg.configHome;
 
     initContent = ''
       bindkey "^[[1;5C" forward-word
@@ -129,26 +129,24 @@
 
   programs.git = {
     enable = true;
-    userName = "Joshua Smart";
-    userEmail = "josh@thesmarts.co.uk";
+    settings = {
+      user.name = "Joshua Smart";
+      user.email = "josh@thesmarts.co.uk";
+    };
   };
 
   programs.tmux = {
     enable = true;
     keyMode = "vi";
-    shortcut = "Space";
     escapeTime = 0;
     baseIndex = 1;
     disableConfirmationPrompt = true;
-    terminal = "tmux-256color";
+    terminal = "xterm-256color";
     mouse = true;
 
     extraConfig = ''
-      set -ag terminal-overrides ",$TERM:Tc"
       set -g status-left-length 20
     '';
-
-    tmuxinator.enable = true;
   };
 
   programs.helix = {
@@ -217,17 +215,20 @@
     silent = true;
   };
 
-  age.secrets."nix-homelab-admin-ssh-key".file = ../secrets/nix-homelab-admin-ssh-key.age;
   programs.ssh = {
     enable = true;
-    matchBlocks = {
-      "*.hosts.jsmart.dev" = {
-        user = "admin";
-        identityFile = config.age.secrets."nix-homelab-admin-ssh-key".path;
-      };
-      "falen.hosts.jsmart.dev" = {
-        port = 3000;
-      };
+    enableDefaultConfig = false;
+    matchBlocks."*" = {
+      forwardAgent = false;
+      addKeysToAgent = "no";
+      compression = false;
+      serverAliveInterval = 0;
+      serverAliveCountMax = 3;
+      hashKnownHosts = false;
+      userKnownHostsFile = "~/.ssh/known_hosts";
+      controlMaster = "no";
+      controlPath = "~/.ssh/master-%r@%n:%p";
+      controlPersist = "no";
     };
   };
 
@@ -239,4 +240,7 @@
     unzip
     myPackages.nr
   ];
+
+  programs.nix-index.enable = true;
+  programs.nix-index-database.comma.enable = true;
 }

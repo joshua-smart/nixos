@@ -15,9 +15,13 @@ in
   # Hyprland
   wayland.windowManager.hyprland.enable = true;
 
+  home.packages = with pkgs; [
+    nerd-fonts.fira-code
+    nwg-displays
+  ];
+
   # Fonts
   fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [ nerd-fonts.fira-code ];
 
   xdg.configFile."hypr/hyprpaper_background.jpg".source = ./background.jpg;
   services.hyprpaper =
@@ -40,15 +44,16 @@ in
 
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
+    platformTheme.name = "adwaita";
     style.name = "adwaita-dark";
   };
 
   gtk = {
     enable = true;
+    colorScheme = "dark";
     theme = {
-      name = "gruvbox-dark";
-      package = pkgs.gruvbox-dark-gtk;
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
     };
     iconTheme = {
       name = "WhiteSur";
