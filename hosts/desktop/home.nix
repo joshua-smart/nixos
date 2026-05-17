@@ -17,16 +17,6 @@
   };
 
   wayland.windowManager.hyprland = {
-    sessions.default = {
-      monitors = [
-        "HDMI-A-1,prefered,auto,1"
-        "HDMI-A-2,prefered,auto-right,1"
-      ];
-      workspaces = {
-        HDMI-A-1 = [ 1 ];
-        HDMI-A-2 = [ 2 ];
-      };
-    };
     nvidia = true;
     keybinds.volume-step = 1;
   };
@@ -48,17 +38,10 @@
     # maptool
     qbittorrent
     prismlauncher
-    (pkgs.symlinkJoin {
-      name = "freecad";
-      paths = [ pkgs.freecad ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/FreeCAD \
-          --set QT_QPA_PLATFORM xcb
-      '';
-    })
+    freecad
     povray
     myPackages.magicq
-    kdePackages.kdenlive
+    myPackages.cue-view
+    myPackages.ksa
   ];
 }

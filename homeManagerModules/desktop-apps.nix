@@ -143,13 +143,22 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/pdf" = [
-          "firefox.desktop"
-        ];
         "video/mp4" = [
           "vlc.desktop"
         ];
-      };
+      }
+      // (lib.listToAttrs (
+        builtins.map
+          (t: {
+            name = t;
+            value = "firefox.desktop";
+          })
+          [
+            "application/pdf"
+            "image/png"
+            "image/jpeg"
+          ]
+      ));
       defaultApplicationPackages = with pkgs; [ vlc ];
     };
   };

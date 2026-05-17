@@ -19,10 +19,12 @@
   home.packages = with pkgs; [
     inkscape
     gimp
-    # gramps
+    gramps
     prismlauncher
     myPackages.magicq
     freecad
+    myPackages.cue-view
+    librewolf
   ];
 
   wayland.windowManager.hyprland = {

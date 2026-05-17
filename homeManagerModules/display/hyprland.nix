@@ -42,12 +42,15 @@ in
         env = optionals cfg.nvidia [ "WLR_NO_HARDWARE_CURSORS,1" ];
 
         general = {
-          gaps_in = 5;
-          gaps_out = 10;
-          border_size = 2;
+          # gaps_in = 5;
+          # gaps_out = 10;
+          # border_size = 2;
+          gaps_in = 0;
+          gaps_out = 0;
+          border_size = 0;
 
-          "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-          "col.inactive_border" = "rgba(595959aa)";
+          # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+          # "col.inactive_border" = "rgba(595959aa)";
 
           resize_on_border = false;
           allow_tearing = false;
@@ -57,10 +60,10 @@ in
         cursor.inactive_timeout = 1;
 
         decoration = {
-          rounding = 10;
+          # rounding = 10;
 
-          active_opacity = 1.0;
-          inactive_opacity = 1.0;
+          # active_opacity = 1.0;
+          # inactive_opacity = 1.0;
 
           shadow = {
             enabled = true;
@@ -92,6 +95,7 @@ in
 
         master = {
           new_status = "master";
+          mfact = 0.6;
         };
 
         misc = {
