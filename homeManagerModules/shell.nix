@@ -238,7 +238,6 @@
     tree
     zip
     unzip
-    myPackages.nr
   ];
 
   programs.nix-index.enable = true;

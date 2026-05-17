@@ -29,7 +29,7 @@ in
       enable = true;
       systemd = {
         enable = true;
-        target = "hyprland-session.target";
+        target = config.wayland.systemd.target;
       };
       settings =
         let
@@ -147,6 +147,7 @@ in
               };
             };
             network = {
+              family = "ipv4_6";
               format-ethernet = " {ipaddr}";
               format-wifi = " {essid} {ipaddr}";
               format-disconnected = " disconnected";
