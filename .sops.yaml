@@ -1,0 +1,15 @@
+keys:
+  - &admin age1kvl84wayj4vadfj20am28ynxr2a2kkjxqf88urgh4tkf84fptdysp3xhec
+  - &desktop age16a8g0ag2ka82j69w3d6t5j0ps4mhrq9azx37hk2fn4wyc3lfwe4qvpcruu
+  - &laptop age144gsmvm34hwhxu3s2hxqyhkvurh2xmf0d0agtdskv9fmjxsel3fqlw0khv
+creation_rules:
+  - path_regex: hosts/desktop/secrets.yaml$
+    key_groups:
+    - age:
+      - *admin
+      - *desktop
+  - path_regex: hosts/laptop/secrets.yaml$
+    key_groups:
+    - age:
+      - *admin
+      - *laptop

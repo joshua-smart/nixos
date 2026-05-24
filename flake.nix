@@ -11,10 +11,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    agenix = {
-      url = "github:ryantm/agenix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.darwin.follows = "";
     };
 
     nix-index-database = {
@@ -28,7 +27,7 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
-      agenix,
+      sops-nix,
       nix-index-database,
       ...
     }@inputs:
@@ -59,7 +58,7 @@
           inherit pkgs system;
           modules = [
             ./hosts/${host}/configuration.nix
-            agenix.nixosModules.default
+            sops-nix.nixosModules.sops
           ];
           specialArgs = {
             inherit host inputs;
@@ -72,7 +71,7 @@
           inherit pkgs;
           modules = [
             ./hosts/${host}/home.nix
-            agenix.homeManagerModules.default
+            sops-nix.homeManagerModules.sops
             nix-index-database.homeModules.default
           ];
           extraSpecialArgs = {
@@ -95,7 +94,11 @@
       };
 
       devShells.${system}.default = pkgs.mkShell {
-        packages = [ agenix.packages.${system}.default ];
+        packages = [
+          pkgs.ssh-to-age
+          pkgs.age
+          pkgs.sops
+        ];
       };
     };
 }

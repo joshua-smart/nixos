@@ -11,6 +11,8 @@
     ../../configuration-common.nix
   ];
 
+  sops.defaultSopsFile = ./secrets.yaml;
+
   virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
 

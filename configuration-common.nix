@@ -27,6 +27,7 @@ in
     # Boot configuration
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
+    boot.tmp.cleanOnBoot = true;
 
     # Internationalisation
     services.automatic-timezoned.enable = true;
@@ -100,7 +101,7 @@ in
     systemd.services.NetworkManager-wait-online.enable = false; # Do not wait for network on boot
 
     # Users
-    users.mutableUsers = true;
+    # users.mutableUsers = true;
     users.users.js = {
       uid = 1000;
       isNormalUser = true;
@@ -112,6 +113,13 @@ in
       ];
       useDefaultShell = true;
     };
+
+    sops.secrets."users/js/password_hash".neededForUsers = true;
+    sops.secrets."users/root/password_hash".neededForUsers = true;
+
+    users.mutableUsers = false;
+    users.users.js.hashedPasswordFile = config.sops.secrets."users/js/password_hash".path;
+    users.users.root.hashedPasswordFile = config.sops.secrets."users/root/password_hash".path;
 
     # Programs
     programs.steam = {

@@ -11,6 +11,8 @@
     8080
   ];
 
+  sops.defaultSopsFile = ./secrets.yaml;
+
   nix.flake = "/home/js/Projects/nixos";
 
   programs = {
@@ -64,8 +66,6 @@
   powerManagement.enable = true;
   services.thermald.enable = true;
   services.tlp.enable = true;
-
-  age.secrets."nas-credentials".file = ../../secrets/nas-credentials.age;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
