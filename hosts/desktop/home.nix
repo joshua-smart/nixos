@@ -2,10 +2,6 @@
 {
   imports = [ ../../homeManagerModules ];
 
-  programs = {
-    password-store.enable = true;
-  };
-
   services = {
     udiskie.enable = true;
     syncthing.enable = true;

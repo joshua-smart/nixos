@@ -29,7 +29,7 @@ in
       enable = true;
       systemd = {
         enable = true;
-        target = config.wayland.systemd.target;
+        targets = [ config.wayland.systemd.target ];
       };
       settings =
         let

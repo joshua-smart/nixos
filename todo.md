@@ -4,4 +4,3 @@
 - Notification daemon
 - feh as default xdg image viewer (missing desktop entry)
 - fix waybar hyprland workspaces
-- replace swapfile with swap partition

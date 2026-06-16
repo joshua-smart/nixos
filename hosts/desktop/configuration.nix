@@ -56,7 +56,7 @@
   hardware.nvidia = {
     open = false;
     modesetting.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
   boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
 

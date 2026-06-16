@@ -33,8 +33,11 @@ in
       enable = true;
       settings = {
         splash = false;
-        preload = [ background-path ];
-        wallpaper = ",${background-path}";
+        # preload = [ background-path ];
+        wallpaper = {
+          monitor = "";
+          path = background-path;
+        };
       };
     };
 

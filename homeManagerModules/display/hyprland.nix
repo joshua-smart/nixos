@@ -30,6 +30,7 @@ in
   config = mkIf cfg.enable {
 
     wayland.windowManager.hyprland = {
+      configType = "hyprlang";
       systemd.enable = true;
 
       settings = {
@@ -42,16 +43,9 @@ in
         env = optionals cfg.nvidia [ "WLR_NO_HARDWARE_CURSORS,1" ];
 
         general = {
-          # gaps_in = 5;
-          # gaps_out = 10;
-          # border_size = 2;
           gaps_in = 0;
           gaps_out = 0;
           border_size = 0;
-
-          # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-          # "col.inactive_border" = "rgba(595959aa)";
-
           resize_on_border = false;
           allow_tearing = false;
           layout = "master";
@@ -60,11 +54,6 @@ in
         cursor.inactive_timeout = 1;
 
         decoration = {
-          # rounding = 10;
-
-          # active_opacity = 1.0;
-          # inactive_opacity = 1.0;
-
           shadow = {
             enabled = true;
             range = 4;
@@ -101,7 +90,7 @@ in
         misc = {
           force_default_wallpaper = 0;
           disable_hyprland_logo = true;
-          new_window_takes_over_fullscreen = 1;
+          on_focus_under_fullscreen = 1;
         };
 
         # INPUT
@@ -115,19 +104,16 @@ in
 
         # LAYER RULES
         layerrule = [
-          "blur,waybar"
-          "blur,launcher"
-        ];
-
-        workspace = [
-          "w[tv1], gapsout:0, gapsin:0"
-          "f[1], gapsout:0, gapsin:0"
-        ];
-        windowrulev2 = [
-          "bordersize 0, floating:0, onworkspace:w[tv1]"
-          "rounding 0, floating:0, onworkspace:w[tv1]"
-          "bordersize 0, floating:0, onworkspace:f[1]"
-          "rounding 0, floating:0, onworkspace:f[1]"
+          {
+            name = "waybar-blur";
+            match.namespace = "waybar";
+            blur = true;
+          }
+          {
+            name = "launcher-blur";
+            match.namespace = "launcher";
+            blur = true;
+          }
         ];
       };
     };

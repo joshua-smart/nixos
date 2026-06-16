@@ -200,7 +200,7 @@
     };
     defaultEditor = true;
     extraPackages = with pkgs; [
-      nixfmt-rfc-style
+      nixfmt
       nixd
     ];
   };
@@ -218,7 +218,7 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks."*" = {
+    settings."*" = {
       forwardAgent = false;
       addKeysToAgent = "no";
       compression = false;

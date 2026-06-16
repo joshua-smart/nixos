@@ -33,7 +33,7 @@ in
         let
           terminal = "${pkgs.alacritty}/bin/alacritty";
           browser = "${pkgs.firefox}/bin/firefox";
-          light = "${pkgs.light}/bin/light";
+          brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
           wpctl = "${pkgs.wireplumber}/bin/wpctl";
           grim = "${pkgs.grim}/bin/grim";
           slurp = "${pkgs.slurp}/bin/slurp";
@@ -68,10 +68,10 @@ in
           "$mod, F, togglefloating, active"
 
           # media keys
-          ", XF86MonBrightnessUp, exec, ${light} -A 5"
-          ", XF86MonBrightnessDown, exec, ${light} -U 5"
-          "$mod, XF86MonBrightnessDown, exec, ${light} -S 0.01"
-          "$mod, XF86MonBrightnessUp, exec, ${light} -S 100"
+          ", XF86MonBrightnessUp, exec, ${brightnessctl} s +5%"
+          ", XF86MonBrightnessDown, exec, ${brightnessctl} s -5%"
+          "$mod, XF86MonBrightnessDown, exec, ${brightnessctl} s 1%"
+          "$mod, XF86MonBrightnessUp, exec, ${brightnessctl} s 100%"
           ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
           ", XF86AudioPlay, exec, ${playerctl} play-pause"
           ", XF86AudioNext, exec, ${playerctl} next"

@@ -17,7 +17,7 @@ in
 
   config = {
     # NixOS related options
-    system.stateVersion = "23.11";
+    system.stateVersion = "26.05";
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
@@ -63,7 +63,6 @@ in
     };
 
     # Display
-    programs.light.enable = true;
     programs.hyprland = {
       enable = true;
       xwayland.enable = true;

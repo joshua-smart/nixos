@@ -11,11 +11,6 @@
     trayscale.enable = true;
   };
 
-  programs = {
-    password-store.enable = true;
-    # godot.enable = true;
-  };
-
   home.packages = with pkgs; [
     inkscape
     gimp

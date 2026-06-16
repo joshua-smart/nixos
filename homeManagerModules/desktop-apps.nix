@@ -164,10 +164,7 @@
   };
   xdg.configFile."mimeapps.list".force = true;
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-  };
+  programs.vscodium.enable = true;
 
   home.packages = with pkgs; [
     thunderbird

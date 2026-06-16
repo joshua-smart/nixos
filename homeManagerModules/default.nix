@@ -12,7 +12,7 @@
   ];
 
   # Nixos related options
-  home.stateVersion = "23.11";
+  home.stateVersion = "26.05";
 
   # Home manager setup
   programs.home-manager.enable = true;
